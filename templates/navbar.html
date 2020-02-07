@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<nav class="navbar navbar-expand-md navbar-dark" id="navbar">
+    <div class="navbar-header">
+        <a class="navbar-logo" href="{% url "home:home" %}">
+        <img src="{% static 'img/piro_logo.jpg' %}" alt="piro_logo">
+    </a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" id="option1" href="#about">ABOUT US</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#activity" id="option2">ACTIVITY </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#port" id="option3">PORTFOLIO </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "home:recruit" %}" id="option4">RECRUITMENT </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#board" id="option5">BOARD </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="sign-up">
+          <li class="nav-item"><a class="nav-link"><i class="fas fa-user"></i>SIGN UP</a></li>
+          <li class="nav-item"><a class="nav-link"><i class="fas fa-sign-in-alt"></i>LOGIN</a></li>
+        </ul>
+    </div>
+</nav>
