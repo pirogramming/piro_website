@@ -1,0 +1,67 @@
+{% load staticfiles %}
+
+<!--Photo for portfolio: https://ko.wix.com/logo/maker-->
+<section id="port" class="home-section" style="background-color: #2C3E52">
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <div class="section-heading">
+        <h5 style="color:white">프로젝트</h5>
+        <div class="heading-line"></div>
+        <p style="font-family: 'Noto Sans KR'; color: white">피로그래밍 동아리원들은 6년간 총 72개의 프로젝트를 진행하였습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+
+      <ul id="og-grid" class="og-grid">
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_1.png' %}" alt="piro_proj_1" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_2.png' %}" alt="piro_proj_2" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_3.png' %}" alt="piro_proj_3" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_4.png' %}" alt="piro_proj_4" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_5.png' %}" alt="piro_proj_5" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_6.png' %}" alt="piro_proj_6" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_7.png' %}" alt="piro_proj_7" />
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="{% static 'img/piro_proj_8.png' %}" alt="piro_proj_8" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-success" href="{% url "home:portfolio" %}" role="button" style="background-color: #25CCA0"><i class="fas fa-plus-circle" style="margin-right: 8px;"></i>자세히 보기</a>
+</div>
+</section>
