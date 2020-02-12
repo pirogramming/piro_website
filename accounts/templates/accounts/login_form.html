@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 로그인
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    #login{
+        background-color: #25CCA0; border: #25CCA0;
+    }
+    #login:hover{
+        background-color: #2C3E52;
+    }
+    #loginbutton a{
+        text-decoration: none;
+        color: #25CCA0;
+        font-family: 'Do Hyeon', sans-serif;
+    }
+    #loginbutton a:hover{
+        color: #2C3E52;
+    }
+</style>
+{% if not user.is_authenticated %}
+    <div class="col-xl-5 col-lg-5 col-md-9 col-sm-9 col-xs-11" style="color:black; margin:50px auto;">
+        <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
+            <div style="text-align: center;">
+                <strong style="color: #25CCA0; font-family: 'Do Hyeon', sans-serif; font-size: 40px;">로그인</strong>
+                <br>
+                <small>운영진의 인증이 완료된 계정만 로그인 가능합니다.</small><br/><br/>
+            </div>
+            <div style="margin: 0px 70px">
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    {% for message in messages %}
+                        <div class="alert alert-info">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            {{ message.message }}
+                        </div>
+                    {% endfor %}
+                    <div>
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div>
+                        {{ form.password|as_crispy_field }}
+                    </div>
+                    <br/>
+                    <input type="submit" class="btn btn-primary" id="login" value="로그인">
+                </form>
+            </div>
+            <div id='loginbutton' style="text-align: right">
+                <a href="{% url 'accounts:signup' %}">회원가입</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" onclick="return alert('피로그래밍 운영진에게 문의하세요.');">비밀번호찾기</a>
+            </div>
+        </div>
+    </div>
+{% else %}
+<script>
+    alert('이미 로그인한 상태입니다.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+{% endblock %}
+
+
+
+
