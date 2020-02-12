@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
+
+@media screen and (max-width:767px) {
+    h5{font-size: 30px;}
+    #schedule{width:100%;}
+    #sign-up{display: none;}
+    .autoplay img{width:95%;height:110px;}
+}
+
+@media screen and (min-width:768px) and (max-width:959px) {
+    h5{font-size: 38px;}
+    #schedule{width:95%;}
+    .autoplay img{width:95%;height:190px;}
+}
+
+@media screen and (min-width:960px) {
+    h5{font-size: 40px;}
+    .autoplay img{width:100%;height:250px;}
+}
+
+html{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+h5{
+    font-family:'Noto Sans KR';
+    text-align: center;
+}
+
+.heading-line {
+	margin:0 auto;
+	display: block;
+	height: 1px;
+	width: 80px;
+	background: #25CCA0;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+
+/* navbar start */
+.navbar{
+    background-color: #2C3E52;
+    padding:1.8% 1%;
+    transition-duration: 0.43s;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-item{
+    font-size: 18px;
+}
+
+#navbar a{
+    font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
+}
+#navbar img{
+    border: 2px solid antiquewhite;
+    margin: 0px 7px 0px 0px;
+    width: 40px;
+    height: 40px;
+}
+
+#navbar i {
+    margin-right: 10px;
+}
+
+#back-to-top {
+  display: inline-block;
+  background-color: orange;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s,
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+
+#back-to-top:hover {
+  cursor: pointer;
+  background-color: #333;
+  text-decoration: none;
+}
+
+#back-to-top:active {
+  background-color: #555;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+/* navbar end */
+
+
+/* intro start */
+#progress-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 11.5%;
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+    z-index: 999;
+}
+
+.progress-bar {
+height: 8px;
+background: black;
+width: 0%;
+}
+/* intro end */
+
+
+/* about start */
+.home-section {
+  width: 100%;
+  padding: 6% 0 4% 0;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#about .about-img {
+  height: 350px;
+  overflow: hidden;
+}
+
+#about .about-img img {
+  margin-left: -15px;
+  max-width: 100%;
+}
+
+@media (max-width: 992px) {
+  #about .about-img {
+    height: auto;
+  }
+  #about .about-img img {
+    margin-left: 0;
+    padding-bottom: 30px;
+  }
+}
+
+#about .content h3 {
+    color: #777;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 26px;
+    font-style: italic;
+    text-align: left;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+#about .content p {
+    line-height: 26px;
+    text-align: left;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+#about .content p:last-child {
+  margin-bottom: 0;
+}
+
+.counters {
+  padding-top: 70px;
+}
+
+.counters span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 48px;
+  display: block;
+  color: #25CCA0;
+}
+
+.counters p {
+  padding: 0;
+  margin:0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2C3E52;
+}
+
+.counters h1{
+  padding: 0;
+  margin: 0 0 30px 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2C3E52;
+}
+/* about end */
+
+
+/* activity start */
+#schedule{
+    margin: 0 auto;
+    padding-bottom: 3%;
+}
+
+#schedule img{
+    width: 100%;
+}
+
+#schedule h5{
+    color:black;
+    padding:3% 0 0 0;
+}
+
+.divider{
+    width:79%;
+    border-top:2px solid #25CCA0;
+    margin:4% auto;
+}
+
+.activity {
+    background-color: rgb(44, 62, 82);
+}
+
+.activity-content{
+    padding-bottom: 3%;
+}
+
+.activity-info {
+    color:white;
+    text-align:center;
+    padding: 6% 0 2% 0;
+}
+
+.activity-content{
+    padding-bottom: 6%;
+    }
+/* activity end */
+
+
+/* portfolio start */
+.og-grid {
+	list-style: none;
+	padding: 20px 0;
+	margin: 0 auto 15px auto;
+	text-align: center;
+	width: 100%;
+}
+
+.og-grid li {
+	display: inline-block;
+	margin: 15px 5px 0 5px;
+	vertical-align: top;
+	height: 250px;
+}
+
+.og-grid li > a,
+.og-grid li > a img {
+	border: none;
+	outline: none;
+	display: block;
+	position: relative;
+}
+
+#port img{
+    width: 250px;
+    height: 250px;
+}
+/* portfolio end */
+
+/* photo start */
+.slick-slide {
+margin: 0 27px 20px 27px;
+}
+
+.slick-prev:before, .slick-next:before {
+color:#25CCA0 !important;
+}
+
+#photo{
+margin-top: 6%;
+margin-bottom: 8%;
+}
+/* photo end */
+
+
+/* port_list start */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.portfolio-container {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.portfolio-header {
+    background-color: rgba(37, 204, 160);
+    padding: 10px;
+    text-align: end;
+}
+
+.portfolio-main {
+    padding: 20px;
+}
+
+.dropdown-toggle {
+    background-color: white;
+}
+
+
+.portfolio-header {
+    font-size: 17px;
+}
+
+select {
+    width: 150px;
+    height: 30px;
+}
+
+.card-header {
+    font-size: 17px;
+}
+
+.card-header,
+.card-header:hover,
+.card-header:active {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    transition: 0.5s color ease;
+    text-decoration: none;
+}
+
+div.card-header:hover {
+    color: rgba(37, 204, 160);
+    font-weight: 900;
+}
+
+div.card-header:after {
+    content: "";
+    transition: 0.5s all ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    bottom: 0em;
+    height: 3px;
+    width: 0;
+    background: rgba(37, 204, 160);
+    left: 0;
+}
+
+div.card-header:hover:after {
+    width: 100%;
+}
+
+.empty {
+    font-size: 0.2px;
+}
+
+.text {
+    float: left;
+}
+
+.icon{
+    float: right;
+}
+/* port_list end */
+
+
+/* recruit start */
+.notice-table {
+    padding: 30px;
+}
+
+.thead {
+    background-color: rgba(37, 204, 160);
+    text-align: center;
+}
+/* recruit end */
+
+/* footer start */
+.contact {
+    text-align: center;
+    padding:1%;
+}
+
+#foot i {
+    margin-right: 30px;
+}
+
+#foot{
+    background-color: #25CCA0;
+    color:white;
+    font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
+}
+/* footer end */

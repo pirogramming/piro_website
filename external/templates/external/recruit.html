@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 모집
+{% endblock %}
+
+{% block content %}
+<style>
+#notice_list a{
+    text-decoration: none;
+    color: #4f4f4f;
+}
+
+#notice_list a:hover{
+    color: black;
+    text-decoration: underline;
+}
+
+#write_notice{
+    background-color: #25CCA0;
+}
+
+#write_notice:hover{
+    background-color: #2C3E52;
+}
+</style>
+
+<script>
+function change_recruit() {
+    document.getElementById("option4").style.color = 'white';
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+}
+change_recruit();
+
+</script>
+<div class="notice-list wow fadeInUp">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">공지사항</h1>
+            <p class="lead">피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
+        </div>
+    </div>
+    <!-- Needs Backend -->
+    <div class="notice-table">
+        {% if user.is_admin %}
+        <div class="text-right">
+            <a class="btn btn-success" id="write_notice" href="{% url "home:recruit_new" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>글쓰기</a>
+        </div>
+        <br>
+        {% endif %}
+        <div class="row thead" style="margin:0px 5px;">
+            <div class="col-1" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
+            <div class="col-7" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
+            <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">글쓴이</div>
+            <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">날짜</div>
+        </div>
+        {% for notice in notice_list %}
+        <div class="row" id="notice_list" style="margin:0px 5px; border-bottom: 0.5px solid #d6d6d6;">
+            <div class="col-1" style="text-align: center; padding:0.75rem;">{{notice.id}}</div>
+            <div class="col-7" style="text-align: center; padding:0.75rem;"><a href="{{ notice.get_absolute_url }}">{{notice.title}}</a></div>
+            <div class="col-2" style="text-align: center; padding:0.75rem;">{{notice.author}}</div>
+            <div class="col-2" style="text-align: center; padding:0.75rem;">{{notice.created_at}}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
