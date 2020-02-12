@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Recruitment
 
-# Register your models here.
+
+@admin.register(Recruitment)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'author']
+    list_display_links = ['title']
