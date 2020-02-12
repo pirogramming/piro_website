@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 프로젝트
+{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+    function viewDiv(idx) {
+        if (idx == 1) {
+            $(".div1").css("display", "");
+            $(".div2").css("display", "none");
+            $(".div3").css("display", "none");
+        }
+        else if (idx == 2) {
+            $(".div1").css("display", "none");
+            $(".div2").css("display", "");
+            $(".div3").css("display", "none");
+        }
+        else if (idx == 3) {
+            $(".div1").css("display", "none");
+            $(".div2").css("display", "none");
+            $(".div3").css("display", "");
+        }
+
+        else {
+            $(".div1").css("display", "");
+            $(".div2").css("display", "");
+            $(".div3").css("display", "");
+        }
+    }
+
+    function selectIndex(selectObj) {
+        var idx = selectObj.value;
+        idx *= 1;
+        viewDiv(idx);
+    }
+</script>
+<script>
+function change_port_list() {
+    document.getElementById("option3").style.color = 'white';
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="#";
+}
+change_port_list();
+</script>
+
+<section class="wow fadeInUp">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">포트폴리오</h1>
+            <p class="lead">피로그래밍에서 작업한 프로젝트에 대한 내용을 확인 할 수 있습니다.
+                <br>
+                아래에서 기수를 선택하여 각 기수에서 완성한 프로젝트를 확인해보세요!
+            </p>
+        </div>
+    </div>
+
+    <div class="portfolio-container">
+        <div class="portfolio-header">
+            <select name="select" onchange="javascript:selectIndex(this)">
+                <option value="0" selected>기수 선택</option>
+                <option value="1">1기</option>
+                <option value="2">2기</option>
+                <option value="3">3기</option>
+            </select>
+        </div>
+        <div class="portfolio-main">
+            <!-- Needs Backend -->
+            <div class="accordion div1" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="hedingOne" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    <div class="text">
+                        피로그래밍 홈페이지
+                    </div>
+                    <div class="icon fas fa-plus"></div>
+                </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="text">KAGGLE</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                        <div class="text">레오야 밥먹자</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion div2" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
+                        <div class="text">
+                        피로그래밍 홈페이지(2기)</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive"
+                        aria-expanded="false" aria-controls="collapseFive">
+                        <div class="text">
+                        KAGGLE(2기)
+                        </div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix"
+                        aria-expanded="false" aria-controls="collapseSix">
+                        <div class="text">
+                        레오야 밥먹자(2기)</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion div3" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingSeven" data-toggle="collapse" data-target="#collapseSeven"
+                        aria-expanded="true" aria-controls="collapseSeven">
+                        <div class="text">
+                        피로그래밍 홈페이지(3기)</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight"
+                        aria-expanded="false" aria-controls="collapseEight">
+                        <div class="text">
+                        KAGGLE(3기)</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="collapsed card-header" id="headingNine" data-toggle="collapse" data-target="#collapseNine"
+                        aria-expanded="false" aria-controls="collapseNine">
+                        <div class="text">
+                        레오야 밥먹자(3기)</div>
+                        <div class="icon fas fa-plus"></div>
+                    </div>
+                    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="..." class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

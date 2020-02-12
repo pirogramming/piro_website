@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 모집
+{% endblock %}
+
+{% block content %}
+<style>
+
+</style>
+
+<script>
+function change_recruit() {
+    document.getElementById("option4").style.color = 'white';
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+}
+change_recruit();
+
+</script>
+<div class="notice-list wow fadeInUp">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">공지사항</h1>
+            <p class="lead">피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
+        </div>
+    </div>
+    <!-- Needs Backend -->
+    <div class="notice-table">
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">모집일정</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>피로그래밍 12기</td>
+                    <td>'19.11.00~00.00</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>피로그래밍 11기</td>
+                    <td>'19.05.00~00.00</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>피로그래밍 10기</td>
+                    <td>'18.11.00~00.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

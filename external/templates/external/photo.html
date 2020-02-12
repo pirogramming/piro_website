@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.autoplay').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          infinite: true,
+          dots: true,
+          arrows: false,
+          pauseOnHover:false,
+        });
+    });
+
+    $('.slick-dots').on('click', function() {
+    $('.autoplay').slick('slickPause');
+    });
+</script>
+<section id="photo">
+  <div style="margin-bottom: 4%;">
+    <h5>피로그래밍 활동 사진</h5>
+    <div class="heading-line"></div>
+  </div>
+  <div class="autoplay" style="margin:0px 2%">
+    <div><img src="{% static 'img/piro_img_1.png' %}" alt="piro_img_1" /></div>
+    <div><img src="{% static 'img/piro_img_2.png' %}" alt="piro_img_2" /></div>
+    <div><img src="{% static 'img/piro_img_3.png' %}" alt="piro_img_3" /></div>
+    <div><img src="{% static 'img/piro_img_4.png' %}" alt="piro_img_4" /></div>
+    <div><img src="{% static 'img/piro_img_5.png' %}" alt="piro_img_5" /></div>
+    <div><img src="{% static 'img/piro_img_6.png' %}" alt="piro_img_6" /></div>
+    <div><img src="{% static 'img/piro_img_7.png' %}" alt="piro_img_7" /></div>
+    <div><img src="{% static 'img/piro_img_8.png' %}" alt="piro_img_8" /></div>
+    <div><img src="{% static 'img/piro_img_9.png' %}" alt="piro_img_9" /></div>
+    <div><img src="{% static 'img/piro_img_10.png' %}" alt="piro_img_10" /></div>
+    <div><img src="{% static 'img/piro_img_11.png' %}" alt="piro_img_11" /></div>
+  </div>
+</section>
