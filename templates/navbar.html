@@ -29,8 +29,12 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" id="sign-up">
-          <li class="nav-item"><a class="nav-link"><i class="fas fa-user"></i>SIGN UP</a></li>
-          <li class="nav-item"><a class="nav-link"><i class="fas fa-sign-in-alt"></i>LOGIN</a></li>
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url "accounts:logout" %}"><i class="fas fa-sign-out-alt"></i>LOGOUT</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link"  href="{% url "accounts:signup" %}"><i class="fas fa-user"></i>SIGN UP</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url "accounts:login" %}"><i class="fas fa-sign-in-alt"></i>LOGIN</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
