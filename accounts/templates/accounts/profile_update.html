@@ -23,6 +23,16 @@
     }
 
 </style>
+<script>
+    function change_acct() {
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+    document.getElementById("option4").href="{% url "home:recruit" %}";
+}
+
+    change_acct();
+</script>
 <div class="col-xl-7 col-lg-7 col-md-9 col-sm-11 col-xs-12" style="color:black; margin:50px auto;">
     <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
         <div class="container">

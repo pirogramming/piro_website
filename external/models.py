@@ -13,3 +13,11 @@ class Recruitment(models.Model):
 
     def get_absolute_url(self):
         return reverse('home:recruit_detail', args=[self.pk])
+
+
+class Portfolio(models.Model):
+    title = models.CharField(max_length=50, verbose_name='프로젝트 이름')
+    team = models.CharField(max_length=50, verbose_name='팀이름')
+    content = models.TextField(verbose_name='내용')
+    image = models.ImageField(blank=True, upload_to="portfolio", verbose_name="사진")
+    pironumber = models.PositiveIntegerField(verbose_name="기수")
