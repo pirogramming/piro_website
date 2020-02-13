@@ -11,5 +11,8 @@ urlpatterns = [
     path('recruit/<int:pk>/edit/', views.recruit_edit, name='recruit_edit'),
     path('recruit/<int:pk>/delete/', views.recruit_delete, name='recruit_delete'),
     path('portfolio/', views.portfolio, name='portfolio'),
+    path('portfolio/create/', views.portfolio_new, name='port_new'),
+    path('portfolio/<int:pk>/edit/', views.port_edit, name='port_edit'),
+    path('portfolio/<int:pk>/delete/', views.port_delete, name='port_delete'),
 ]
 

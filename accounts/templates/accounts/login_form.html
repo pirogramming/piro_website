@@ -23,6 +23,16 @@
         color: #2C3E52;
     }
 </style>
+<script>
+    function change_acct() {
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+    document.getElementById("option4").href="{% url "home:recruit" %}";
+}
+
+    change_acct();
+</script>
 {% if not user.is_authenticated %}
     <div class="col-xl-5 col-lg-5 col-md-9 col-sm-9 col-xs-11" style="color:black; margin:50px auto;">
         <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
