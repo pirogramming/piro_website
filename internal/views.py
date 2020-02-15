@@ -2,6 +2,7 @@
 import json
 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -15,7 +16,28 @@ def mainscreen(request):
     return render(request, 'main_intranet.html')
 
 def qna(request):
-    return render(request, 'internal/qboard.html')
+    post_list = Post.objects.all().order_by('-id')
+    total_len = len(post_list)
+    page = request.GET.get('page',1)
+    paginator = Paginator(post_list, 10)
+
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+    except EmptyPage:
+        questions = paginator.page(paginator.num_pages)
+
+    index = questions.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 2 if index >= 2 else 0
+    if index < 2:
+        end_index = 5 - start_index
+    else:
+        end_index = index + 3 if index <= max_index - 3 else max_index
+    page_range = list(paginator.page_range[start_index:end_index])
+
+    return render(request, 'internal/qboard.html',{'questions': questions,'page_range':page_range, 'total_len':total_len, 'max_index':max_index-2})
 
 def q_new(request, post=None):
     if request.method == 'POST':

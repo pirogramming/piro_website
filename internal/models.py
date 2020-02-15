@@ -7,7 +7,7 @@ from django.urls import reverse
 from accounts.models import PiroUser
 
 class Post(models.Model):
-    title = models.CharField(max_length=50, verbose_name='제목')
+    title = models.CharField(max_length=100, verbose_name='제목')
     body = RichTextField(verbose_name='내용')
     tag = models.CharField(max_length=30)
 

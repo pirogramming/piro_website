@@ -81,7 +81,7 @@
             <div class="col-md-1">
                 <div><i class="fas fa-thumbs-up like" name="{{ i.id }}" id="lol-{{ i.id }}" style="text-align:center; {% liked_by_user i.id request.user as liked_by_user_flag %} {% if liked_by_user_flag %} color:blue {% endif %}"></i></div>
                 <br>
-                <div id="count-{{ i.id }}" style="text-align:center; font-family: 'Do Hyeon', 'NotoSansKR', sans-serif;">{{ i.like_count }}</div>
+                <div id="count-{{ i.id }}" style="text-align:center; font-family: 'Do Hyeon', 'NotoSansKR', sans-serif; font-size: 25px;">{{ i.like_count }}</div>
             </div>
             <div class="col-md-11">
                 {{i.body | safe}}
@@ -91,7 +91,7 @@
                         {{j.content}}
                         <span style="color:#AAA;">
                             {{j.author}} ({{ j.author.piro_no }}기)
-                            {{j.updated_at|date:"Y.m.d H:i"}}
+                                {{j.updated_at|date:"Y.m.d H:i"}}
                         </span>
                     </div>
                 </div>
