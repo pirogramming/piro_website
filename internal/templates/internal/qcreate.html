@@ -1,0 +1,45 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+피로그래밍 - 모집글
+{% endblock %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<style>
+    #rec_upld{
+        background-color: #25CCA0; border: #25CCA0;
+    }
+    #rec_upld:hover{
+        background-color: #2C3E52;
+    }
+</style>
+
+<div class="col-sm-10" style="margin:50px auto;">
+    <h2>질문하기</h2>
+    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+            <div class="signup-form">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.body | safe }}
+                {{ form.media }}
+            </div>
+            <div class="signup-form">
+                {{ form.tag|as_crispy_field }}
+            </div>
+        <input type="submit" value="등록하기" id= "rec_upld" class="btn btn-primary" />
+    </form>
+</div>
+{% else %}
+<script>
+    alert('접근 권한이 없는 페이지입니다.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+
+{% endblock %}

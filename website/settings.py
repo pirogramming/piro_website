@@ -43,9 +43,53 @@ INSTALLED_APPS = [
     'accounts',
     'crispy_forms',
     'django.contrib.humanize',
+    'ckeditor',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'toolbar_MyCustomToolbar': [
+            {'name': 'basic', 'items': [
+                '-',
+                'Bold',
+                'Italic',
+                'CodeSnippet'  # add the codesnippet button name
+            ]},
+            {'name': 'insert', 'items' : [
+                'Image'
+            ]
+            },
+            {'name': 'styles', 'items': [
+                'Styles',
+                'Format'
+            ]
+             }
+        ],
+        # https://github.com/django-ckeditor/django-ckeditor/tree/master/ckeditor/static/ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles
+        # https://github.com/isagalaev/highlight.js/tree/master/src/styles
+        'codeSnippet_theme': 'railscasts',
+        # uncomment to restrict only those languages
+        # 'codeSnippet_languages': {
+        #     'python': 'Python Guru',
+        #     'javascript': 'JavaScript Fu',
+        #     'php': 'PHP Ninja',
+        #     'c': 'You custom funny language name'
+        # },
+        'toolbar': 'MyCustomToolbar',
+        'extraPlugins': ','.join(
+            [
+                # add the follow plugins
+                'codesnippet',
+                'widget',
+                'dialog',
+            ]),
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
