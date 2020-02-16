@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'internal',
     'accounts',
     'photobook',
+    'money',
     'crispy_forms',
     'django.contrib.humanize',
     'ckeditor',
