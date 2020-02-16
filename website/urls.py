@@ -19,9 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('external.urls')),
+    path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('intranet/', include('internal.urls')),
+    path('photobook/', include('photobook.urls')),
 ]
 
 admin.site.site_header = "피로그래밍 운영진 전용 포털"

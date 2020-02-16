@@ -18,6 +18,16 @@
     }
 
 </style>
+<script>
+    function change_acct() {
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+    document.getElementById("option4").href="{% url "home:recruit" %}";
+}
+
+    change_acct();
+</script>
 <div class="container">
     <br/>
     <div class="row">

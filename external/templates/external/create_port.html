@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 프로젝트 추가하기
+{% endblock %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_admin %}
+<style>
+    #rec_upld{
+        background-color: #25CCA0; border: #25CCA0;
+    }
+    #rec_upld:hover{
+        background-color: #2C3E52;
+    }
+</style>
+
+<script>
+function change_port() {
+    document.getElementById("option4").href="{% url "home:recruit" %}";
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").style.color = 'white';
+}
+change_port();
+
+</script>
+
+<div class="col-sm-10" style="margin:50px auto;">
+    <h2>프로젝트 추가하기</h2>
+    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+            <div class="signup-form">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.team|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.pironumber|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.content|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.image|as_crispy_field }}
+            </div>
+        <input type="submit" value="등록하기" id= "rec_upld" class="btn btn-primary" />
+    </form>
+</div>
+{% else %}
+<script>
+    alert('접근 권한이 없는 페이지입니다.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+
+{% endblock %}
