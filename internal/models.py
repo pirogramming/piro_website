@@ -53,3 +53,9 @@ class Like(models.Model):
     user = models.ForeignKey(PiroUser, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class InfoBook(models.Model):
+    user = models.ForeignKey(PiroUser, on_delete=models.CASCADE)
+    current_work = models.CharField(max_length=100)
+    piro_no = models.PositiveIntegerField()
+    history = models.TextField()

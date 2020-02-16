@@ -13,16 +13,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-              <a class="nav-link" id="option1" href="#">정보게시판</a>
+              <a class="nav-link" id="option1" href="">정보게시판</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#activity" id="option2">질문게시판 </a>
+            <a class="nav-link" href="{% url "intranet:qna" %}" id="option2">질문게시판 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#port" id="option3">사진첩 </a>
+            <a class="nav-link" href="{% url "photobook:list_book" %}" id="option3">사진첩 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url "home:recruit" %}" id="option4">회원주소록 </a>
+            <a class="nav-link" href="{% url "intranet:address_list" %}" id="option4">회원주소록 </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url "home:home" %}" id="option5">홈페이지 </a>

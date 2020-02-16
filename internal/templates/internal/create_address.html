@@ -1,7 +1,7 @@
 {% extends 'base_internal.html' %}
 
 {% block title %}
-피로그래밍 - 사진첩 만들기
+피로그래밍 - 주소록 추가하기
 {% endblock %}
 
 {% load crispy_forms_tags %}
@@ -16,40 +16,28 @@
         background-color: #2C3E52;
     }
     textarea.form-control{
-    height: 60px;
+    height: 150px;
     }
-    .clearablefileinput{
-        height:45px;
-    }
+
 </style>
 <script>
-function change_photo() {
-    document.getElementById("option3").style.color = 'white';
+function change_address() {
+    document.getElementById("option4").style.color = 'white';
 }
-change_photo();
+change_address();
 </script>
 <div class="col-lg-7 col-md-8 col-11" style="margin:50px auto;">
-    <h2>사진첩 등록</h2>
+    <h2>주소록 등록</h2>
+    <small>기수, 이름, 전화번호와 이메일 주소는 회원가입시 등록된 정보가 자동 사용됩니다.</small>
+
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+            <br>
             <div class="signup-form">
-                {{ form.title|as_crispy_field }}
+                {{ form.current_work |as_crispy_field }}
             </div>
             <div class="signup-form">
-                {{ form.text|as_crispy_field }}
-            </div>
-            <div class="signup-form">
-                {{ form.thumbnail|as_crispy_field }}
-            </div>
-            <hr/>
-            <div>
-                <div>
-                    <label class="requiredField">
-                        사진 선택 (여러장 선택 가능)<span class="asteriskField">*</span>
-                    </label>
-                </div>
-                <input type="file" id="files" name="files" multiple />
-                <output id="list"></output>
+                {{ form.history|as_crispy_field }}
             </div>
             <br>
             <button type="submit" id="rec_upld" class="btn btn-primary">등록</button>

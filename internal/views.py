@@ -7,8 +7,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
-from internal.forms import QuestionForm, CommentForm, ReplyForm
-from .models import Post, Comment
+from internal.forms import QuestionForm, CommentForm, ReplyForm, InfoBookForm
+from .models import Post, Comment, InfoBook
+
 
 @login_required
 def mainscreen(request):
@@ -119,6 +120,7 @@ def q_by_tag(request):
             return render(request, 'internal/qboard.html',{'questions': questions, 'tag': tag, 'page_range':page_range, 'total_len':total_len, 'max_index':max_index-2})
     else:
         return redirect('intranet:qna')
+
 @login_required
 def comment_create(request, pk, comment=None):
     post = Post.objects.get(pk=pk)
@@ -182,3 +184,41 @@ def comment_like(request):
                    'colortype': colortype,
                    }
         return HttpResponse(json.dumps(context), content_type="application/json")
+
+def address_list(request):
+    qs = InfoBook.objects.all().order_by('piro_no')
+    return render(request, 'internal/address.html', {
+        'address_list': qs,
+    })
+
+@login_required
+def address_new(request, address=None):
+    if request.method == 'POST':
+        form = InfoBookForm(request.POST, instance=address)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.user = request.user
+            address.piro_no = request.user.piro_no
+            address.save()
+            return redirect("intranet:address_list")
+        else:
+            return redirect("intranet:address_list")
+    else:
+        form = InfoBookForm(instance=address)
+        return render(request, 'internal/create_address.html', {
+            'form': form,
+        })
+
+@login_required
+def address_edit(request, pk):
+    address = get_object_or_404(InfoBook, pk=pk)
+    return address_new(request, address)
+
+@login_required
+def address_delete(request, pk):
+    address = InfoBook.objects.get(id=pk)
+    if request.user == address.user:
+        address.delete()
+        return redirect('intranet:address_list')
+    else:
+        return redirect('intranet:address_list')

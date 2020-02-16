@@ -13,9 +13,9 @@ def check_money(request):
             else:
                 checked.user.left_over -= 20000
             checked.user.save()
-            return redirect('money:main')
+            return redirect('home:home')
         else:
-            return redirect('money:main')
+            return redirect('home:home')
     else:
         form = PiroMoneyForm()
         return render(request, 'money/check_money.html', {'form': form})
