@@ -46,7 +46,7 @@ def q_new(request, post=None):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect("intranet:qna")
+            return redirect('intranet:q_detail', post.pk)
         else:
             return redirect("home:home")
     else:
@@ -55,9 +55,25 @@ def q_new(request, post=None):
             'form': form,
         })
 
+def q_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user == post.author:
+        return q_new(request, post)
+    else:
+        return redirect('intranet:qna')
+
+def q_delete(request, pk):
+    post = Post.objects.get(id=pk)
+    if request.user == post.author:
+        post.delete()
+        return redirect('intranet:qna')
+    else:
+        return redirect('intranet:qna')
+
 def q_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    comment = post.comment_set.all().order_by('-like_user_set')
+    comment = post.comment_set.all()
+    #comment = post.comment_set.all().order_by('-like_user_set')
     comment_no = comment.count()
     form = CommentForm()
     form2 = ReplyForm()
@@ -86,6 +102,12 @@ def comment_create(request, pk, comment=None):
             'form': form,
         })
 
+def comment_delete(request, pk, cmt_pk):
+    post = Post.objects.get(pk=pk)
+    comment = Comment.objects.get(pk=cmt_pk)
+    comment.deleted = True
+    comment.save()
+    return redirect('intranet:q_detail', post.pk)
 
 def reply_create(request, pk, cmt_pk, reply=None):
     post = Post.objects.get(pk=pk)

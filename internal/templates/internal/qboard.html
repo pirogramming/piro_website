@@ -48,7 +48,7 @@
     {% for question in questions %}
     <div class="row" id="board" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
         <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ question.id }}</div>
-        <div class="col-md-7 col-6" style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a href="{%  url "intranet:q_detail" question.id %}">{{ question.title }}</a></div>
+        <div class="col-md-7 col-6" style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a href="{%  url "intranet:q_detail" question.id %}">{{ question.title }} <span style="color: dimgrey">[{{question.comment_set.all|length}}]</span></a></div>
         <div class="col-md-2 col-2" style="text-align: left; padding:0.75rem;">
             <span style="margin-left: 10px;">
             {% if question.author.img_profile %}
