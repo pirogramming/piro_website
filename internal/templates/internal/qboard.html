@@ -31,11 +31,45 @@
 
 </style>
 <div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding:15px; margin:20px auto 0px auto;">
-    <strong>질문게시판</strong>
+    <strong><a style="text-decoration: none; color: black;" href="{% url 'intranet:qna' %}">질문게시판</a></strong>
     <div style="display: inline-block; float: right;">
         <a class="btn btn-primary" id="profileb" href="{% url "intranet:q_new" %}" role="button"><i class="fas fa-pen-square" style="margin-right: 8px;"></i>질문하기</a>
     </div>
 </div>
+<div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding-right: 15px; padding-left:20px; margin:0px auto;">
+<form method="post" action="{% url 'intranet:q_by_tag' %}">
+    {% csrf_token %}
+    <select class="custom-select" name="tag" style="width: 30%">
+        <option value="all" selected>태그별 검색하기</option>
+        <optgroup label="웹 개발">
+            <option value="HTML/ CSS">HTML/ CSS</option>
+            <option value="Javascript/ jQuery/ Ajax">Javascript/ jQuery/ Ajax</option>
+            <option value="Django">Django</option>
+            <option value="Spring">Spring</option>
+            <option value="Node.js">Node.js</option>
+            <option value="PHP">PHP</option>
+        </optgroup>
+            <optgroup label="프로그래밍">
+            <option value="C/ C#/ C++">C/ C#/ C++</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+        </optgroup>
+            <optgroup label="기타">
+            <option value="창업">창업</option>
+            <option value="머신러닝/ AI">머신러닝/ AI</option>
+            <option value="컴퓨터">컴퓨터</option>
+            <option value="프로토콜">프로토콜</option>
+            <option value="기타">기타</option>
+        </optgroup>
+    </select>
+    <input type="submit" value="찾기" id= "rec_upld" class="btn btn-primary" style=""/>
+</form>
+</div>
+{% if tag %}
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
+    키워드: {{ tag }}
+</div>
+{% endif %}
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
     <div class="row" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border:1px solid #ebe3db; background-color: #f1ebe6">
         <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>

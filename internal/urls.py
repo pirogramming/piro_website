@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.mainscreen, name='mainscreen'),
     path('qna/', views.qna, name='qna'),
     path('qna/create/', views.q_new, name='q_new'),
+    path('qna/by_tag/', views.q_by_tag, name='q_by_tag'),
     path('qna/<int:pk>/', views.q_detail, name='q_detail'),
     path('qna/edit/<int:pk>/', views.q_edit, name='q_edit'),
     path('qna/delete/<int:pk>/', views.q_delete, name='q_delete'),

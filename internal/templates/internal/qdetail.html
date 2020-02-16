@@ -40,7 +40,7 @@
     }
 </style>
 <div class="col-sm-9" style="margin:50px auto;">
-    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 2.2rem; white-space: pre-line; line-height: 150%;">#{{  post.id }} | {{  post.title }}</h2>
+    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 2rem; white-space: pre-line; line-height: 150%;">#{{  post.id }} | {{  post.title }}</h2>
     <hr/>
     <div style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888;">
         {% if post.author.img_profile %}
@@ -55,6 +55,7 @@
     </div>
     <hr/>
     <div style="font-family: 'Noto Sans KR',Sans-Serif;">
+        <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">태그: {{  post.tag }}</p>
         <p style="white-space: pre-wrap;">{{  post.body | safe }}</p>
     </div>
     {% if request.user == post.author %}
