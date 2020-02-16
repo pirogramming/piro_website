@@ -1,0 +1,151 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+피로그래밍 - 사진첩
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    figure.snip1432 {
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 250px;
+        max-width: 250px;
+        width: 100%;
+        background: #000000;
+        color: #ffffff;
+        float: left;
+    }
+
+    .photo-content {
+        padding: 30px;
+    }
+    
+    .photo-content a{
+        color:white;
+    }
+
+    figure.snip1432 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+    }
+
+    figure.snip1432 img {
+        width: 100%;
+        vertical-align: top;
+        -webkit-transition: opacity 0.35s;
+        transition: opacity 0.35s;
+        width: 250px;
+        height: 250px;
+    }
+
+    figure.snip1432 figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    figure.snip1432 figcaption>div {
+        height: 80%;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    figure.snip1432 p,
+    figure.snip1432 h3 {
+        margin: 0;
+        position: absolute;
+        left: 0;
+        padding: 0 20px;
+        text-transform: uppercase;
+    }
+
+    figure.snip1432 h3 {
+        font-size: 1em;
+        bottom: 0;
+    }
+
+    figure.snip1432 h3:nth-of-type(2) {
+        opacity: 0;
+        -webkit-transform: translateY(150%);
+        transform: translateY(150%);
+    }
+
+    figure.snip1432:hover img,
+    figure.snip1432.hover img {
+        opacity: 0.3;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+    }
+
+    figure.snip1432:hover figcaption h3:first-of-type,
+    figure.snip1432.hover figcaption h3:first-of-type {
+        -webkit-transform: translateY(150%);
+        transform: translateY(150%);
+        opacity: 0;
+    }
+
+    figure.snip1432:hover figcaption h3:nth-of-type(2),
+    figure.snip1432.hover figcaption h3:nth-of-type(2) {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+
+    .photo-header {
+        padding: 50px 30px 30px 30px;
+        background-image: url("{% static "img/polaroid.png" %}");
+        background-position: top center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 200px;
+        opacity: 0.7;
+        color: black;
+        background-color: #F9F9F9;
+    }
+</style>
+
+<div class="photo-container">
+    <div class="photo-header">
+        <h3>피로그래밍 활동</h3>
+        <p>주차별 활동을 사진으로 확인하세요!</p>
+    </div>
+    <div class="photo-content">
+        {% for photobook in photobooks %}
+            <figure class="snip1432">
+                <a href="{% url 'photobook:detail_book' photobook.pk %}">
+                    <img src="{{photobook.thumbnail.url}}" alt="...">
+                    <figcaption>
+                        <div>
+                            <h3></h3>
+                            <h3>더 많은 사진 보기</h3>
+                        </div>
+                        <div>
+                            <p>{{photobook.title}} (사진 {{photobook.images_set.all|length}}개)</p>
+                        </div>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+        <div style="clear:both;"></div>
+        {% if user.is_admin %}
+        <div class="text-right" style="margin:10px 0px 0px 38px">
+        <a class="btn btn-success" href="{% url "photobook:create_book" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>사진첩 만들기</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}

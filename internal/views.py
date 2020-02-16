@@ -1,4 +1,3 @@
-
 import json
 
 from django.contrib.auth.decorators import login_required
@@ -11,10 +10,11 @@ from django.views.decorators.http import require_POST
 from internal.forms import QuestionForm, CommentForm, ReplyForm
 from .models import Post, Comment
 
-
+@login_required
 def mainscreen(request):
     return render(request, 'main_intranet.html')
 
+@login_required
 def qna(request):
     post_list = Post.objects.all().order_by('-id')
     total_len = len(post_list)
@@ -39,6 +39,7 @@ def qna(request):
 
     return render(request, 'internal/qboard.html',{'questions': questions,'page_range':page_range, 'total_len':total_len, 'max_index':max_index-2})
 
+@login_required
 def q_new(request, post=None):
     if request.method == 'POST':
         form = QuestionForm(request.POST, request.FILES, instance=post)
@@ -70,6 +71,7 @@ def q_delete(request, pk):
     else:
         return redirect('intranet:qna')
 
+@login_required
 def q_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comment = post.comment_set.all()
@@ -85,7 +87,7 @@ def q_detail(request, pk):
         'form2': form2,
     })
 
-
+@login_required
 def comment_create(request, pk, comment=None):
     post = Post.objects.get(pk=pk)
     if request.method == 'POST':
@@ -102,6 +104,7 @@ def comment_create(request, pk, comment=None):
             'form': form,
         })
 
+@login_required
 def comment_delete(request, pk, cmt_pk):
     post = Post.objects.get(pk=pk)
     comment = Comment.objects.get(pk=cmt_pk)
@@ -109,6 +112,7 @@ def comment_delete(request, pk, cmt_pk):
     comment.save()
     return redirect('intranet:q_detail', post.pk)
 
+@login_required
 def reply_create(request, pk, cmt_pk, reply=None):
     post = Post.objects.get(pk=pk)
     comment = Comment.objects.get(pk=cmt_pk)
