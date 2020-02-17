@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'photobook',
     'money',
+    'infoboard',
     'crispy_forms',
     'django.contrib.humanize',
     'ckeditor',
@@ -191,5 +192,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL='/media/'
 PHOTOBOOK_MEDIA_URL = '/media/photobook/'
+INFO_MEDIA_URL = '/info/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

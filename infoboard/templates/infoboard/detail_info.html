@@ -1,0 +1,76 @@
+{% extends 'base_internal.html' %}
+
+{% load staticfiles %}
+{% load custom_tags %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+정보글 #{{ post.id }}
+{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css' %}" />
+<script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+<style>
+    textarea.form-control{
+        height: 30px;
+        border: none;
+        resize: none;
+    }
+    textarea.form-control:focus{
+        border: none;
+        box-shadow: none;
+    }
+    textarea::placeholder {
+        font-size: 0.8rem;
+    }
+    label.requiredField{
+        display:none;
+    }
+    #reply{
+        padding: 0.3rem 0;
+    }
+    .like{
+        font-size: 35px;
+    }
+    .like:hover{
+        color:#0000FF;
+        cursor: pointer;
+    }
+</style>
+<script>
+function change_infoboard() {
+    document.getElementById("option1").style.color = 'white';
+}
+change_infoboard();
+</script>
+<div class="col-sm-9" style="margin:50px auto;">
+    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 2rem; white-space: pre-line; line-height: 150%;">#{{  info.id }} | {{  info.title }}</h2>
+    <hr/>
+    <div style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888;">
+        {% if info.user.img_profile %}
+            <img src="{{ info.user.img_profile.url }}" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
+        {% else %}
+            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
+        {% endif %}
+        {{ info.user.username }} ({{ info.user.piro_no }}기)
+    </div>
+    <hr/>
+    <div style="font-family: 'Noto Sans KR',Sans-Serif;">
+        <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">
+            첨부파일:<br>
+        {% for i in file %}
+            <a href="{% url 'infoboard:download' i.info.pk i.pk %}">{{i.filename}}<br></a>
+        {% endfor %}
+        </p>
+        <p style="white-space: pre-wrap;">{{  info.text }}</p>
+    </div>
+    {% if request.user == info.user %}
+    <div style="display: inline-block; float: right;">
+        <a href="{% url "infoboard:update_info" info.pk %}" style="margin-right: 5px;">수정</a>
+        <a href="{% url "infoboard:delete_info" info.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
