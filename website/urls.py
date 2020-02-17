@@ -24,6 +24,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('intranet/', include('internal.urls')),
     path('photobook/', include('photobook.urls')),
+    path('money/', include('money.urls')),
+    path('infoboard/', include('infoboard.urls')),
 ]
 
 admin.site.site_header = "피로그래밍 운영진 전용 포털"

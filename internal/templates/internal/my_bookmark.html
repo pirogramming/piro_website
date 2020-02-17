@@ -1,0 +1,58 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+피로그래밍 - 스크랩한 글
+{% endblock %}
+
+{% block content %}
+<style>
+#board a{
+    text-decoration: none;
+    color:black;
+}
+#board:hover{
+    background-color: #FAF9F7;
+    transition-duration: 0.4s;
+}
+
+.pagination li{
+    display:table-cell;
+    padding: 0;
+}
+
+</style>
+
+<div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding:15px; margin:20px auto 0px auto;">
+    <strong>스크랩한 글</strong>
+    <br>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
+    <div class="row" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border:1px solid #ebe3db; background-color: #f1ebe6">
+        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
+        <div class="col-md-8 col-8" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
+        <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">게시판 종류</div>
+    </div>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:#3e3a37; margin:0px auto 30px auto;">
+    {% for bookmark in bookmarks %}
+    <div class="row" id="board" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
+        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ bookmark.id }}</div>
+        <div class="col-md-8 col-8" style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+            <a href="{% if bookmark.bookmark_type == 'qna' %}
+            {%  url "intranet:q_detail" bookmark.bookmark_num %}
+            {% else %}
+            {%  url "infoboard:detail_info" bookmark.bookmark_num %}
+            {% endif %}">{{ bookmark.bookmark_title }}
+            </a>
+        </div>
+        <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem;">
+            {% if bookmark.bookmark_type == 'qna' %}
+            질문게시판
+            {% else %}
+            정보게시판
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

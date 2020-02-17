@@ -1,0 +1,63 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+피로그래밍 - 사진첩 만들기
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<style>
+    #rec_upld{
+        background-color: #25CCA0; border: #25CCA0;
+    }
+    #rec_upld:hover{
+        background-color: #2C3E52;
+    }
+    textarea.form-control{
+    height: 350px;
+    }
+    .clearablefileinput{
+        height:45px;
+    }
+</style>
+<script>
+function change_infoboard() {
+    document.getElementById("option1").style.color = 'white';
+}
+change_infoboard();
+</script>
+<div class="col-lg-7 col-md-8 col-11" style="margin:50px auto;">
+    <h2>게시물 등록하기</h2>
+    <br>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="signup-form">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="signup-form">
+                {{ form.text|as_crispy_field }}
+            </div>
+            <hr/>
+            <div>
+                <div>
+                    <label class="requiredField">
+                        파일 선택 (여러 파일 선택 가능)<span class="asteriskField">*</span>
+                    </label>
+                </div>
+                <input type="file" id="files" name="files" multiple />
+                <output id="list"></output>
+            </div>
+            <br>
+            <button type="submit" id="rec_upld" class="btn btn-primary">등록</button>
+    </form>
+</div>
+{% else %}
+<script>
+    alert('접근 권한이 없는 페이지입니다.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PiroUser
+from .models import PiroUser, Bookmark
 
 
 def make_active(self, request, queryset):
@@ -19,3 +19,5 @@ class PiroUserAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_editable = ['is_active']
     actions = [make_active, make_unactive]
+
+admin.site.register(Bookmark)

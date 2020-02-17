@@ -1,0 +1,40 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+피로그래밍 - 로그인
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if user.is_admin %}
+    <div class="col-xl-5 col-lg-5 col-md-9 col-sm-9 col-xs-11" style="color:black; margin:50px auto;">
+        <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
+            <div style="text-align: center;">
+                <strong style="color: #25CCA0; font-family: 'Do Hyeon', sans-serif; font-size: 40px;">보증금 관리</strong>
+            </div>
+            <div style="margin: 0px 70px">
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div>
+                        {{ form.user|as_crispy_field }}
+                    </div>
+                    <div>
+                        {{ form.type|as_crispy_field }}
+                    </div>
+                    <div>
+                        {{ form.day|as_crispy_field }}
+                    </div>
+                    <br/>
+                    <input type="submit" class="btn btn-primary" value="확인">
+                </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+<script>
+    alert('접근 권한이 없는 페이지입니다.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+{% endblock %}

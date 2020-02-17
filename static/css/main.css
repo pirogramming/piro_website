@@ -43,8 +43,8 @@ h5{
 
 /* navbar start */
 .navbar{
-    background-color: #2C3E52;
-    padding:1.8% 1%;
+    background-color: #2F4154;
+    padding:1% 1%;
     transition-duration: 0.43s;
     position: -webkit-sticky;
     position: sticky;
@@ -57,13 +57,15 @@ h5{
 }
 
 #navbar a{
-    font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
+    font-family: 'Do Hyeon', sans-serif;
 }
 #navbar img{
-    border: 2px solid antiquewhite;
+    border: 2px solid;
     margin: 0px 7px 0px 0px;
     width: 40px;
     height: 40px;
+    color: white;
+    border-radius: 50%;
 }
 
 #navbar i {
@@ -392,24 +394,31 @@ div.card-header:hover:after {
 }
 
 .thead {
-    background-color: rgba(37, 204, 160);
     text-align: center;
+    border-bottom: solid 1px gray;
 }
 /* recruit end */
 
 /* footer start */
-.contact {
+#foot .contact {
     text-align: center;
     padding:1%;
+    margin-top: 70px;
 }
 
 #foot i {
     margin-right: 30px;
+    color: black;
+}
+
+#foot i:hover {
+    color:#25CCA0;
 }
 
 #foot{
-    background-color: #25CCA0;
-    color:white;
+    /* background-color: #25CCA0;
+    color:white; */
+    margin-bottom: 20px;
     font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
 }
 /* footer end */

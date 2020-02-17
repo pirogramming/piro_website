@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment, Reply
+from .models import Post, Comment, Reply, InfoBook
 
 
 class QuestionForm(forms.ModelForm):
@@ -22,3 +22,14 @@ class ReplyForm(forms.ModelForm):
     class Meta:
         model = Reply
         fields = ['content']
+
+
+class InfoBookForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(InfoBookForm, self).__init__(*args, **kwargs)
+        self.fields['current_work'].label = '현재 직업'
+        self.fields['history'].label = '약력'
+
+    class Meta:
+        model = InfoBook
+        fields = ['current_work', 'history']

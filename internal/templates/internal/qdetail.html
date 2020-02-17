@@ -5,184 +5,213 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-질문 #{{ post.id }}
+    질문 #{{ post.id }}
 {% endblock %}
 
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css' %}" />
-<script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
-<style>
-    textarea.form-control{
-        height: 30px;
-        border: none;
-        resize: none;
-    }
-    textarea.form-control:focus{
-        border: none;
-        box-shadow: none;
-    }
-    textarea::placeholder {
-        font-size: 0.8rem;
-    }
-    label.requiredField{
-        display:none;
-    }
-    #reply{
-        padding: 0.3rem 0;
-    }
-    .like{
-        font-size: 35px;
-    }
-    .like:hover{
-        color:#0000FF;
-        cursor: pointer;
-    }
-</style>
-<div class="col-sm-9" style="margin:50px auto;">
-    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 2rem; white-space: pre-line; line-height: 150%;">#{{  post.id }} | {{  post.title }}</h2>
-    <hr/>
-    <div style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888;">
-        {% if post.author.img_profile %}
-            <img src="{{ post.author.img_profile.url }}" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
-        {% else %}
-            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
-        {% endif %}
-        {{ post.author.username }} ({{ post.author.piro_no }}기)
-        <div style="display: inline-block; float: right; color:#AAA;">
-                {{ post.updated_at |date:"Y.m.d H:i"}}
-        </div>
-    </div>
-    <hr/>
-    <div style="font-family: 'Noto Sans KR',Sans-Serif;">
-        <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">태그: {{  post.tag }}</p>
-        <p style="white-space: pre-wrap;">{{  post.body | safe }}</p>
-    </div>
-    {% if request.user == post.author %}
-    <div style="display: inline-block; float: right;">
-        <a href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
-        <a href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-    </div>
-    {% endif %}
-    <br>
-    <br>
-    <div style="font-family: 'Noto Sans KR', Sans-Serif; font-size:1.5rem;">
-    답변 {{ comment_no }}
-    </div>
-    <hr/>
-    {% for i in comment %}
-        <div class="row" style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888; margin-bottom: 12px;">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
-            {% if i.author.img_profile %}
-                <img src="{{ post.author.img_profile.url }}" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
-            {% else %}
-                <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px;"/>
-            {% endif %}
-            {{ i.author.username }} ({{ i.author.piro_no }}기)
-                <div style="display: inline-block; float: right; color:#AAA;">
-                        {{ i.updated_at |date:"Y.m.d H:i"}}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">
-                <div><i class="fas fa-thumbs-up like" name="{{ i.id }}" id="lol-{{ i.id }}" style="text-align:center; {% liked_by_user i.id request.user as liked_by_user_flag %} {% if liked_by_user_flag %} color:blue {% endif %}"></i></div>
-                <br>
-                <div id="count-{{ i.id }}" style="text-align:center; font-family: 'Do Hyeon', 'NotoSansKR', sans-serif; font-size: 25px;">{{ i.like_count }}</div>
-            </div>
-            <div class="col-md-11">
-                {% if i.deleted %}
-                <p style="color: dimgrey;">(삭제된 답변입니다.)</p>
-                {% else %}
-                {{i.body | safe}}
-                {% if request.user == i.author %}
-                <div style="text-align: right">
-                    <a style="font-size: 13px;" href="{% url "intranet:comment_delete" post.pk i.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-                </div>
-                {% endif %}
-                {% endif %}
+    <link rel="stylesheet"
+          href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css' %}"/>
+    <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+    <style>
+        textarea.form-control {
+            height: 30px;
+            border: none;
+            resize: none;
+        }
 
-                {% for j in i.reply_set.all %}
-                <div style="border-top:0.0714285714rem solid #E1E7EB;">
-                <div style="font-size: 0.8rem; padding: 0.3rem 0;">
-                        {{j.content}}
-                        <span style="color:#AAA;">
-                            {{j.author}} ({{ j.author.piro_no }}기)
-                                {{j.updated_at|date:"Y.m.d H:i"}}
-                        </span>
-                    </div>
-                </div>
-                {% endfor %}
-                <div style="border-top:0.0714285714rem solid #E1E7EB;"></div>
-                <form action="{% url "intranet:reply_create" post.pk i.pk %}" method="post" enctype="multipart/form-data" autocomplete="off">
-                {% csrf_token %}
-                    <div class="row" id="reply">
-                        <div class="col-md-11">
-                        {{ form2.content | as_crispy_field}}
-                        </div>
-                        <div class="col-md-1">
-                        <input type="submit" value="입력" id= "rec_upld" class="btn btn-primary" style="height:25px; width: 40px; font-size: 0.7rem; padding:0;"/>
-                        </div>
-                    </div>
-                    <br>
-                </form>
+        textarea.form-control:focus {
+            border: none;
+            box-shadow: none;
+        }
+
+        textarea::placeholder {
+            font-size: 0.8rem;
+        }
+
+        label.requiredField {
+            display: none;
+        }
+
+        #reply {
+            padding: 0.3rem 0;
+        }
+
+        .like {
+            font-size: 35px;
+        }
+
+        .like:hover {
+            color: #0000FF;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function change_q() {
+            document.getElementById("option2").style.color = 'white';
+        }
+
+        change_q();
+    </script>
+    <div class="col-sm-9" style="margin:50px auto;">
+        <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 2rem; white-space: pre-line; line-height: 150%;">
+            #{{ post.id }} | {{ post.title }}</h2>
+        <hr/>
+        <div style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888;">
+            {% if post.author.img_profile %}
+                <img src="{{ post.author.img_profile.url }}"
+                     style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
+            {% else %}
+                <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                     style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
+            {% endif %}
+            {{ post.author.username }} ({{ post.author.piro_no }}기)
+            <div style="display: inline-block; float: right; color:#AAA;">
+                {{ post.updated_at |date:"Y.m.d H:i" }}
             </div>
         </div>
         <hr/>
+        <div style="font-family: 'Noto Sans KR',Sans-Serif;">
+            <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">태그: {{ post.tag }}</p>
+            <p style="white-space: pre-wrap;">{{ post.body | safe }}</p>
+        </div>
+            <div style="display: inline-block; float: right;">
+                <a href="{% url 'intranet:create_bookmark_qna' post.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+                {% if request.user == post.author %}
+                <a href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
+                <a href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                {% endif %}
+            </div>
         <br>
-    {% endfor %}
+        <br>
+        <div style="font-family: 'Noto Sans KR', Sans-Serif; font-size:1.5rem;">
+            답변 {{ comment_no }}
+        </div>
+        <hr/>
+        {% for i in comment %}
+            <div class="row"
+                 style="padding:0; font-family: 'Noto Sans KR', Sans-Serif; font-size:1rem; color:#888; margin-bottom: 12px;">
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    {% if i.author.img_profile %}
+                        <img src="{{ post.author.img_profile.url }}"
+                             style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px"/>
+                    {% else %}
+                        <img class="img_profile"
+                             src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                             style="border:1px solid #2C3E52; border-radius: 50%; width:30px; height: 30px;"/>
+                    {% endif %}
+                    {{ i.author.username }} ({{ i.author.piro_no }}기)
+                    <div style="display: inline-block; float: right; color:#AAA;">
+                        {{ i.updated_at |date:"Y.m.d H:i" }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <div><i class="fas fa-thumbs-up like" name="{{ i.id }}" id="lol-{{ i.id }}"
+                            style="text-align:center; {% liked_by_user i.id request.user as liked_by_user_flag %} {% if liked_by_user_flag %} color:blue {% endif %}"></i>
+                    </div>
+                    <br>
+                    <div id="count-{{ i.id }}"
+                         style="text-align:center; font-family: 'Do Hyeon', 'NotoSansKR', sans-serif; font-size: 25px;">{{ i.like_count }}</div>
+                </div>
+                <div class="col-md-11">
+                    {% if i.deleted %}
+                        <p style="color: dimgrey;">(삭제된 답변입니다.)</p>
+                    {% else %}
+                        {{ i.body | safe }}
+                        {% if request.user == i.author %}
+                            <div style="text-align: right">
+                                <a style="font-size: 13px;" href="{% url "intranet:comment_delete" post.pk i.pk %}"
+                                   onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
 
-    <div style="font-family: 'Noto Sans KR', Sans-Serif; font-size:1.5rem;">
-    답변하기
-    </div>
-    <br>
-    <form action="{% url "intranet:comment_create" post.pk %}" method="post" enctype="multipart/form-data" autocomplete="off">
-    {% csrf_token %}
-        <div class="signup-form">
-            {{ form.body | safe }}
-            {{ form.media }}
+                    {% for j in i.reply_set.all %}
+                        <div style="border-top:0.0714285714rem solid #E1E7EB;">
+                            <div style="font-size: 0.8rem; padding: 0.3rem 0;">
+                                {{ j.content }}
+                                <span style="color:#AAA;">
+                            {{ j.author }} ({{ j.author.piro_no }}기)
+                                {{ j.updated_at|date:"Y.m.d H:i" }}
+                        </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div style="border-top:0.0714285714rem solid #E1E7EB;"></div>
+                    <form action="{% url "intranet:reply_create" post.pk i.pk %}" method="post"
+                          enctype="multipart/form-data" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="row" id="reply">
+                            <div class="col-md-11">
+                                {{ form2.content | as_crispy_field }}
+                            </div>
+                            <div class="col-md-1">
+                                <input type="submit" value="입력" id="rec_upld" class="btn btn-primary"
+                                       style="height:25px; width: 40px; font-size: 0.7rem; padding:0;"/>
+                            </div>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <hr/>
+            <br>
+        {% endfor %}
+
+        <div style="font-family: 'Noto Sans KR', Sans-Serif; font-size:1.5rem;">
+            답변하기
         </div>
         <br>
-        <input type="submit" value="답변 등록하기" id= "rec_upld" class="btn btn-primary" />
-    </form>
-    <hr>
-    <div style="display: inline-block; float: left;">
-        <a href="">목록</a>
+        <form action="{% url "intranet:comment_create" post.pk %}" method="post" enctype="multipart/form-data"
+              autocomplete="off">
+            {% csrf_token %}
+            <div class="signup-form">
+                {{ form.body | safe }}
+                {{ form.media }}
+            </div>
+            <br>
+            <input type="submit" value="답변 등록하기" id="rec_upld" class="btn btn-primary"/>
+        </form>
+        <hr>
+        <div style="display: inline-block; float: left;">
+            <a href="">목록</a>
+        </div>
+        {% if user.is_authenticated %}
+            <div style="display: inline-block; float: right;">
+                <a href="" style="margin-right: 5px;">수정</a>
+                <a href="" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+            </div>
+        {% endif %}
+        <br>
     </div>
-    {% if user.is_authenticated %}
-    <div style="display: inline-block; float: right;">
-        <a href="" style="margin-right: 5px;">수정</a>
-        <a href="" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-    </div>
-    {% endif %}
-    <br>
-</div>
-<script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-    $(".like").click(function () {
-        var pk = $(this).attr('name')
-        $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
-            type: "POST", // 데이터를 전송하는 방법을 지정
-            url: "{% url 'intranet:comment_like' %}", // 통신할 url을 지정
-            data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // 서버로 데이터 전송시 옵션
-            dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정, 없으면 알아서 판단
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(".like").click(function () {
+            var pk = $(this).attr('name')
+            $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
+                type: "POST", // 데이터를 전송하는 방법을 지정
+                url: "{% url 'intranet:comment_like' %}", // 통신할 url을 지정
+                data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // 서버로 데이터 전송시 옵션
+                dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정, 없으면 알아서 판단
 
-            // 서버측에서 전송한 Response 데이터 형식 (json)
-            // {'likes_count': article.like_count, 'message': message }
+                // 서버측에서 전송한 Response 데이터 형식 (json)
+                // {'likes_count': article.like_count, 'message': message }
 
-            success: function (response) { // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
-                $("#count-" + pk).html(response.like_count);
-                $("#lol-" + pk).css("color", response.colortype);
-            },
-            error: function (request, status, error) { // 통신 실패시 - 로그인 페이지 리다이렉트
-                alert("로그인이 필요합니다.")
-                window.location.replace("/accounts/login/")
-                //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            },
-        });
-    })
-</script>
+                success: function (response) { // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
+                    $("#count-" + pk).html(response.like_count);
+                    $("#lol-" + pk).css("color", response.colortype);
+                },
+                error: function (request, status, error) { // 통신 실패시 - 로그인 페이지 리다이렉트
+                    alert("로그인이 필요합니다.")
+                    window.location.replace("/accounts/login/")
+                    //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                },
+            });
+        })
+    </script>
 {% endblock %}

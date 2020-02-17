@@ -13,8 +13,8 @@ function navFunction() {
     document.getElementById("navbar").style.padding = "1% 1%";
     document.getElementById("navbar").style.backgroundColor = "#25CCA0";
   } else {
-    document.getElementById("navbar").style.padding = "1.8% 1%";
-    document.getElementById("navbar").style.backgroundColor = "#2C3E52";
+    document.getElementById("navbar").style.padding = "1% 1%";
+    document.getElementById("navbar").style.backgroundColor = "#2F4154";
   }
 }
 
