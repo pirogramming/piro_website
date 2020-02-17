@@ -21,5 +21,7 @@ urlpatterns = [
     path('address/delete/<int:pk>/', views.address_delete, name='address_delete'),
     path('checked/<int:pk>/', views.checked, name='checked'),
     path('checked_and_go/<int:pk>/<int:noti_pk>/', views.checked_and_go, name='checked_and_go'),
+    #내가 쓴 글 보기
+    path('my_post/', views.my_post, name = 'my_post')
 ]
 
