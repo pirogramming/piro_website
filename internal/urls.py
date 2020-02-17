@@ -19,5 +19,7 @@ urlpatterns = [
     path('address/create/', views.address_new, name='address_new'),
     path('address/edit/<int:pk>/', views.address_edit, name='address_edit'),
     path('address/delete/<int:pk>/', views.address_delete, name='address_delete'),
+    path('checked/<int:pk>/', views.checked, name='checked'),
+    path('checked_and_go/<int:pk>/<int:noti_pk>/', views.checked_and_go, name='checked_and_go'),
 ]
 

@@ -8,12 +8,30 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from internal.forms import QuestionForm, CommentForm, ReplyForm, InfoBookForm
-from .models import Post, Comment, InfoBook
+from .models import Post, Comment, InfoBook, Notification
 
 
 @login_required
 def mainscreen(request):
-    return render(request, 'main_intranet.html')
+    question_recent = Post.objects.all().order_by('-id')[:5]
+    notifications = Notification.objects.filter(to=request.user, checked=False)
+    return render(request, 'main_intranet.html',{
+            'question_recent': question_recent,
+            'notifications': notifications,
+        })
+
+def checked(request, pk):
+    notification_check = request.POST.get('checked')
+    if notification_check:
+        notification = Notification.objects.get(pk=pk)
+        notification.delete()
+    return redirect('intranet:mainscreen')
+
+
+def checked_and_go(request, pk, noti_pk):
+    notification = Notification.objects.get(pk=pk)
+    notification.delete()
+    return redirect('intranet:q_detail',noti_pk)
 
 @login_required
 def qna(request):
@@ -76,8 +94,8 @@ def q_delete(request, pk):
 @login_required
 def q_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    comment = post.comment_set.all()
-    #comment = post.comment_set.all().order_by('-like_user_set')
+    #comment = post.comment_set.all()
+    comment = post.comment_set.all().order_by('-like_num')
     comment_no = comment.count()
     form = CommentForm()
     form2 = ReplyForm()
@@ -131,6 +149,7 @@ def comment_create(request, pk, comment=None):
             comment.post = post
             comment.author = request.user
             comment.save()
+            create_notification(comment.author, comment.post.author, '댓글', str(pk))
             return redirect('intranet:q_detail', post.pk)
     else:
         form = CommentForm(instance=comment)
@@ -157,6 +176,7 @@ def reply_create(request, pk, cmt_pk, reply=None):
             reply.comment = comment
             reply.author = request.user
             reply.save()
+            create_notification(reply.author, reply.comment.author, '답글', str(post.pk))
             return redirect('intranet:q_detail', post.pk)
     else:
         form2 = ReplyForm(instance=reply)
@@ -178,12 +198,25 @@ def comment_like(request):
         else:
             colortype = 'blue'
 
+        comment.like_num = comment.like_count
+        comment.save()
+        create_notification(request.user, comment.author, '좋아요', str(comment.post.pk))
+
         context = {'like_count': comment.like_count,
                    'nickname': str(request.user),
                    'comment_like_created': comment_like_created,
                    'colortype': colortype,
                    }
         return HttpResponse(json.dumps(context), content_type="application/json")
+
+def create_notification(creator, to, notification_type, myid):
+    notification = Notification.objects.create(
+        creator=creator,
+        to=to,
+        notification_type=notification_type,
+        myid=myid
+    )
+    notification.save()
 
 def address_list(request):
     qs = InfoBook.objects.all().order_by('piro_no')

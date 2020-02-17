@@ -31,6 +31,8 @@ class Comment(models.Model):
     like_user_set = models.ManyToManyField(PiroUser, blank=True, related_name='like_user_set',
                                            through='Like')
 
+    like_num = models.IntegerField(default=0)
+
     @property
     def like_count(self):
         return self.like_user_set.count()
@@ -59,3 +61,17 @@ class InfoBook(models.Model):
     current_work = models.CharField(max_length=100)
     piro_no = models.PositiveIntegerField()
     history = models.TextField()
+
+class Notification(models.Model):
+    TYPE_CHOICES = (
+        ('좋아요', '좋아요'),
+        ('댓글', '댓글'),
+        ('답글', '답글'),
+    )
+    creator = models.ForeignKey(PiroUser, on_delete=models.CASCADE, related_name='creator')
+    to = models.ForeignKey(PiroUser, on_delete=models.CASCADE, related_name='to')
+    myid = models.CharField(max_length=250, null=True, blank= True)
+
+    notification_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+
+    checked = models.BooleanField(default=False)
