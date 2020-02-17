@@ -8,45 +8,83 @@
 
 {% load static %}
 
+<link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
+
 <style>
-    figure.snip1432 {
-        color: #fff;
+
+    .photo-header {
+        background-image: url("{% static "img/photo.jpeg" %}");
+        background-position: top center;
+        background-size: 1500px;
+        background-repeat: no-repeat;
         position: relative;
-        overflow: hidden;
-        margin: 10px;
-        min-width: 250px;
-        max-width: 250px;
-        width: 100%;
-        background: #000000;
-        color: #ffffff;
-        float: left;
+        height: 500px;
     }
 
-    .photo-content {
-        padding: 30px;
+    .photo-header .header-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(255, 255, 255, 0.8);
+        z-index: 2;
     }
-    
-    .photo-content a{
+
+    .header-cover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
+
+    .photo-detail {
+        padding: 80px 20px 80px 20px;
+        text-align: center;
+    }
+
+    .dot {
+        height: 3px;
+        width: 3px;
+        background-color: black;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .photo-book{
+        margin: 20px;
+        text-align: center;
+    }
+    .snip1432 {
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        background: #000000;
+        float: left;
+        text-align: center;
+    }
+
+    .snip1432 > a{
         color:white;
     }
 
-    figure.snip1432 * {
+    .snip1432 * {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         -webkit-transition: all 0.6s ease;
         transition: all 0.6s ease;
     }
 
-    figure.snip1432 img {
-        width: 100%;
+    .snip1432 img {
+        max-width: 100%;
         vertical-align: top;
         -webkit-transition: opacity 0.35s;
         transition: opacity 0.35s;
-        width: 250px;
-        height: 250px;
+        width: 300px;
+        height: 300px;
     }
 
-    figure.snip1432 figcaption {
+    .snip1432 figcaption {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -54,65 +92,51 @@
         height: 100%;
     }
 
-    figure.snip1432 figcaption>div {
+    .snip1432 figcaption>div {
         height: 80%;
         overflow: hidden;
         width: 100%;
         position: relative;
     }
 
-    figure.snip1432 p,
-    figure.snip1432 h3 {
-        margin: 0;
+    .snip1432 p, .snip1432 h3 {
+        /* margin: 0; */
         position: absolute;
-        left: 0;
+        /* left: 0; */
         padding: 0 20px;
         text-transform: uppercase;
+        font-family: 'Nanum Gothic', sans-serif;
     }
 
-    figure.snip1432 h3 {
+    .snip1432 h3 {
         font-size: 1em;
         bottom: 0;
     }
 
-    figure.snip1432 h3:nth-of-type(2) {
+    .snip1432 h3:nth-of-type(2) {
         opacity: 0;
         -webkit-transform: translateY(150%);
         transform: translateY(150%);
     }
 
-    figure.snip1432:hover img,
-    figure.snip1432.hover img {
+    .snip1432:hover img{
         opacity: 0.3;
         -webkit-filter: grayscale(100%);
         filter: grayscale(100%);
     }
 
-    figure.snip1432:hover figcaption h3:first-of-type,
-    figure.snip1432.hover figcaption h3:first-of-type {
+    .snip1432:hover figcaption h3:first-of-type{
         -webkit-transform: translateY(150%);
         transform: translateY(150%);
         opacity: 0;
     }
 
-    figure.snip1432:hover figcaption h3:nth-of-type(2),
-    figure.snip1432.hover figcaption h3:nth-of-type(2) {
+    .snip1432:hover figcaption h3:nth-of-type(2){
         opacity: 1;
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
     }
 
-    .photo-header {
-        padding: 50px 30px 30px 30px;
-        background-image: url("{% static "img/polaroid.png" %}");
-        background-position: top center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 200px;
-        opacity: 0.7;
-        color: black;
-        background-color: #F9F9F9;
-    }
 </style>
 <script>
 function change_photo() {
@@ -122,12 +146,24 @@ change_photo();
 </script>
 <div class="photo-container">
     <div class="photo-header">
-        <h3>피로그래밍 활동</h3>
-        <p>주차별 활동을 사진으로 확인하세요!</p>
+        <div class="header-content">
+            <h3 style="font-size: 60px; border-bottom: solid 1px; font-family: 'Dosis', sans-serif;">PHOTO BOOK</h3>
+            <span style="font-family: 'Nanum Gothic', sans-serif;">피로그래밍 활동은 매주 월, 화, 목 일정으로 진행됩니다.
+                <br>포토북에서 지난기수와 현재기수의 활동 사진을 확인해보세요!
+                <br>포토북을 클릭하시면 더 많은 사진을 보실 수 있습니다!
+            </span>
+        </div>
+        <div class="header-cover"></div>
     </div>
     <div class="photo-content">
-        {% for photobook in photobooks %}
-            <figure class="snip1432">
+        <div class="photo-detail">
+            <p class="dot"></p><br><br>
+            <p class="dot"></p><br><br>
+            <p class="dot"></p><br>
+        </div>
+        <div class="photo-book">
+            {% for photobook in photobooks %}
+            <div class="snip1432">
                 <a href="{% url 'photobook:detail_book' photobook.pk %}">
                     <img src="{{photobook.thumbnail.url}}" alt="...">
                     <figcaption>
@@ -140,15 +176,20 @@ change_photo();
                         </div>
                     </figcaption>
                 </a>
-            </figure>
-        {% endfor %}
-        <div style="clear:both;"></div>
-        {% if user.is_admin %}
-        <div class="text-right" style="margin:10px 0px 0px 38px">
-        <a class="btn btn-success" href="{% url "photobook:create_book" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>사진첩 만들기</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endif %}
     </div>
+    <div style="clear:both;"></div>
+    {% if user.is_admin %}
+    <div class="text-right" style="margin:10px 0px 0px 38px">
+        <a class="btn btn-success" style="background-color: #25CCA0; border-color:#25CCA0; margin-right: 20px;"
+            href="{% url "photobook:create_book" %}" role="button">
+            <i class="fas fa-pen" style="margin-right: 8px;"></i>사진첩 만들기
+        </a>
+    </div>
+    {% endif %}
+</div>
 </div>
 
 

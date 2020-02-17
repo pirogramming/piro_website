@@ -6,6 +6,45 @@
 
 {% block content %}
 
+{% load static %}
+
+<link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
+
+<style>
+   .container-header {
+        background-image: url("{% static "img/port.jpg" %}");
+        background-position: top center;
+        background-size: 1500px;
+        background-repeat: no-repeat;
+        position: relative;
+        height: 500px;
+    }
+
+    .container-header .header-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        color: rgba(255, 255, 255, 0.8);
+        z-index: 2;
+    }
+
+
+    .header-cover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(47,65,84, 0.8);
+    }
+
+    .portfolio-box{
+        padding: 50px 20px 50px 20px;
+    }
+
+</style>
+
 <script type="text/javascript">
     function viewDiv(idx) {
         if (idx != 0 && idx != 200){
@@ -37,29 +76,32 @@ change_port_list();
 </script>
 
 <section class="wow fadeInUp">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-3">포트폴리오</h1>
-            <p class="lead">피로그래밍에서 작업한 프로젝트에 대한 내용을 확인 할 수 있습니다.
-                <br>
-                아래에서 기수를 선택하여 각 기수에서 완성한 프로젝트를 확인해보세요!
+    <div class="container-header">
+        <div class="header-content">
+            <h3 style="font-size: 60px; border-bottom: solid 1px; font-family: 'Dosis', sans-serif;">PORTFOLIO</h3>
+            <p style="font-size:15px;font-family: 'Nanum Gothic', sans-serif;">
+                피로그래밍에서 작업한 프로젝트에 대한 내용을 확인 할 수 있습니다.
+                <br>아래에서 기수를 선택하여 각 기수에서 완성한 프로젝트를 확인해보세요!
             </p>
         </div>
+        <div class="header-cover"></div>
     </div>
-    {% if user.is_admin %}
-    <div class="text-right" style="margin-right: 20px;">
-        <a class="btn btn-success" id="write_notice" href="{% url "home:port_new" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>프로젝트 추가하기</a>
-    </div>
-    {% endif %}
-    <div class="portfolio-container">
-        <div class="portfolio-header">
-            <select name="select" onchange="javascript:selectIndex(this)">
-                <option value="0" disabled selected>기수 선택</option>
-                <option value="200">전체 보기</option>
-                {% for i in range %}
-                <option value="{{ i }}">{{ i }}기</option>
-                {% endfor %}
-            </select>
+    <div class="portfolio-box">
+        {% if user.is_admin %}
+        <div class="text-right" style="margin-right: 20px;">
+            <a class="btn btn-success" id="write_notice" href="{% url "home:port_new" %}" role="button" style="background-color: #25CCA0; border-color:#25CCA0;"><i class="fas fa-pen" style="margin-right: 8px;"></i>프로젝트 추가하기</a>
+        </div>
+        {% endif %}
+        <div class="portfolio-container" style="margin:20px 0px 10px 0px;">
+            <div class="portfolio-header">
+                <select name="select" onchange="javascript:selectIndex(this)">
+                    <option value="0" disabled selected>기수 선택</option>
+                    <option value="200">전체 보기</option>
+                    {% for i in range %}
+                    <option value="{{ i }}">{{ i }}기</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
         <div class="portfolio-main">
             <!-- Needs Backend -->

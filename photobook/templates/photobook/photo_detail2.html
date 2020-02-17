@@ -8,43 +8,62 @@
 
 {% load static %}
 
+<link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static "css/lightbox.css" %}">
 
 <style>
-    
-    .album-content {
-        padding: 50px;
+    .album-header {
+        background-image: url("{% static "img/photo.jpeg" %}");
+        background-position: top center;
+        background-size: 1500px;
+        background-repeat: no-repeat;
+        position: relative;
+        height: 500px;
     }
 
-    .album-header {
-        padding: 50px 30px 30px 30px;
-        background-image: url("{% static "img/polaroid.png" %}");
-        background-position: top center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 200px;
-        opacity: 0.7;
-        color: black;
-        background-color: #F9F9F9;
+    .album-header .header-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        color: rgba(255, 255, 255, 0.8);
+        z-index: 2;
+    }
+
+    .header-cover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
     }
 
     .album-title {
         text-align: center;
-        background-color: rgba(37, 204, 160, 0.3);
-        font-weight:500;
+        font-weight: 500;
+    }
+    .album-text{
+        text-align: center;
+        /* font-size: 30px; */
     }
 
     .album-date {
         text-align: end;
     }
 
-    .photo-wrap{
-        text-align: center;
+
+    .album-content {
+        padding: 100px 70px 50px 70px;
     }
+    .photo-wrap {
+        text-align: center;
+        padding: 20px 0px 40px 0px;
+    }
+
     .photo-set {
         height: 250px;
-        width: 250px;
-        margin: 10px;
+        width: 300px;
         border-radius: 3%;
     }
 
@@ -52,10 +71,22 @@
         text-align: end;
     }
 
-    #polaroid img:hover{
+    #polaroid img:hover {
         opacity: 0.3;
         -webkit-filter: grayscale(70%);
         filter: grayscale(70%);
+    }
+
+    .photobook-btn {
+        color: black;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .photobook-btn:hover{
+        border-bottom:solid 1px #25CCA0;
+        color: #25CCA0;
+        text-decoration: none;
     }
 </style>
 <script>
@@ -66,44 +97,39 @@ change_photo();
 </script>
 <div class="album-container">
     <div class="album-header">
-        <h3>피로그래밍 활동</h3>
-        <p>주차별 활동을 사진으로 확인하세요!</p>
+        <div class="header-content">
+            <h3 style="font-size: 60px; border-bottom: solid 1px; font-family: 'Dosis', sans-serif;">
+                PHOTO
+            </h3>
+            <span style="font-family: 'Nanum Gothic', sans-serif;">
+                <p style="font-size: 25px;">{{photobook.title}}</p>
+                <p style="font-size: 15px;">{{photobook.text}}</p>
+            </span>
+        </div>
+        <div class="header-cover"></div>
     </div>
     <div class="album-content">
-        <table class="table">
-            <thead>
-                <tr class="album-title">
-                    <td style="font-size: 20px; font-family: 'Do Hyeon'">{{photobook.title}}</td>
-                </tr>
-                <tr style="font-family: 'Noto Sans KR', Sans-Serif;">
-                    <td>{{photobook.text}}</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="photo-wrap" id="polaroid">
-                            {% for img in images %}
-                                <a href="{{img.image.url}}" style="text-decoration: none;" data-lightbox="roadtrip"
-                                    data-title="{{photobook.title}}">
-                                    <img class="photo-set" src="{{img.image.url}}" alt="" style="border: 0.5px solid navajowhite">
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot class="album-footer">
-                <tr style="text-align: right;">
-                    <td><a href="{% url "photobook:update_book" photobook.pk %}">수정 </a><a href="{% url "photobook:delete_book" photobook.pk %}" onclick="return confirm('삭제하시겠습니까?');"> 삭제</a></td>
-                </tr>
-                <tr>
-                    <td><a href="{% url 'photobook:list_book' %}" class="btn btn-outline-secondary">목록으로</a></td>
-                </tr>
-            </tfoot>
-        </table>
+        <div class="photo-wrap" id="polaroid">
+            {% for img in images %}
+            <a href="{{img.image.url}}" style="text-decoration: none;" data-lightbox="roadtrip"
+               data-title="{{photobook.title}}">
+                <img class="photo-set" src="{{img.image.url}}" alt="">
+            </a>
+            {% endfor %}
+        </div>
+        <div style="text-align: right;">
+                <a href="{% url "photobook:update_book" photobook.pk %}" class="photobook-btn">
+                    수정
+                </a>&nbsp&nbsp
+                <a href="{% url "photobook:delete_book" photobook.pk %}" onclick="return confirm('삭제하시겠습니까?');"
+                   class="photobook-btn">
+                   삭제
+                </a>&nbsp&nbsp
+                <a href="{% url 'photobook:list_book' %}" class="photobook-btn">
+                    목록으로
+                </a>
+        </div>
     </div>
-
 </div>
 
 <script src="{% static "js/lightbox-plus-jquery.js" %}"></script>
