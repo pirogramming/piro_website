@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,9 +9,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from infoboard.forms import InfoForm
 from infoboard.models import Info, Files
 
-
+@login_required
 def list_info(request):
-    info = Info.objects.all()
+    info = Info.objects.all().order_by('-id')
 
     if request.method == 'POST':
         q = request.POST.get('q', '')  # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
@@ -74,7 +75,7 @@ def list_info(request):
 
 
 
-
+@login_required
 def detail_info(request, pk):
     info = Info.objects.get(pk=pk)
     file = info.files_set.all()
@@ -86,7 +87,7 @@ def detail_info(request, pk):
     }
     return render(request, 'infoboard/detail_info.html', data)
 
-
+@login_required
 def create_info(request):
     if request.method == 'POST':
         form = InfoForm(request.POST, request.FILES)
@@ -106,15 +107,14 @@ def create_info(request):
         form = InfoForm()
         return render(request, 'infoboard/create_info.html', {'form':form})
 
-
+@login_required
 def update_info(request, pk):
     info = Info.objects.get(pk=pk)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user == info.user:
         form = InfoForm(request.POST, request.FILES)
 
         if form.is_valid():
-            print(form.cleaned_data)
             info.title = form.cleaned_data['title']
             info.text = form.cleaned_data['text']
             info.save()
@@ -129,18 +129,19 @@ def update_info(request, pk):
         form = InfoForm(instance = info)
         return render(request, 'infoboard/create_info.html', {'form': form})
 
-
+@login_required
 def delete_info(request, pk):
     info = Info.objects.get(pk=pk)
-    temp = info.files_set.all()
+    if request.user == info.user:
+        temp = info.files_set.all()
 
-    for i in temp:
-        i.file.delete()
+        for i in temp:
+            i.file.delete()
 
-    info.delete()
+        info.delete()
     return redirect('infoboard:list_info')
 
-
+@login_required
 def download(request, pk, img_pk):
     file = get_object_or_404(Files, pk=img_pk)
     file_url = file.file.url[1:]

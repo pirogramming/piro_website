@@ -5,7 +5,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-정보글 #{{ post.id }}
+정보글 #{{ info.id }}
 {% endblock %}
 
 
@@ -58,19 +58,21 @@ change_infoboard();
     </div>
     <hr/>
     <div style="font-family: 'Noto Sans KR',Sans-Serif;">
-        <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">
+        <p style="color:dimgrey; font-size: 0.8rem; text-align: left; margin-bottom: 10px;">
             첨부파일:<br>
         {% for i in file %}
             <a href="{% url 'infoboard:download' i.info.pk i.pk %}">{{i.filename}}<br></a>
         {% endfor %}
         </p>
+        <hr/>
         <p style="white-space: pre-wrap;">{{  info.text }}</p>
     </div>
     {% if request.user == info.user %}
-    <div style="display: inline-block; float: right;">
+    <div style="display: inline-block; float: right; margin-bottom: 50px;">
         <a href="{% url "infoboard:update_info" info.pk %}" style="margin-right: 5px;">수정</a>
         <a href="{% url "infoboard:delete_info" info.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
     </div>
+    <br>
     {% endif %}
 </div>
 {% endblock %}
