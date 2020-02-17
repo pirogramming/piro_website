@@ -149,7 +149,8 @@ def comment_create(request, pk, comment=None):
             comment.post = post
             comment.author = request.user
             comment.save()
-            create_notification(comment.author, comment.post.author, '댓글', str(pk))
+            if comment.author != comment.post.author:
+                create_notification(comment.author, comment.post.author, '댓글', str(pk))
             return redirect('intranet:q_detail', post.pk)
     else:
         form = CommentForm(instance=comment)
@@ -176,7 +177,8 @@ def reply_create(request, pk, cmt_pk, reply=None):
             reply.comment = comment
             reply.author = request.user
             reply.save()
-            create_notification(reply.author, reply.comment.author, '답글', str(post.pk))
+            if reply.author != reply.comment.author:
+                create_notification(reply.author, reply.comment.author, '답글', str(post.pk))
             return redirect('intranet:q_detail', post.pk)
     else:
         form2 = ReplyForm(instance=reply)
@@ -200,7 +202,8 @@ def comment_like(request):
 
         comment.like_num = comment.like_count
         comment.save()
-        create_notification(request.user, comment.author, '좋아요', str(comment.post.pk))
+        if request.user != comment.author:
+            create_notification(request.user, comment.author, '좋아요', str(comment.post.pk))
 
         context = {'like_count': comment.like_count,
                    'nickname': str(request.user),
