@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Like, InfoBook
+from .models import Post, Comment, Like, InfoBook, Notification
 
 
 @admin.register(Post)
@@ -21,3 +21,4 @@ class LikeAdmin(admin.ModelAdmin):
 class InfoBookAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'piro_no']
     list_display_links = ['id']
+

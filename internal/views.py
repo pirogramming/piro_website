@@ -15,10 +15,11 @@ from .models import Post, Comment, InfoBook, Notification
 def mainscreen(request):
     question_recent = Post.objects.all().order_by('-id')[:5]
     notifications = Notification.objects.filter(to=request.user, checked=False)
-    return render(request, 'main_intranet.html',{
-            'question_recent': question_recent,
-            'notifications': notifications,
-        })
+    return render(request, 'main_intranet.html', {
+        'question_recent': question_recent,
+        'notifications': notifications,
+    })
+
 
 def checked(request, pk):
     notification_check = request.POST.get('checked')
@@ -31,13 +32,14 @@ def checked(request, pk):
 def checked_and_go(request, pk, noti_pk):
     notification = Notification.objects.get(pk=pk)
     notification.delete()
-    return redirect('intranet:q_detail',noti_pk)
+    return redirect('intranet:q_detail', noti_pk)
+
 
 @login_required
 def qna(request):
     post_list = Post.objects.all().order_by('-id')
     total_len = len(post_list)
-    page = request.GET.get('page',1)
+    page = request.GET.get('page', 1)
     paginator = Paginator(post_list, 10)
 
     try:
@@ -56,7 +58,10 @@ def qna(request):
         end_index = index + 3 if index <= max_index - 3 else max_index
     page_range = list(paginator.page_range[start_index:end_index])
 
-    return render(request, 'internal/qboard.html',{'questions': questions,'page_range':page_range, 'total_len':total_len, 'max_index':max_index-2})
+    return render(request, 'internal/qboard.html',
+                  {'questions': questions, 'page_range': page_range, 'total_len': total_len,
+                   'max_index': max_index - 2})
+
 
 @login_required
 def q_new(request, post=None):
@@ -76,12 +81,14 @@ def q_new(request, post=None):
             'form': form,
         })
 
+
 def q_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.user == post.author:
         return q_new(request, post)
     else:
         return redirect('intranet:qna')
+
 
 def q_delete(request, pk):
     post = Post.objects.get(id=pk)
@@ -91,21 +98,23 @@ def q_delete(request, pk):
     else:
         return redirect('intranet:qna')
 
+
 @login_required
 def q_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    #comment = post.comment_set.all()
+    # comment = post.comment_set.all()
     comment = post.comment_set.all().order_by('-like_num')
     comment_no = comment.count()
     form = CommentForm()
     form2 = ReplyForm()
-    return render(request,'internal/qdetail.html', {
+    return render(request, 'internal/qdetail.html', {
         'post': post,
         'comment': comment,
         'comment_no': comment_no,
         'form': form,
         'form2': form2,
     })
+
 
 @login_required
 def q_by_tag(request):
@@ -116,7 +125,7 @@ def q_by_tag(request):
         else:
             post_list = Post.objects.all().filter(tag=tag).order_by('-id')
             total_len = len(post_list)
-            page = request.GET.get('page',1)
+            page = request.GET.get('page', 1)
             paginator = Paginator(post_list, 10)
 
             try:
@@ -135,9 +144,12 @@ def q_by_tag(request):
                 end_index = index + 3 if index <= max_index - 3 else max_index
             page_range = list(paginator.page_range[start_index:end_index])
 
-            return render(request, 'internal/qboard.html',{'questions': questions, 'tag': tag, 'page_range':page_range, 'total_len':total_len, 'max_index':max_index-2})
+            return render(request, 'internal/qboard.html',
+                          {'questions': questions, 'tag': tag, 'page_range': page_range, 'total_len': total_len,
+                           'max_index': max_index - 2})
     else:
         return redirect('intranet:qna')
+
 
 @login_required
 def comment_create(request, pk, comment=None):
@@ -158,6 +170,7 @@ def comment_create(request, pk, comment=None):
             'form': form,
         })
 
+
 @login_required
 def comment_delete(request, pk, cmt_pk):
     post = Post.objects.get(pk=pk)
@@ -165,6 +178,7 @@ def comment_delete(request, pk, cmt_pk):
     comment.deleted = True
     comment.save()
     return redirect('intranet:q_detail', post.pk)
+
 
 @login_required
 def reply_create(request, pk, cmt_pk, reply=None):
@@ -212,6 +226,7 @@ def comment_like(request):
                    }
         return HttpResponse(json.dumps(context), content_type="application/json")
 
+
 def create_notification(creator, to, notification_type, myid):
     notification = Notification.objects.create(
         creator=creator,
@@ -221,11 +236,13 @@ def create_notification(creator, to, notification_type, myid):
     )
     notification.save()
 
+
 def address_list(request):
     qs = InfoBook.objects.all().order_by('piro_no')
     return render(request, 'internal/address.html', {
         'address_list': qs,
     })
+
 
 @login_required
 def address_new(request, address=None):
@@ -245,10 +262,12 @@ def address_new(request, address=None):
             'form': form,
         })
 
+
 @login_required
 def address_edit(request, pk):
     address = get_object_or_404(InfoBook, pk=pk)
     return address_new(request, address)
+
 
 @login_required
 def address_delete(request, pk):
@@ -258,3 +277,11 @@ def address_delete(request, pk):
         return redirect('intranet:address_list')
     else:
         return redirect('intranet:address_list')
+
+
+# 내가 쓴 포스트 보기
+def my_post(request):
+    posts = Post.objects.filter(author=request.user)
+    return render(request, 'internal/my_post.html', {'posts':posts})
+
+# 내가 북마크한 글 보기 (조금이따 수정)

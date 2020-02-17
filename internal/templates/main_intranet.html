@@ -81,7 +81,7 @@
                         {% for question in question_recent %}
                             <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
                             <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
-                                <span style="padding-top: 10px;">{{ question.title }}</span>
+                                <span style="padding-top: 10px;"> <a href="{% url 'intranet:q_detail' question.pk %}"> {{ question.title }}</a></span>
                             </span>
                         {% endfor %}
                         </div>
@@ -157,6 +157,9 @@
             로그아웃
         </div>
 
+        <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
+            <a href="{% url 'intranet:my_post' %}">내가 쓴 글 보기</a>
+        </div>
     </div>
 </div>
 <script>
