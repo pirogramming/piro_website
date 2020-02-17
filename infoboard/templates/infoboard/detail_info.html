@@ -67,12 +67,13 @@ change_infoboard();
         <hr/>
         <p style="white-space: pre-wrap;">{{  info.text }}</p>
     </div>
-    {% if request.user == info.user %}
     <div style="display: inline-block; float: right; margin-bottom: 50px;">
+        <a href="{% url 'infoboard:create_bookmark_infoboard' info.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+        {% if request.user == info.user %}
         <a href="{% url "infoboard:update_info" info.pk %}" style="margin-right: 5px;">수정</a>
         <a href="{% url "infoboard:delete_info" info.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+        {% endif %}
     </div>
     <br>
-    {% endif %}
 </div>
 {% endblock %}

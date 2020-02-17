@@ -6,6 +6,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from accounts.models import Bookmark
 from infoboard.forms import InfoForm
 from infoboard.models import Info, Files
 
@@ -151,3 +152,17 @@ def download(request, pk, img_pk):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_url)
             return response
     raise Http404
+
+def create_bookmark_infoboard(request, pk):
+    article = Info.objects.get(pk=pk)
+    try:
+        sample = Bookmark.objects.get(bookmark_title=article.title)
+        if sample.pirouser != request.user and sample.bookmark_type == 'infoboard':
+            bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk),
+                                               bookmark_title=article.title, bookmark_type='infoboard')
+            bookmark.save()
+    except:
+        bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'infoboard')
+        bookmark.save()
+
+    return redirect('infoboard:detail_info', pk)

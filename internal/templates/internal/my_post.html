@@ -1,8 +1,82 @@
 {% extends 'base_internal.html' %}
-{% block content %}
 
-{% load static %}
+{% block title %}
+피로그래밍 - 내가 쓴 글
+{% endblock %}
+
+{% block content %}
+<style>
+#board a{
+    text-decoration: none;
+    color:black;
+}
+#board:hover{
+    background-color: #FAF9F7;
+    transition-duration: 0.4s;
+}
+
+.pagination li{
+    display:table-cell;
+    padding: 0;
+}
+
+</style>
+
+<div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding:15px; margin:20px auto 0px auto;">
+    <strong>내가 쓴 글</strong>
+    <br>
+    <small style="font-size: 15px;">질문 게시판에 작성한 글만 표시됩니다.</small>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
+    <div class="row" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border:1px solid #ebe3db; background-color: #f1ebe6">
+        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
+        <div class="col-md-8 col-8" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
+        <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">날짜</div>
+    </div>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:#3e3a37; margin:0px auto 30px auto;">
     {% for post in posts %}
-        {{ post.title }}
+    <div class="row" id="board" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
+        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ post.id }}</div>
+        <div class="col-md-8 col-8" style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a href="{%  url "intranet:q_detail" post.id %}">{{ post.title }}</a></div>
+        <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem;">
+                {{ post.updated_at|date:"Y.m.d H:i" }}
+        </div>
+    </div>
     {% endfor %}
+</div>
+
+<div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="margin:0px auto 30px auto;">
+{% if posts.has_other_pages %}
+<div style="display:table; margin:0 auto;">
+  <ul class="pagination">
+    {% if posts.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% if posts.number > 2  %}
+        <li class="page-item"><a class="page-link" href="?page={{ 1 }}"> 1 </a></li>
+        <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if posts.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if posts.number < max_index %}
+        <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
+        <li class="page-item"><a class="page-link" href="?page={{ max_index|add:'2' }}">{{ max_index|add:"2" }}</a></li>
+    {% endif %}
+    {% if posts.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+</div>
 {% endblock %}

@@ -75,13 +75,13 @@
             <p style="color:dimgrey; font-size: 0.8rem; text-align: right; margin-bottom: 10px;">태그: {{ post.tag }}</p>
             <p style="white-space: pre-wrap;">{{ post.body | safe }}</p>
         </div>
-        {% if request.user == post.author %}
             <div style="display: inline-block; float: right;">
+                <a href="{% url 'intranet:create_bookmark_qna' post.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+                {% if request.user == post.author %}
                 <a href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
                 <a href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-                <a href="{% url 'intranet:create_bookmark_qna' post.pk %}">북마크</a>
+                {% endif %}
             </div>
-        {% endif %}
         <br>
         <br>
         <div style="font-family: 'Noto Sans KR', Sans-Serif; font-size:1.5rem;">

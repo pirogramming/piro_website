@@ -12,7 +12,8 @@ urlpatterns = [
     path('create/', views.create_info, name="create_info"),
     path('<int:pk>/update/', views.update_info, name="update_info"),
     path('<int:pk>/delete/', views.delete_info, name="delete_info"),
-    path('<int:pk>/<int:img_pk>/download/', views.download, name="download"),                   ########### 다운로드 ############
+    path('<int:pk>/<int:img_pk>/download/', views.download, name="download"),
+    path('bookmark_infoboard/<int:pk>/', views.create_bookmark_infoboard, name='create_bookmark_infoboard'),
 ]
 
 if settings.DEBUG:

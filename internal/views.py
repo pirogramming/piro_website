@@ -283,18 +283,46 @@ def address_delete(request, pk):
 # 내가 쓴 포스트 보기
 def my_post(request):
     posts = Post.objects.filter(author=request.user)
-    return render(request, 'internal/my_post.html', {'posts':posts})
+    total_len = len(posts)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts, 10)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    index = posts.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 2 if index >= 2 else 0
+    if index < 2:
+        end_index = 5 - start_index
+    else:
+        end_index = index + 3 if index <= max_index - 3 else max_index
+    page_range = list(paginator.page_range[start_index:end_index])
+
+    return render(request, 'internal/my_post.html', {'posts':posts, 'page_range': page_range, 'total_len': total_len, 'max_index': max_index - 2})
 
 # qna 북마크
 def create_bookmark_qna(request, pk):
     article = Post.objects.get(pk=pk)
-    bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'qna')
-    bookmark.save()
+    try:
+        sample = Bookmark.objects.get(bookmark_title=article.title)
+        if sample.pirouser != request.user and sample.bookmark_type == 'qna':
+            bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk),
+                                               bookmark_title=article.title, bookmark_type='qna')
+            bookmark.save()
+    except:
+        bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'qna')
+        bookmark.save()
+
     return redirect('intranet:q_detail', pk)
 
 # 내가 북마크한 글 보기
 def my_bookmark(request):
-    bookmarks = Bookmark.objects.filter(pirouser=request.user)
+    bookmarks = Bookmark.objects.filter(pirouser=request.user).order_by('-id')
     return render(request, 'internal/my_bookmark.html', {'bookmarks':bookmarks})
 
 #북마크 삭제
