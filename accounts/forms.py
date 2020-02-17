@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
         self.fields['password1'].label = '비밀번호'
         self.fields['password2'].label = '비밀번호 확인'
 
-        self.fields['password1'].help_text = "8자 이상, 영문 숫자 특수문자를 섞어주세요"
+        self.fields['password1'].help_text = "8자 이상, 영문 숫자 특수문자 중 둘 이상을 섞어주세요"
         self.fields['password2'].help_text = "비밀번호를 한번 더 입력해주세요"
 
         self.fields['name'].widget.attrs['placeholder'] = '예) 홍길동'
@@ -26,7 +26,6 @@ class SignUpForm(UserCreationForm):
 
         help_texts = {
             'email': ('이메일 형식에 맞게 적어주세요'),
-            'username': ('8자 이상, 영문/숫자만 가능합니다'),
             'phone_no': ('"-" 를 포함해서 입력해주세요'),
             'piro_no': ('숫자만 입력 가능합니다.'),
             'img_profile': ('25MB이하 파일만 가능합니다'),

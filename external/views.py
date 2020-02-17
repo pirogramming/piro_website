@@ -10,6 +10,8 @@ def home(request):
 def portfolio(request):
     qs = Portfolio.objects.all()
     maxpiro = Portfolio.objects.aggregate(Max('pironumber'))
+    if maxpiro.get("pironumber__max") == None:
+        return redirect("home:port_new")
     maxno = maxpiro.get("pironumber__max") + 1
     return render(request, 'external/port_list.html',{
         'port_list': qs,
