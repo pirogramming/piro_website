@@ -69,3 +69,9 @@ class PiroUser(AbstractUser):
 
     def __str__(self):
         return f'{self.name}'
+
+class Bookmark(models.Model):
+    pirouser = models.ForeignKey(PiroUser, on_delete=models.CASCADE)
+    bookmark_title = models.CharField(max_length=250)
+    bookmark_num = models.CharField(max_length=250)
+    bookmark_type = models.CharField(max_length=250)

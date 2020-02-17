@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
+from accounts.models import Bookmark
 from internal.forms import QuestionForm, CommentForm, ReplyForm, InfoBookForm
 from .models import Post, Comment, InfoBook, Notification
 
@@ -284,4 +285,20 @@ def my_post(request):
     posts = Post.objects.filter(author=request.user)
     return render(request, 'internal/my_post.html', {'posts':posts})
 
-# 내가 북마크한 글 보기 (조금이따 수정)
+# qna 북마크
+def create_bookmark_qna(request, pk):
+    article = Post.objects.get(pk=pk)
+    bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'qna')
+    bookmark.save()
+    return redirect('intranet:q_detail', pk)
+
+# 내가 북마크한 글 보기
+def my_bookmark(request):
+    bookmarks = Bookmark.objects.filter(pirouser=request.user)
+    return render(request, 'internal/my_bookmark.html', {'bookmarks':bookmarks})
+
+#북마크 삭제
+def delete_bookmark(request, pk):
+    bookmark = Bookmark.objects.get(pk = pk)
+    bookmark.delete()
+    return redirect('intranet:my_bookmark')

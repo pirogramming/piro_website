@@ -1,0 +1,16 @@
+{% extends 'base_internal.html' %}
+{% block content %}
+
+    {% load static %}
+    {% for bookmark in bookmarks %}
+        <div>
+        {% if bookmark.bookmark_type == 'qna' %}
+            <a href="{% url 'intranet:q_detail' bookmark.bookmark_num %}">{{ bookmark.bookmark_title }} </a>
+            {#  이 아래는 정보게시판!    #}
+        {% else %}
+            <a href="{% url 'intranet:q_detail' bookmark.bookmark_num %}">{{ bookmark.bookmark_title }} </a>
+        {% endif %}
+        <a href="{% url "intranet:delete_bookmark" bookmark.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+        </div>
+    {% endfor %}
+{% endblock %}

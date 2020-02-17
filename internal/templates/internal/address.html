@@ -1,96 +1,103 @@
 {% extends 'base_internal.html' %}
 {% block content %}
 
-{% load static %}
+    {% load static %}
 
-<style>
-    .address-header {
-        padding: 50px 30px 30px 30px;
-        background-image: url("{% static "img/study.jpeg" %}");
-        background-position: top center;
-        background-size: cover;
-        height: 200px;
-        opacity: 0.8;
-    }
+    <style>
+        .address-header {
+            padding: 50px 30px 30px 30px;
+            background-image: url("{% static "img/study.jpeg" %}");
+            background-position: top center;
+            background-size: cover;
+            height: 200px;
+            opacity: 0.8;
+        }
 
-    .thead,
-    tr {
-        text-align: center;
-    }
+        .thead,
+        tr {
+            text-align: center;
+        }
 
-    .address-table {
-        padding: 30px;
-    }
+        .address-table {
+            padding: 30px;
+        }
 
-    .profile-img {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-    }
+        .profile-img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
 
-    .select-section {
-        text-align: end;
-        padding: 50px 30px 10px 0;
-    }
+        .select-section {
+            text-align: end;
+            padding: 50px 30px 10px 0;
+        }
 
-    select {
-        width: 150px;
-        height: 30px;
-    }
+        select {
+            width: 150px;
+            height: 30px;
+        }
 
 
+    </style>
+    <script>
+        function change_address() {
+            document.getElementById("option4").style.color = 'white';
+        }
 
-</style>
-<script>
-function change_address() {
-    document.getElementById("option4").style.color = 'white';
-}
-change_address();
-</script>
-<div class="address-header" style="color:white; margin-bottom: 30px;">
-    <h3>멤버 주소록</h3>
-    <p>피로그래밍 참여 회원 주소록입니다.</p>
-</div>
-<div class="text-right" style="margin-right: 10px;">
-    <a class="btn btn-success" id="write_notice" href="{% url "intranet:address_new" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>주소록 등록하기</a>
-</div>
-<div class="row thead" style="margin:10px 10px 0px 10px;">
-    <div class="col-1" style="text-align: center; padding:0.75rem; font-weight: bold;">기수</div>
-    <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">이름</div>
-    <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">연락처</div>
-    <div class="col-3" style="text-align: center; padding:0.75rem; font-weight: bold;">직업</div>
-    <div class="col-4" style="text-align: center; padding:0.75rem; font-weight: bold;">약력</div>
-</div>
+        change_address();
+    </script>
+    <div class="address-header" style="color:white; margin-bottom: 30px;">
+        <h3>멤버 주소록</h3>
+        <p>피로그래밍 참여 회원 주소록입니다.</p>
+    </div>
+    <div class="text-right" style="margin-right: 10px;">
+        <a class="btn btn-success" id="write_notice" href="{% url "intranet:address_new" %}" role="button"><i
+                class="fas fa-pen" style="margin-right: 8px;"></i>주소록 등록하기</a>
+    </div>
+    <div class="row thead" style="margin:10px 10px 0px 10px;">
+        <div class="col-1" style="text-align: center; padding:0.75rem; font-weight: bold;">기수</div>
+        <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">이름</div>
+        <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">연락처</div>
+        <div class="col-3" style="text-align: center; padding:0.75rem; font-weight: bold;">직업</div>
+        <div class="col-4" style="text-align: center; padding:0.75rem; font-weight: bold;">약력</div>
+    </div>
 
-{% for address in address_list %}
-<div class="row" id="notice_list" style="margin:0px 10px; border-bottom: 0.5px solid #d6d6d6;">
-    <div class="col-1" style="text-align: center; padding:0.75rem;">{{ address.piro_no }}기</div>
-    <div class="col-2" style="text-align: center; padding:0.75rem;">
+    {% for address in address_list %}
+        <div class="row" id="notice_list" style="margin:0px 10px; border-bottom: 0.5px solid #d6d6d6;">
+            <div class="col-1" style="text-align: center; padding:0.75rem;">{{ address.piro_no }}기</div>
+            <div class="col-2" style="text-align: center; padding:0.75rem;">
         <span style="margin-left: 10px;">
             {% if address.user.img_profile %}
-            <img src="{{ address.user.img_profile.url }}" style="border:1px solid #2C3E52; border-radius: 50%; width:20px; height: 20px"/>
+                <img src="{{ address.user.img_profile.url }}"
+                     style="border:1px solid #2C3E52; border-radius: 50%; width:20px; height: 20px"/>
             {% else %}
-            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:1px solid #2C3E52; border-radius: 50%; width:20px; height: 20px;"/>
+                <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                     style="border:1px solid #2C3E52; border-radius: 50%; width:20px; height: 20px;"/>
             {% endif %}
         </span>
-        <span style="margin-left: 5px;">
+                <span style="margin-left: 5px;">
             {{ address.user.name }}
         </span>
-    </div>
-    <div class="col-2" style="text-align: left; padding:0.75rem;">
-        <div><i class="fas fa-mobile-alt" style="margin-left: 2px; margin-right: 4px;"></i> {{ address.user.phone_no }}</div>
-        <div><i class="fas fa-at" style="margin-right: 0px;"></i> {{ address.user.email }}</div>
-    </div>
-    <div class="col-3" style="text-align: center; padding:0.75rem;">{{ address.current_work }}</div>
-    <div class="col-4" style="text-align: left; padding:0.75rem;"><p style="white-space: pre-wrap; margin-left: 20px;">{{ address.history|urlize }}</p></div>
-    <div style="display: inline-block; margin-left:auto; margin-right:0;">
-    {% if request.user == address.user %}
-        <a href="{% url "intranet:address_edit" address.pk %}" style="margin-right: 5px;">수정</a>
-        <a href="{% url "intranet:address_delete" address.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
-    {% endif %}
-</div>
+            </div>
+            <div class="col-2" style="text-align: left; padding:0.75rem;">
+                <div><i class="fas fa-mobile-alt"
+                        style="margin-left: 2px; margin-right: 4px;"></i> {{ address.user.phone_no }}</div>
+                <a href="mailto:{{ address.user.email }}">
+                    <div><i class="fas fa-at" style="margin-right: 0px;"></i>
+                    {{ address.user.email }}</a></div>
+        </div>
+        <div class="col-3" style="text-align: center; padding:0.75rem;">{{ address.current_work }}</div>
+        <div class="col-4" style="text-align: left; padding:0.75rem;"><p
+                style="white-space: pre-wrap; margin-left: 20px;">{{ address.history|urlize }}</p></div>
+        <div style="display: inline-block; margin-left:auto; margin-right:0;">
+            {% if request.user == address.user %}
+                <a href="{% url "intranet:address_edit" address.pk %}" style="margin-right: 5px;">수정</a>
+                <a href="{% url "intranet:address_delete" address.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+            {% endif %}
+        </div>
 
-</div>
-<br>
-{% endfor %}
+        </div>
+        <br>
+    {% endfor %}
 {% endblock %}

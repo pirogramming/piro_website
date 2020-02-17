@@ -1,179 +1,188 @@
 {% extends 'base_internal.html' %}
 
 {% block title %}
-피로그래밍 - 보드
+    피로그래밍 - 보드
 {% endblock %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-<style>
-    .button-default {
-    . transition(@transitionDefault color);
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        margin: 0;
-        outline: none;
-        position: relative;
-    }
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <style>
+        .button-default {
+        . transition(@transitionDefault color);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin: 0;
+            outline: none;
+            position: relative;
+        }
 
-    .notifications-count {
-        border-radius: 50%;
-        background-color: black;
-        color: white;
-        font: normal .60em 'Lato';
-        height: 16px;
-        line-height: 1.75em;
-        position: absolute;
-        right: 2px;
-        text-align: center;
-        top: -2px;
-        width: 16px;
-    }
+        .notifications-count {
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            font: normal .60em 'Lato';
+            height: 16px;
+            line-height: 1.75em;
+            position: absolute;
+            right: 2px;
+            text-align: center;
+            top: -2px;
+            width: 16px;
+        }
 
 
-</style>
+    </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<div id="abc" class="row">
-    <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="background-color: #F6F5F3;">
-        <div id="lol" class="row">
-            <div class="col-lg-12" style="margin-top:50px;">
-                <div class="row" style="">
-                   <div class="col-lg-5" style="background-color: white; margin-left: 80px; margin-right: 20px; border:1px solid #e3e2e0; padding: 20px;">
-                        <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
-                            질문게시판
-                        </div>
-                        <div style="font-size: 12px;">
-                        {% for question in question_recent %}
-                            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+    <div id="abc" class="row">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="background-color: #F6F5F3;">
+            <div id="lol" class="row">
+                <div class="col-lg-12" style="margin-top:50px;">
+                    <div class="row" style="">
+                        <div class="col-lg-5"
+                             style="background-color: white; margin-left: 80px; margin-right: 20px; border:1px solid #e3e2e0; padding: 20px;">
+                            <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
+                                질문게시판
+                            </div>
+                            <div style="font-size: 12px;">
+                                {% for question in question_recent %}
+                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
                             <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
                                 <span style="padding-top: 10px;">{{ question.title }}</span>
                             </span>
-                        {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                   <div class="col-lg-5" style="background-color: white; border:1px solid #e3e2e0; padding: 20px;">
-                        <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
-                            질문게시판
-                        </div>
-                        <div style="font-size: 12px;">
-                        {% for question in question_recent %}
-                            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+                        <div class="col-lg-5" style="background-color: white; border:1px solid #e3e2e0; padding: 20px;">
+                            <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
+                                질문게시판
+                            </div>
+                            <div style="font-size: 12px;">
+                                {% for question in question_recent %}
+                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
                             <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
                                 <span style="padding-top: 10px;">{{ question.title }}</span>
                             </span>
-                        {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-12" style="margin-top:22px; margin-bottom: 22px;">
-                <div class="row" style="">
-                   <div class="col-lg-10" style="background-color: white; border:1px solid #e3e2e0; padding: 20px; margin-left: 80px;">
-                        <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
-                            질문게시판
-                        </div>
-                        <div style="font-size: 12px;">
-                        {% for question in question_recent %}
-                            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+                <div class="col-lg-12" style="margin-top:22px; margin-bottom: 22px;">
+                    <div class="row" style="">
+                        <div class="col-lg-10"
+                             style="background-color: white; border:1px solid #e3e2e0; padding: 20px; margin-left: 80px;">
+                            <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
+                                질문게시판
+                            </div>
+                            <div style="font-size: 12px;">
+                                {% for question in question_recent %}
+                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
                             <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
-                                <span style="padding-top: 10px;"> <a href="{% url 'intranet:q_detail' question.pk %}"> {{ question.title }}</a></span>
+                                <span style="padding-top: 10px;"> <a
+                                        href="{% url 'intranet:q_detail' question.pk %}"> {{ question.title }}</a></span>
                             </span>
-                        {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="lel" class="col-lg-2 col-md-12 col-sm-12 col-12" class="for_h1" style="padding-left: 0;">
-                            <div class="bs-example" style="text-align: right; margin-top: 10px;">
-            <button type="button" style="z-index: 20;" class="button-default show-notifications active show-toast">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="30"
-                     height="32" viewBox="0 0 30 32">
-                    <defs>
-                        <g id="icon-bell">
-                            <path class="path1"
-                                  d="M15.143 30.286q0-0.286-0.286-0.286-1.054 0-1.813-0.759t-0.759-1.813q0-0.286-0.286-0.286t-0.286 0.286q0 1.304 0.92 2.223t2.223 0.92q0.286 0 0.286-0.286zM3.268 25.143h23.179q-2.929-3.232-4.402-7.348t-1.473-8.652q0-4.571-5.714-4.571t-5.714 4.571q0 4.536-1.473 8.652t-4.402 7.348zM29.714 25.143q0 0.929-0.679 1.607t-1.607 0.679h-8q0 1.893-1.339 3.232t-3.232 1.339-3.232-1.339-1.339-3.232h-8q-0.929 0-1.607-0.679t-0.679-1.607q3.393-2.875 5.125-7.098t1.732-8.902q0-2.946 1.714-4.679t4.714-2.089q-0.143-0.321-0.143-0.661 0-0.714 0.5-1.214t1.214-0.5 1.214 0.5 0.5 1.214q0 0.339-0.143 0.661 3 0.357 4.714 2.089t1.714 4.679q0 4.679 1.732 8.902t5.125 7.098z"/>
+        <div id="lel" class="col-lg-2 col-md-12 col-sm-12 col-12" class="for_h1" style="padding-left: 0;">
+            <div class="bs-example" style="text-align: right; margin-top: 10px;">
+                <button type="button" style="z-index: 20;" class="button-default show-notifications active show-toast">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         width="30"
+                         height="32" viewBox="0 0 30 32">
+                        <defs>
+                            <g id="icon-bell">
+                                <path class="path1"
+                                      d="M15.143 30.286q0-0.286-0.286-0.286-1.054 0-1.813-0.759t-0.759-1.813q0-0.286-0.286-0.286t-0.286 0.286q0 1.304 0.92 2.223t2.223 0.92q0.286 0 0.286-0.286zM3.268 25.143h23.179q-2.929-3.232-4.402-7.348t-1.473-8.652q0-4.571-5.714-4.571t-5.714 4.571q0 4.536-1.473 8.652t-4.402 7.348zM29.714 25.143q0 0.929-0.679 1.607t-1.607 0.679h-8q0 1.893-1.339 3.232t-3.232 1.339-3.232-1.339-1.339-3.232h-8q-0.929 0-1.607-0.679t-0.679-1.607q3.393-2.875 5.125-7.098t1.732-8.902q0-2.946 1.714-4.679t4.714-2.089q-0.143-0.321-0.143-0.661 0-0.714 0.5-1.214t1.214-0.5 1.214 0.5 0.5 1.214q0 0.339-0.143 0.661 3 0.357 4.714 2.089t1.714 4.679q0 4.679 1.732 8.902t5.125 7.098z"/>
+                            </g>
+                        </defs>
+                        <g fill="#000000">
+                            <use xlink:href="#icon-bell" transform="translate(0 0)"></use>
                         </g>
-                    </defs>
-                    <g fill="#000000">
-                        <use xlink:href="#icon-bell" transform="translate(0 0)"></use>
-                    </g>
-                </svg>
-                <div class="notifications-count">{{ notifications.count }}</div>
-            </button>
+                    </svg>
+                    <div class="notifications-count">{{ notifications.count }}</div>
+                </button>
 
-            <div>
-                <div class="toast" id="myToast" style="position: absolute; top: 6%; right: 7.2%; z-index: 11">
+                <div>
+                    <div class="toast" id="myToast" style="position: absolute; top: 6%; right: 7.2%; z-index: 11">
 
-                    <div class="toast fade show">
-                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times</button>
-                        {% for notification in notifications %}
-                        <div class="toast-header">
-                            <strong class="mr-auto"><i class="fa fa-globe"></i> 알림 </strong>
+                        <div class="toast fade show">
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times</button>
+                            {% for notification in notifications %}
+                                <div class="toast-header">
+                                    <strong class="mr-auto"><i class="fa fa-globe"></i> 알림 </strong>
+
+                                </div>
+                                <div class="toast-body" style="text-align: left">
+                                    <form action="{% url 'intranet:checked'  notification.pk %}" method='post'
+                                          id='notification_form'>
+                                        {% csrf_token %}
+                                        <div>{{ notification.creator }} 님이 {{ notification.notification_type }}하셨습니다.
+                                            <a type="submit"
+                                               href="{% url 'intranet:checked_and_go' notification.pk notification.myid %}">
+                                                바로가기 </a></div>
+                                        <input type="submit" class="notification_checked" value=&check;
+                                               name="checked"/>
+                                    </form>
+                                </div>
+                            {% endfor %}
+
 
                         </div>
-                        <div class="toast-body" style="text-align: left">
-                            <form action="{% url 'intranet:checked'  notification.pk %}" method='post'
-                                  id='notification_form'>
-                                {% csrf_token %}
-                                <div>{{ notification.creator }} 님이 {{ notification.notification_type }}하셨습니다.
-                                    <a type="submit"
-                                       href="{% url 'intranet:checked_and_go' notification.pk notification.myid %}">
-                                        바로가기 </a></div>
-                                <input type="submit" class="notification_checked" value=&check;
-                                       name="checked"/>
-                            </form>
-                        </div>
-                        {% endfor %}
-
-
                     </div>
-                </div>
 
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 0px; margin-bottom: 10px;">
+                {% if request.user.img_profile %}
+                    <img class="img_profile" src="{{ request.user.img_profile.url }}"
+                         style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
+                {% else %}
+                    <img class="img_profile"
+                         src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                         style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
+                {% endif %}
+            </div>
+
+            <div style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
+                {{ request.user.username }} ({{ request.user.piro_no }}기)
+            </div>
+            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px; margin-bottom: 10px;">
+                프로필 보기
+            </div>
+            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
+                로그아웃
+            </div>
+
+            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
+                <a href="{% url 'intranet:my_post' %}">내가 쓴 글 보기</a>
+            </div>
+            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
+                <a href="{% url 'intranet:my_bookmark' %}">나의 북마크</a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 0px; margin-bottom: 10px;">
-        {% if request.user.img_profile %}
-            <img class="img_profile" src="{{ request.user.img_profile.url }}" style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
-        {% else %}
-            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
-        {% endif %}
-        </div>
-
-        <div style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
-             {{ request.user.username }} ({{ request.user.piro_no }}기)
-        </div>
-        <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px; margin-bottom: 10px;">
-            프로필 보기
-        </div>
-        <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
-            로그아웃
-        </div>
-
-        <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
-            <a href="{% url 'intranet:my_post' %}">내가 쓴 글 보기</a>
-        </div>
     </div>
-</div>
-<script>
+    <script>
 
 
-$(".show-toast").click(function () {
-    $("#myToast").toast({
-        autohide: false
-    })
-    $("#myToast").toast('show');
-});
+        $(".show-toast").click(function () {
+            $("#myToast").toast({
+                autohide: false
+            })
+            $("#myToast").toast('show');
+        });
 
 
-</script>
+    </script>
 
 
 {% endblock %}
