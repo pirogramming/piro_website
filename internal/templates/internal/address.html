@@ -1,4 +1,8 @@
 {% extends 'base_internal.html' %}
+{% block title %}
+피로그래밍 - 회원주소록
+{% endblock %}
+
 {% block content %}
 
 {% load static %}
@@ -61,6 +65,26 @@
     }
 
 </style>
+<script type="text/javascript">
+    function viewDiv(idx) {
+        if (idx != 0 && idx != 200){
+            for (var i=1; i<{{ maxno }}; i++){
+            $(".hello"+i).css("display", "none");
+            }
+            $(".hello"+idx).css("display", "");
+        }
+        else{
+            for (var i=1; i<{{ maxno }}; i++){
+            $(".hello"+i).css("display", "");
+            }
+        }
+    }
+
+    function selectIndex(selectObj) {
+        var idx = selectObj.value;
+        viewDiv(idx);
+    }
+</script>
 
 <script>
     function change_address() {
@@ -83,7 +107,17 @@
         <div class="header-cover"></div>
     </div>
     <div class="address-content">
-
+        <div style="margin:20px 0px 10px 0px;">
+            <div class="portfolio-header">
+                <select name="select" onchange="javascript:selectIndex(this)">
+                    <option value="0" disabled selected>기수 선택</option>
+                    <option value="200">전체 보기</option>
+                    {% for i in range %}
+                    <option value="{{ i }}">{{ i }}기</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
         <div class="row thead" style="margin:10px 10px 0px 10px;">
             <div class="col-1" style="text-align: center; padding:0.75rem; font-weight: bold;">기수</div>
             <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">이름</div>
@@ -92,7 +126,7 @@
             <div class="col-4" style="text-align: center; padding:0.75rem; font-weight: bold;">약력</div>
         </div>
         {% for address in address_list %}
-        <div class="row" id="notice_list" style="margin:0px 10px; border-bottom: 0.5px solid #d6d6d6;">
+        <div class="row hello{{ address.piro_no }}" id="notice_list" style="margin:0px 10px; border-bottom: 0.5px solid #d6d6d6;">
             <div class="col-1" style="text-align: center; padding:0.75rem;">
                 {{ address.piro_no }}기
             </div>
@@ -137,7 +171,7 @@
             </div>
         </div>
         {% endfor %}
-        <div class="text-right" style="margin-top:40px;">
+        <div class="text-left" style="margin-top:40px;">
             <a class="btn btn-mint" id="write_notice" href="{% url "intranet:address_new" %}" role="button">
                 <i class="fas fa-pen" style="margin-right: 8px;"></i>
                 주소록 등록하기

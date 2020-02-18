@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+from django.db.models import Q, Max
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -257,8 +257,14 @@ def create_notification(creator, to, notification_type, myid):
 
 def address_list(request):
     qs = InfoBook.objects.all().order_by('piro_no')
+    maxpiro = InfoBook.objects.aggregate(Max('piro_no'))
+    if maxpiro.get("piro_no__max") == None:
+        return redirect("intranet:address_new")
+    maxno = maxpiro.get("piro_no__max") + 1
     return render(request, 'internal/address.html', {
         'address_list': qs,
+        'maxno': maxno,
+        'range': range(1, maxno)
     })
 
 
