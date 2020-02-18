@@ -315,7 +315,7 @@ margin-bottom: 8%;
 }
 
 .portfolio-header {
-    background-color: rgba(37, 204, 160);
+    background-color: rgb(47, 65, 84);
     padding: 10px;
     text-align: end;
 }
@@ -353,7 +353,7 @@ select {
 }
 
 div.card-header:hover {
-    color: rgba(37, 204, 160);
+    color: rgb(47,65,84);
     font-weight: 900;
 }
 
@@ -366,7 +366,7 @@ div.card-header:after {
     bottom: 0em;
     height: 3px;
     width: 0;
-    background: rgba(37, 204, 160);
+    background: rgb(47,65,84);
     left: 0;
 }
 
@@ -423,7 +423,7 @@ div.card-header:hover:after {
 }
 /* footer end */
 
-/* btn style */
+/* btn style start */
 .btn-navy, .btn-mint {
     background-color: white;
     color: black;
@@ -479,3 +479,4 @@ div.card-header:hover:after {
     width: 100%;
     transition: 800ms ease all;
 }
+/* btn style end */
