@@ -156,11 +156,7 @@ def download(request, pk, img_pk):
 def create_bookmark_infoboard(request, pk):
     article = Info.objects.get(pk=pk)
     try:
-        sample = Bookmark.objects.get(bookmark_title=article.title)
-        if sample.pirouser != request.user and sample.bookmark_type == 'infoboard':
-            bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk),
-                                               bookmark_title=article.title, bookmark_type='infoboard')
-            bookmark.save()
+        sample = Bookmark.objects.get(bookmark_title=article.title, pirouser=request.user, bookmark_type='infoboard')
     except:
         bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'infoboard')
         bookmark.save()

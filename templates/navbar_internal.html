@@ -28,12 +28,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url "home:home" %}" id="option5">홈페이지 </a>
             </li>
-            {% if user.is_admin %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url "money:check_money" %}" id="option6">보증금 관리 </a>
-                </li>
-            {% endif %}
-
         </ul>
         <ul class="nav navbar-nav navbar-right" id="sign-up">
             {% if user.is_authenticated %}

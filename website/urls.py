@@ -26,6 +26,7 @@ urlpatterns = [
     path('photobook/', include('photobook.urls')),
     path('money/', include('money.urls')),
     path('infoboard/', include('infoboard.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 

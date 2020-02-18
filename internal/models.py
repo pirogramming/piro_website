@@ -2,26 +2,27 @@ import os
 
 from django.db import models
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.urls import reverse
 
 from accounts.models import PiroUser
 
 class Post(models.Model):
     title = models.CharField(max_length=100, verbose_name='제목')
-    body = RichTextField(verbose_name='내용')
+    body = RichTextUploadingField(verbose_name='내용')
     tag = models.CharField(max_length=30)
 
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(PiroUser, on_delete=models.CASCADE, verbose_name='글쓴이')
 
-    #def get_absolute_url(self):
-        #return reverse('intranet:post_detail', args=[self.pk])
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    body = RichTextField(verbose_name='내용')
+    body = RichTextUploadingField(verbose_name='내용')
 
     deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,6 +33,9 @@ class Comment(models.Model):
                                            through='Like')
 
     like_num = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.post}의 댓글'
 
     @property
     def like_count(self):
@@ -49,6 +53,9 @@ class Reply(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(PiroUser, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.comment}의 답글'
 
 
 class Like(models.Model):
@@ -61,6 +68,9 @@ class InfoBook(models.Model):
     current_work = models.CharField(max_length=100)
     piro_no = models.PositiveIntegerField()
     history = models.TextField()
+
+    def __str__(self):
+        return self.user
 
 class Notification(models.Model):
     TYPE_CHOICES = (
@@ -75,4 +85,5 @@ class Notification(models.Model):
     notification_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
 
     checked = models.BooleanField(default=False)
+
 

@@ -35,6 +35,9 @@ class Photobook(models.Model):
         os.remove(self.thumbnail.path)
         return super(Photobook, self).delete()
 
+    def __str__(self):
+        return f'사진첩- {self.title}'
+
 class Images(models.Model):
     def date_upload_to(self, filename):
         # upload_to="%Y/%m/%d" 처럼 날짜로 세분화
@@ -53,7 +56,10 @@ class Images(models.Model):
 
     photobook = models.ForeignKey(Photobook, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=date_upload_to)
-
+    
+    def __str__(self):
+        return f'<{self.photobook}>의 사진'
+    
     def delete(self):
         os.remove(self.image.path)
         return super(Images, self).delete()

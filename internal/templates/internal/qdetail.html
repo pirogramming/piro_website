@@ -14,6 +14,10 @@
           href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css' %}"/>
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
     <style>
+        p > img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
         textarea.form-control {
             height: 30px;
             border: none;
@@ -76,7 +80,7 @@
             <p style="white-space: pre-wrap;">{{ post.body | safe }}</p>
         </div>
             <div style="display: inline-block; float: right;">
-                <a href="{% url 'intranet:create_bookmark_qna' post.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+                <a href="{% url 'intranet:create_bookmark_qna' post.pk %}" style="margin-right: 5px;" onclick="alert('스크랩 되었습니다.')">스크랩</a>
                 {% if request.user == post.author %}
                 <a href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
                 <a href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
