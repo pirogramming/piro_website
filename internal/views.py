@@ -1,5 +1,6 @@
 import json
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Max
@@ -281,10 +282,17 @@ def address_new(request, address=None):
         else:
             return redirect("intranet:address_list")
     else:
-        form = InfoBookForm(instance=address)
-        return render(request, 'internal/create_address.html', {
-            'form': form,
-        })
+        if InfoBook.objects.filter(user=request.user).exists():
+            messages.error(request, '이미 주소록에 등록되어 있습니다.')
+            return redirect("intranet:address_list")
+        elif request.user.is_admin:
+            messages.error(request, '운영진은 주소록을 등록할 수 없습니다.')
+            return redirect("intranet:address_list")
+        else:
+            form = InfoBookForm(instance=address)
+            return render(request, 'internal/create_address.html', {
+                'form': form,
+            })
 
 
 @login_required
