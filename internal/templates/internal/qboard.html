@@ -59,7 +59,8 @@ change_q();
             <option value="기타">기타</option>
         </optgroup>
     </select>
-    <input type="submit" value="찾기" id= "rec_upld" class="btn btn-primary" style=""/>
+    <input class="form-control" type="text" name="q" value="{{ q }}" style="width: 30%; display: inline-block">
+    <input type="submit" value="검색" id= "rec_upld" class="btn btn-primary" style=""/>
 </form>
 </div>
 {% if tag %}

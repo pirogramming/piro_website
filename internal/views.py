@@ -2,6 +2,7 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -45,6 +46,7 @@ def checked_and_go(request, pk, noti_pk):
 @login_required
 def qna(request):
     post_list = Post.objects.all().order_by('-id')
+
     total_len = len(post_list)
     page = request.GET.get('page', 1)
     paginator = Paginator(post_list, 10)
@@ -114,46 +116,55 @@ def q_detail(request, pk):
     comment_no = comment.count()
     form = CommentForm()
     form2 = ReplyForm()
+    path = request.META.get('HTTP_REFERER')
     return render(request, 'internal/qdetail.html', {
         'post': post,
         'comment': comment,
         'comment_no': comment_no,
         'form': form,
         'form2': form2,
+        'path': path,
     })
 
 
 @login_required
 def q_by_tag(request):
     if request.method == 'POST':
+        post_list = Post.objects.all()
         tag = request.POST.get('tag')
+        q = request.POST.get('q', '')
+
         if tag == 'all':
-            return redirect('intranet:qna')
+            pass
         else:
-            post_list = Post.objects.all().filter(tag=tag).order_by('-id')
-            total_len = len(post_list)
-            page = request.GET.get('page', 1)
-            paginator = Paginator(post_list, 10)
+            post_list = post_list.filter(tag=tag).order_by('-id')
 
-            try:
-                questions = paginator.page(page)
-            except PageNotAnInteger:
-                questions = paginator.page(1)
-            except EmptyPage:
-                questions = paginator.page(paginator.num_pages)
+        if q:
+            post_list = post_list.filter(Q(title__icontains=q) | Q(body__icontains=q)).order_by('-id')
 
-            index = questions.number - 1
-            max_index = len(paginator.page_range)
-            start_index = index - 2 if index >= 2 else 0
-            if index < 2:
-                end_index = 5 - start_index
-            else:
-                end_index = index + 3 if index <= max_index - 3 else max_index
-            page_range = list(paginator.page_range[start_index:end_index])
+        total_len = len(post_list)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(post_list, 10)
 
-            return render(request, 'internal/qboard.html',
-                          {'questions': questions, 'tag': tag, 'page_range': page_range, 'total_len': total_len,
-                           'max_index': max_index - 2})
+        try:
+            questions = paginator.page(page)
+        except PageNotAnInteger:
+            questions = paginator.page(1)
+        except EmptyPage:
+            questions = paginator.page(paginator.num_pages)
+
+        index = questions.number - 1
+        max_index = len(paginator.page_range)
+        start_index = index - 2 if index >= 2 else 0
+        if index < 2:
+            end_index = 5 - start_index
+        else:
+            end_index = index + 3 if index <= max_index - 3 else max_index
+        page_range = list(paginator.page_range[start_index:end_index])
+
+        return render(request, 'internal/qboard.html',
+                      {'questions': questions, 'tag': tag, 'page_range': page_range, 'total_len': total_len,
+                       'max_index': max_index - 2})
     else:
         return redirect('intranet:qna')
 

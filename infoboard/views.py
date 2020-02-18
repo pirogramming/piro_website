@@ -2,6 +2,7 @@ import os
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -17,8 +18,7 @@ def list_info(request):
     if request.method == 'POST':
         q = request.POST.get('q', '')  # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
         if q:  # q가 있으면
-            info = Info.objects.all()
-            info = info.filter(title__icontains=q)# 제목에 q가 포함되어 있는 레코드만 필터링
+            info = info.filter(Q(title__icontains=q) | Q(text__icontains=q))# 제목에 q가 포함되어 있는 레코드만 필터링
 
         total_len = len(info)
         page = request.GET.get('page', 1)
