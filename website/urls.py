@@ -29,7 +29,6 @@ urlpatterns = [
     path('infoboard/', include('infoboard.urls')),
     path('ckeditor/upload/', uploader_views.upload, name='ckeditor_upload'),
     path('ckeditor/browse/', uploader_views.browse, name='ckeditor_browse'),
-
 ]
 
 
