@@ -75,3 +75,6 @@ class Bookmark(models.Model):
     bookmark_title = models.CharField(max_length=250)
     bookmark_num = models.CharField(max_length=250)
     bookmark_type = models.CharField(max_length=250)
+    
+    def __str__(self):
+        return f'{self.pirouser}의 스크랩- {self.bookmark_num}'

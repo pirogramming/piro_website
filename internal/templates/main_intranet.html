@@ -299,11 +299,6 @@
             </div>
         </a>
         {% endif %}
-        <a href="{% url 'accounts:logout' %}" style="color: black; text-decoration: none">
-            <div class="rightside_but">
-                로그아웃
-            </div>
-        </a>
         <a href="{% url 'intranet:my_post' %}" style="color: black; text-decoration: none">
             <div class="rightside_but">
                 내가 쓴 글 보기
@@ -312,6 +307,11 @@
         <a href="{% url 'intranet:my_bookmark' %}" style="color: black; text-decoration: none">
              <div class="rightside_but">
                 스크랩한 글 보기
+            </div>
+        </a>
+        <a href="{% url 'accounts:logout' %}" style="color: black; text-decoration: none">
+            <div class="rightside_but">
+                로그아웃
             </div>
         </a>
     </div>
