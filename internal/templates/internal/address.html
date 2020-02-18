@@ -6,8 +6,10 @@
 <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
+    /* header section */
+
     .address-header {
-        background-image: url("{% static "img/study.jpeg" %}");
+        background-image: url("{% static "img/addressbook.webp" %}");
         background-position: top center;
         background-size: 1500px;
         background-repeat: no-repeat;
@@ -32,13 +34,11 @@
         z-index: 1;
     }
 
-    .thead,
-    tr {
-        text-align: center;
-    }
 
-    .address-table {
-        padding: 30px;
+    /* table section */
+    .address-content {
+        margin: 80px 35px 40px 35px;
+        /* border: solid 2px black; */
     }
 
     .profile-img {
@@ -47,24 +47,68 @@
         border-radius: 50%;
     }
 
-    .select-section {
-        text-align: end;
-        padding: 50px 30px 10px 0;
+    a {
+        color: black;
     }
 
-    select {
-        width: 150px;
-        height: 30px;
+    a:hover {
+        color: rgb(37, 204, 160);
     }
+
+    .btn-success {
+        background-color: white;
+        color: black;
+        border: none;
+        position: relative;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+    }
+
+    .btn-success:hover {
+        background-color: white;
+        color: rgb(37, 204, 160);
+    }
+
+    .btn-success:before,
+    .btn-success:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 2px;
+        width: 0;
+        background: rgb(37, 204, 160);
+        transition: 400ms ease all;
+    }
+
+    .btn-success:after {
+        right: inherit;
+        top: inherit;
+        left: 0;
+        bottom: 0;
+    }
+
+    .btn-success:hover:before,
+    .btn-success:hover:after {
+        width: 100%;
+        transition: 800ms ease all;
+    }
+
+    #notice_list,
+    .thead {
+        font-family: 'Nanum Gothic', sans-serif;
+    }
+
 </style>
 
 <script>
     function change_address() {
         document.getElementById("option4").style.color = 'white';
     }
-
     change_address();
 </script>
+
 
 <div class="address-container">
     <div class="address-header" style="color:white; margin-bottom: 30px;">
@@ -79,10 +123,7 @@
         <div class="header-cover"></div>
     </div>
     <div class="address-content">
-        <div class="text-right" style="margin-right: 10px;">
-            <a class="btn btn-success" id="write_notice" href="{% url "intranet:address_new" %}" role="button"><i
-                    class="fas fa-pen" style="margin-right: 8px;"></i>주소록 등록하기</a>
-        </div>
+
         <div class="row thead" style="margin:10px 10px 0px 10px;">
             <div class="col-1" style="text-align: center; padding:0.75rem; font-weight: bold;">기수</div>
             <div class="col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">이름</div>
@@ -118,14 +159,15 @@
                 <div>
                     <a href="mailto:{{ address.user.email }}">
                         <i class="fas fa-at" style="margin-right: 0px;"></i>
-                        {{ address.user.email }}</a>
+                        {{ address.user.email }}
+                    </a>
                 </div>
             </div>
             <div class="col-3" style="text-align: center; padding:0.75rem;">
                 {{ address.current_work }}
             </div>
             <div class="col-4" style="text-align: left; padding:0.75rem;">
-                <p style="white-space: pre-wrap; margin-left: 20px;">
+                <p style=" margin-left: 20px;">
                     {{ address.history|urlize }}
                 </p>
             </div>
@@ -136,8 +178,13 @@
                 {% endif %}
             </div>
         </div>
+        {% endfor %}
+        <div class="text-right" style="margin-top:40px;">
+            <a class="btn btn-success" id="write_notice" href="{% url "intranet:address_new" %}" role="button">
+                <i class="fas fa-pen" style="margin-right: 8px;"></i>
+                주소록 등록하기
+            </a>
+        </div>
     </div>
 </div>
-<br>
-{% endfor %}
 {% endblock %}
