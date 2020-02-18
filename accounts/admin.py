@@ -21,3 +21,7 @@ class PiroUserAdmin(admin.ModelAdmin):
     actions = [make_active, make_unactive]
 
 admin.site.register(Bookmark)
+
+admin.site.site_header = "피로그래밍 운영진 전용 포털"
+admin.site.site_title = "피로그래밍- 운영진 전용"
+admin.site.index_title = "피로그래밍 운영진님 환영합니다."
