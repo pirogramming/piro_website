@@ -1,8 +1,9 @@
 import json
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+from django.db.models import Q, Max
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -257,8 +258,14 @@ def create_notification(creator, to, notification_type, myid):
 
 def address_list(request):
     qs = InfoBook.objects.all().order_by('piro_no')
+    maxpiro = InfoBook.objects.aggregate(Max('piro_no'))
+    if maxpiro.get("piro_no__max") == None:
+        return redirect("intranet:address_new")
+    maxno = maxpiro.get("piro_no__max") + 1
     return render(request, 'internal/address.html', {
         'address_list': qs,
+        'maxno': maxno,
+        'range': range(1, maxno)
     })
 
 
@@ -275,10 +282,17 @@ def address_new(request, address=None):
         else:
             return redirect("intranet:address_list")
     else:
-        form = InfoBookForm(instance=address)
-        return render(request, 'internal/create_address.html', {
-            'form': form,
-        })
+        if InfoBook.objects.filter(user=request.user).exists():
+            messages.error(request, '이미 주소록에 등록되어 있습니다.')
+            return redirect("intranet:address_list")
+        elif request.user.is_admin:
+            messages.error(request, '운영진은 주소록을 등록할 수 없습니다.')
+            return redirect("intranet:address_list")
+        else:
+            form = InfoBookForm(instance=address)
+            return render(request, 'internal/create_address.html', {
+                'form': form,
+            })
 
 
 @login_required
