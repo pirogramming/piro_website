@@ -9,13 +9,27 @@
 
 {% block content %}
 {% if user.is_admin %}
+
 <style>
     #rec_upld{
-        background-color: #25CCA0; border: #25CCA0;
+        color: #2C3E52; 
+        border: solid 1px #2C3E52;
     }
     #rec_upld:hover{
         background-color: #2C3E52;
+        color:white;
     }
+
+    .nanum {
+        font-family: 'Nanum Gothic', sans-serif;
+        margin-bottom: 30px;
+    }
+
+    .create-title{
+        margin: 20px 0px 30px 0px;
+        border-bottom: solid 1px #2C3E52;
+    }
+
 </style>
 
 <script>
@@ -30,27 +44,21 @@ change_recruit();
 </script>
 
 <div class="col-sm-10" style="margin:50px auto;">
-    <h2>모집글 쓰기</h2>
+    <h2 class="nanum create-title">모집글 쓰기</h2>
     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.title|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.content|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.img|as_crispy_field }}
             </div>
-        <input type="submit" value="등록하기" id= "rec_upld" class="btn btn-primary" />
+            <input type="submit" value="등록하기" id="rec_upld" class="btn btn-navy"/>
     </form>
 </div>
-<script type="text/javascript">
-    window.addEventListener('beforeunload', function (e) {
-        e.preventDefault();
-        e.returnValue = '';
-    });
-</script>
 {% else %}
 <script>
     alert('접근 권한이 없는 페이지입니다.');
