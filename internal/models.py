@@ -69,8 +69,6 @@ class InfoBook(models.Model):
     piro_no = models.PositiveIntegerField()
     history = models.TextField()
 
-    def __str__(self):
-        return self.user
 
 class Notification(models.Model):
     TYPE_CHOICES = (
