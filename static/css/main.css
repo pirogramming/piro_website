@@ -422,3 +422,60 @@ div.card-header:hover:after {
     font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
 }
 /* footer end */
+
+/* btn style */
+.btn-navy, .btn-mint {
+    background-color: white;
+    color: black;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.btn-navy:hover {
+    color: #2C3E52;
+}
+
+.btn-mint:hover{
+    color: #25CCA0;
+}
+
+.btn-navy:before,
+.btn-navy:after,
+.btn-mint:before,
+.btn-mint:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    transition: 400ms ease all;
+}
+
+.btn-navy:before,
+.btn-navy:after{
+    background:#2C3E52;
+}
+.btn-mint:before,
+.btn-mint:after {
+    background: #25CCA0;
+}
+
+.btn-navy:after,
+.btn-mint:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.btn-navy:hover:before,
+.btn-navy:hover:after,
+.btn-mint:hover:before,
+.btn-mint:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
