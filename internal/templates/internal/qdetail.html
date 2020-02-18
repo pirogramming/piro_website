@@ -177,7 +177,8 @@
         </form>
         <hr>
         <div style="display: inline-block; float: left;">
-            <a href="">목록</a>
+            <a href="{% url 'intranet:qna' %}">목록</a>
+            <a href="javascript:history.go(-1);">이전</a>
         </div>
         {% if user.is_authenticated %}
             <div style="display: inline-block; float: right;">
