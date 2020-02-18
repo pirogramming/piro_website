@@ -8,62 +8,30 @@
 
 {% load static %}
 
-<link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
 
 <style>
 
-    .notice-header {
+    .img-header {
         background-image: url("{% static "img/board.jpg" %}");
-        background-position: top center;
-        background-size: 1500px;
-        background-repeat: no-repeat;
-        position: relative;
-        height: 500px;
-    }
-
-    .notice-header .header-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 60px;
-        color: rgba(255, 255, 255, 0.8);
-        z-index: 2;
     }
 
     .header-cover {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
         background-color: rgba(47,65,84, 0.8);
     }
 
-#notice_list{
-    padding: 40px 20px 30px 20px;
-}
+    #notice_list{
+        padding: 40px 20px 30px 20px;
+    }
 
+    #notice_list a{
+        text-decoration: none;
+        color: #4f4f4f;
+    }
 
-#notice_list a{
-    text-decoration: none;
-    color: #4f4f4f;
-}
-
-#notice_list a:hover{
-    color: black;
-    text-decoration: underline;
-}
-
-h3{
-    font-size: 60px; 
-    border-bottom: solid 1px; 
-    font-family: 'Dosis', sans-serif;
-}
-
-p{
-    font-size:15px;
-    font-family: 'Nanum Gothic', sans-serif;
-}
+    #notice_list a:hover{
+        color: black;
+        text-decoration: underline;
+    }
 
 </style>
 
@@ -78,10 +46,10 @@ change_recruit();
 
 </script>
 <div class="notice-list wow fadeInUp">
-    <div class="notice-header">
+    <div class="img-header">
         <div class="header-content">
-            <h3>RECRUITMENT</h3>
-            <p>피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
+            <h3 class="header-title">RECRUITMENT</h3>
+            <p class="header-text">피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
         </div>
         <div class="header-cover"></div>
     </div>

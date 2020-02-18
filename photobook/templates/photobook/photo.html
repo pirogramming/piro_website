@@ -12,30 +12,12 @@
 
 <style>
 
-    .photo-header {
-        background-image: url("{% static "img/photo.jpeg" %}");
-        background-position: top center;
-        background-size: 1500px;
-        background-repeat: no-repeat;
-        position: relative;
-        height: 500px;
-    }
-
-    .photo-header .header-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: rgba(255, 255, 255, 0.8);
-        z-index: 2;
+    .img-header {
+        background-image: url("{% static "img/photo.jpg" %}");
     }
 
     .header-cover {
-        position: absolute;
-        height: 100%;
-        width: 100%;
         background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1;
     }
 
     .photo-detail {
@@ -55,6 +37,7 @@
         margin: 20px;
         text-align: center;
     }
+    
     .snip1432 {
         position: relative;
         overflow: hidden;
@@ -145,13 +128,13 @@ function change_photo() {
 change_photo();
 </script>
 <div class="photo-container">
-    <div class="photo-header">
+    <div class="img-header">
         <div class="header-content">
-            <h3 style="font-size: 60px; border-bottom: solid 1px; font-family: 'Dosis', sans-serif;">PHOTO BOOK</h3>
-            <span style="font-family: 'Nanum Gothic', sans-serif;">피로그래밍 활동은 매주 월, 화, 목 일정으로 진행됩니다.
+            <h3 class="header-title">PHOTO BOOK</h3>
+            <p class="header-text">피로그래밍 활동은 매주 월, 화, 목 일정으로 진행됩니다.
                 <br>포토북에서 지난기수와 현재기수의 활동 사진을 확인해보세요!
                 <br>포토북을 클릭하시면 더 많은 사진을 보실 수 있습니다!
-            </span>
+            </p>
         </div>
         <div class="header-cover"></div>
     </div>
@@ -183,7 +166,7 @@ change_photo();
     <div style="clear:both;"></div>
     {% if user.is_admin %}
     <div class="text-right" style="margin:10px 0px 0px 38px">
-        <a class="btn btn-success" style="background-color: #25CCA0; border-color:#25CCA0; margin-right: 20px;"
+        <a class="btn btn-mint" style="margin-right: 40px;"
             href="{% url "photobook:create_book" %}" role="button">
             <i class="fas fa-pen" style="margin-right: 8px;"></i>사진첩 만들기
         </a>

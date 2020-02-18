@@ -8,39 +8,49 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
 <style>
-    #rec_upld{
-        background-color: #25CCA0; border: #25CCA0;
+
+#rec_upld{
+        color: rgb(37,204,160); 
+        border: solid 1px rgb(37,204,160);
     }
     #rec_upld:hover{
-        background-color: #2C3E52;
+        background-color: rgb(37,204,160);
+        color:white;
     }
+
+    .nanum {
+        margin-bottom: 25px;
+    }
+
     textarea.form-control{
-    height: 150px;
+        height: 150px;
     }
 
 </style>
+
 <script>
 function change_address() {
     document.getElementById("option4").style.color = 'white';
 }
 change_address();
 </script>
+
 <div class="col-lg-7 col-md-8 col-11" style="margin:50px auto;">
-    <h2>주소록 등록</h2>
+    <h2 class="create-title" style="margin-bottom:0px;">주소록 등록</h2>
     <small>기수, 이름, 전화번호와 이메일 주소는 회원가입시 등록된 정보가 자동 사용됩니다.</small>
 
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
             <br>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.current_work |as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.history|as_crispy_field }}
             </div>
-            <br>
-            <button type="submit" id="rec_upld" class="btn btn-primary">등록</button>
+            <button type="submit" id="rec_upld" class="btn">등록</button>
     </form>
 </div>
 {% else %}
