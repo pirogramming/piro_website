@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from ckeditor_uploader import views as uploader_views
 
 urlpatterns = [
     path('', include('external.urls')),
@@ -26,7 +27,9 @@ urlpatterns = [
     path('photobook/', include('photobook.urls')),
     path('money/', include('money.urls')),
     path('infoboard/', include('infoboard.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('ckeditor/upload/', uploader_views.upload, name='ckeditor_upload'),
+    path('ckeditor/browse/', uploader_views.browse, name='ckeditor_browse'),
+
 ]
 
 
