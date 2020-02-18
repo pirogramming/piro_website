@@ -15,9 +15,8 @@ class Info(models.Model):
     user = models.ForeignKey(PiroUser, on_delete=models.CASCADE)
     text = models.TextField()
 
-'''    def delete(self):
-        os.remove(self.image.path)
-        return super(Info, self).delete()'''
+    def __str__(self):
+        return self.title
 
 
 class Files(models.Model):
@@ -39,6 +38,9 @@ class Files(models.Model):
     info = models.ForeignKey(Info, on_delete=models.CASCADE)
     file = models.FileField(upload_to=date_upload_to)
     filename = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.info}의 파일'
 
     def delete(self):
         os.remove(self.file.path)

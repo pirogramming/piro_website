@@ -11,5 +11,7 @@ class PiroMoney(models.Model):
     type = models.CharField(max_length=20, choices=CHOICES)
     day = models.DateField(auto_now_add=False)
 
+    def __str__(self):
+        return f'{self.user} {self.type}'
 
 

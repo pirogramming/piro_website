@@ -11,6 +11,9 @@ class Recruitment(models.Model):
 
     author = models.ForeignKey(PiroUser, on_delete=models.CASCADE, verbose_name='글쓴이')
 
+    def __str__(self):
+        return self.title
+
     def get_absolute_url(self):
         return reverse('home:recruit_detail', args=[self.pk])
 
@@ -21,3 +24,6 @@ class Portfolio(models.Model):
     content = models.TextField(verbose_name='내용')
     image = models.ImageField(blank=True, upload_to="portfolio", verbose_name="사진")
     pironumber = models.PositiveIntegerField(verbose_name="기수")
+
+    def __str__(self):
+        return f'{self.pironumber}기 {self.title}'
