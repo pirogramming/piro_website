@@ -31,6 +31,22 @@
             width: 16px;
         }
 
+        .rightside_but{
+            background-color: #f6f5f3;
+            border: 1px solid #e3e2e0;
+            border-radius: 2px;
+            text-align: center;
+            margin:auto 15px;
+            font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+            font-size: 11px;
+            line-height: 26px;
+            margin-bottom: 10px;
+
+        }
+
+        .rightside_but:hover{
+            border: 1px solid #d6d6c5;
+        }
 
     </style>
 
@@ -45,28 +61,38 @@
                     <div class="row" style="">
                         <div class="col-lg-5"
                              style="background-color: white; margin-left: 80px; margin-right: 20px; border:1px solid #e3e2e0; padding: 20px;">
+                            <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
                             <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
                                 질문게시판
                             </div>
+                            </a>
                             <div style="font-size: 12px;">
                                 {% for question in question_recent %}
-                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
-                            <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
-                                <span style="padding-top: 10px;">{{ question.title }}</span>
-                            </span>
+                                <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+                                    <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
+                                    <span style="padding-top: 10px;">
+                                        <a href="{% url 'intranet:q_detail' question.pk %}" style="text-decoration: none; color: #3e3a37">
+                                            {{ question.title }}
+                                        </a>
+                                    </span>
+                                </span>
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="col-lg-5" style="background-color: white; border:1px solid #e3e2e0; padding: 20px;">
+                            <a href="{% url "infoboard:list_info" %}" style="text-decoration:none; color:#212529">
                             <div style="background-color: #f6f5f3; border: 1px solid #d7d5d3; display: inline-block; padding: 7px 12px; margin-bottom: 20px; letter-spacing: 0.15em; font-size: 11px;">
-                                질문게시판
+                                정보게시판
                             </div>
+                            </a>
                             <div style="font-size: 12px;">
-                                {% for question in question_recent %}
-                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
-                            <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
-                                <span style="padding-top: 10px;">{{ question.title }}</span>
-                            </span>
+                                {% for info in info_recent %}
+                                <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+                                <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #f6f5f3; border: 1px solid #e3e2e0; color: #3e3a37; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ info.id }}</div>
+                                <a href="{% url 'infoboard:detail_info' info.pk %}" style="text-decoration: none; color: #3e3a37">
+                                    {{ info.title }}
+                                </a>
+                                </span>
                                 {% endfor %}
                             </div>
                         </div>
@@ -81,7 +107,7 @@
                             </div>
                             <div style="font-size: 12px;">
                                 {% for question in question_recent %}
-                                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
+                                <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;display: inline-block; width: 100%; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37">
                             <div style="display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #6ca471; border: 1px solid #6ca471; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">{{ question.id }}</div>
                                 <span style="padding-top: 10px;"> <a
                                         href="{% url 'intranet:q_detail' question.pk %}"> {{ question.title }}</a></span>
@@ -156,19 +182,33 @@
             <div style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
                 {{ request.user.username }} ({{ request.user.piro_no }}기)
             </div>
-            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px; margin-bottom: 10px;">
-                프로필 보기
-            </div>
-            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
-                로그아웃
-            </div>
-
-            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
-                <a href="{% url 'intranet:my_post' %}">내가 쓴 글 보기</a>
-            </div>
-            <div style="background-color: #f6f5f3; border: 1px solid #e3e2e0; border-radius: 2px; text-align: center; margin:auto 15px;font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; font-size: 11px; line-height: 26px;">
-                <a href="{% url 'intranet:my_bookmark' %}">나의 북마크</a>
-            </div>
+            <a href="{% url 'accounts:profile' %}" style="color: black; text-decoration: none">
+                <div class="rightside_but">
+                    프로필 보기
+                </div>
+            </a>
+            {% if user.is_admin %}
+            <a href="{% url 'money:check_money' %}" style="color: black; text-decoration: none">
+                <div class="rightside_but">
+                    보증금 관리
+                </div>
+            </a>
+            {% endif %}
+            <a href="{% url 'accounts:logout' %}" style="color: black; text-decoration: none">
+                <div class="rightside_but">
+                    로그아웃
+                </div>
+            </a>
+            <a href="{% url 'intranet:my_post' %}" style="color: black; text-decoration: none">
+                <div class="rightside_but">
+                    내가 쓴 글 보기
+                </div>
+            </a>
+            <a href="{% url 'intranet:my_bookmark' %}" style="color: black; text-decoration: none">
+                 <div class="rightside_but">
+                    스크랩한 글 보기
+                </div>
+            </a>
         </div>
     </div>
     <script>
