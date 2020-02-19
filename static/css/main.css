@@ -97,7 +97,7 @@ h5 {
     border-radius: 50%;
 }
 
-.navbar i{
+.navbar i {
     margin-right: 10px;
 }
 
@@ -144,9 +144,21 @@ h5 {
 }
 
 /* 민정 추가 */
-#abc p{
-    margin:0;
+.header-content {
+    margin: 0 auto;
 }
+
+#abc p {
+    margin: 0;
+    white-space: nowrap;
+    word-break: break-all;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    height: 60px;
+    text-overflow: ellipsis;
+}
+
 #abc #shit {
     background-color: white;
     height: 300px;
@@ -156,32 +168,45 @@ h5 {
 }
 
 .intranet-main {
-    white-space: nowrap;
+
     display: block;
     width: 100%;
     font-family: 'NanumGothic', sans-serif;
-    text-overflow: ellipsis;
     border-bottom: 1px solid #d9d9d9;
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
 
 #intranet-main-title {
-    font-size: 26px;
+    font-size: 30px;
     line-height: 30px;
     letter-spacing: -1px;
+    font-family: 'Yeon Sung', cursive;
+    margin-top: -40px;
     margin-bottom: 30px;
+    margin-left: -20px;
+    width: 136px;
+    background-color: gray;
 }
 
 #intranet-main-list {
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 16px;
     height: 24px;
     line-height: 20px;
+    width: 100%;
+    text-overflow: ellipsis;
 }
 
 #intranet-main-content {
+    white-space: nowrap;
+    word-break: break-all;
     overflow: hidden;
     display: block;
     line-height: 24px;
+    width: 90%;
+    text-align: left;
+    height: 60px;
     text-overflow: ellipsis;
 }
 
@@ -203,6 +228,13 @@ h5 {
     height: 8px;
     background: black;
     width: 0%;
+}
+
+#intranet-btn {
+    text-decoration: none;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-left: 4%;
 }
 
 /* intro end */
