@@ -11,7 +11,13 @@
 {% if user.is_admin %}
 
 <style>
+    #image-clear_id{
+        display: none;
+    }
 
+    #div_id_image label{
+        display: none;
+    }
     #rec_upld{
         color: #2C3E52; 
         border: solid 1px #2C3E52;
@@ -34,6 +40,7 @@ function change_port() {
     document.getElementById("option1").href="{% url "home:home" %}#about";
     document.getElementById("option2").href="{% url "home:home" %}#activity";
     document.getElementById("option3").style.color = 'white';
+    document.getElementById("option3").href = "{% url "home:portfolio" %}";
 }
 change_port();
 

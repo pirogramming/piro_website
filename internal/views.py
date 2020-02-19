@@ -287,7 +287,7 @@ def address_new(request, address=None):
             return redirect("intranet:address_list")
         elif request.user.is_admin:
             messages.error(request, '운영진은 주소록을 등록할 수 없습니다.')
-            return redirect("intranet:address_list")
+            return redirect("intranet:mainscreen")
         else:
             form = InfoBookForm(instance=address)
             return render(request, 'internal/create_address.html', {
