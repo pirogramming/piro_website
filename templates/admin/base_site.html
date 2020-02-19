@@ -12,9 +12,11 @@
     {#    영어 폰트     #}
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-
+    {#    fontawesome  #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 {% endblock %}
-
 
 {# Additional CSS includes #}
 {% block extrastyle %}
@@ -37,15 +39,23 @@
 
         {#   메인페이지- 왼쪽 표 #}
         #content-main {
-            width: 50%;
+        {#width: 50%;#}
+        }
+        .dashboard #content #content-main{
+            width:40%;
+        }
+
+        .dashboard #content #content-related {
+            margin-right: 10%;
+            {#float: right;#}
         }
 
         .module {
-            width: 100%;
+            {#width: 100%;#}
         }
 
         tbody {
-            width: 100%;
+            {#width: 100%;#}
         }
 
         .table-overview {
@@ -112,6 +122,9 @@
             font-family: 'Nanum Gothic', sans-serif;
             font-size: 14px;
         }
+        .left-nav>ul >li:last-child{
+            display: none;
+        }
 
         .left-nav > ul > li ul li a {
             font-family: 'Raleway', 'Nanum Gothic', sans-serif;
@@ -122,6 +135,9 @@
         .breadcrumb {
             font-family: 'Nanum Gothic', 'Raleway', sans-serif;
             font-size: 15px;
+        }
+        #result_list{
+            width:80%;
         }
 
         .btn-success {
@@ -138,10 +154,10 @@
             font-family: 'Nanum Gothic', sans-serif;
             font-size: 12px;
         }
-        .inner-center-column{
-            width:150%
-        }
 
+        .inner-center-column {
+            width: 100%;
+        }
 
 
         {#    내용 작성   #}
@@ -151,6 +167,27 @@
             background-image: linear-gradient(to bottom, #0E4D92, #4682B4)
         }
 
+        .form-horizontal fieldset {
+            width: 70%;
+        }
+
+        .object-tools{
+            float:none;
+        }
+
+        .form-horizontal .control-group .control-label {
+            min-width: 70px;
+            width: 100px;
+        }
+
+        .inner-two-columns .inner-right-column{
+            margin-right: 4%;
+        }
+
+        .auto-width{
+            width:20%;
+            max-width: 20%;
+        }
         {#  footer  #}
         .footer .content .tools, .footer .content .copyright {
             font-family: 'Raleway', 'Nanum Gothic', sans-serif;
@@ -159,8 +196,11 @@
 
         .footer .content .branding {
             font-family: 'Gugi', cursive;
-            font-size: 24px;
+            width: 500px;
+            font-size: 20px;
         }
+
+
     </style>
 {% endblock %}
 
@@ -170,11 +210,12 @@
 {#  <script type="text/javascript" src="{% static 'js/my_project.js' %}"></script>#}
 {#{% endblock %}#}
 
-
-{# Footer links (left side) #}
-{#{% block footer_links %}#}
-{#  <a href="/docs/" class="icon"><i class="icon-question-sign"></i>Documentation</a>#}
-{#{% endblock %}#}
+Footer links (left side)
+{% block footer_links %}
+    <a href="https://www.facebook.com/p.rogramming3k/" target="_blank">
+        <i class="fab fa-facebook fa-2x" style="'Nanum Gothic', sans-serif; font-size: 15px;color:#0E4D92">   Facebook </i>
+    </a>
+{% endblock %}
 
 {# Additional header content like notifications or language switcher #}
 {#{% block header_content %}#}
@@ -199,14 +240,22 @@
 {#    </div>#}
 {#{% endblock %}#}
 
+{% block userlinks %}
+    <a href="{% url 'intranet:mainscreen' %}" style="font-family: 'Gugi', cursive; font-size: 15px; color:white;">
+        <i class="fas fa-home" style="  margin:5px; font-size: 15px"> </i>
+
+        Board </a>
+{% endblock %}
+
 {# Footer branding name (center) #}
-{#{% block footer_branding %}#}
-{#{% endblock %}#}
+{% block footer_branding %}
+    피로그래밍
+{% endblock %}
 
 
 {# Footer copyright (right side) #}
-{#{% block copyright %}#}
-{#  Copyright &copy; 2013 Client<br>Developed by <a href="http://yoursite.com" target="_blank">YourName</a> #}
-{#{% endblock %}#}
+{% block copyright %}
+    Copyright &copy; 2020 Piro_website<br>Developed by <a href="#" target="_blank">Pirogramming</a>
+{% endblock %}
 
 
