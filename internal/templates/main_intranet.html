@@ -199,7 +199,8 @@
             <div id="lol" class="row">
                 <div class="col-12 img-header">
                     <div class="header-content">
-                        <p style="font-size:20px;">피로그래밍에 오신것을 환영합니다!</p>
+                        <p style="font-size:50px;font-family: 'Gugi', cursive; text-align: center">피로그래밍</p>
+                        <p style="font-size:25px;font-family: 'Nanum Gothic', sans-serif;">당신의 프로그래밍을 응원합니다</p>
                     </div>
                     <div class="header-cover"></div>
                 </div>
@@ -208,7 +209,7 @@
 
                         <div id="shit" class="col-lg-5">
                             <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
-                                <h1 id='intranet-main-title'>질문게시판</h1>
+                                <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
                             </a>
                             {% for question in question_recent %}
                                 <div class="intranet-main">
@@ -221,12 +222,13 @@
                                     </a>
                                 </div>
                             {% endfor %}
+                            <a href="{% url 'intranet:q_new' %}" style="margin-left: 98%; font-size: 20px;color:black"><i class="far fa-edit"></i></a>
                         </div>
 
                         <div class="col-lg-5"
                              style="background-color: white; border: 1px solid #d9d9d9; padding: 20px; height: 300px;">
                             <a href="{% url "infoboard:list_info" %}" style="text-decoration:none; color:#212529">
-                                <h1 id='intranet-main-title'>정보게시판</h1>
+                                <h1 id='intranet-main-title'><i class="far fa-lightbulb"></i> 정보게시판</h1>
                             </a>
                             {% for info in info_recent %}
                                 <div class="intranet-main">
@@ -240,7 +242,9 @@
                                 </div>
                             {% endfor %}
 
+                                <a href="{% url 'infoboard:create_info' %}" style="margin-left: 98%; font-size: 20px;color:black" ><i class="far fa-edit"></i></a>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-lg-12" style="height: 300px; margin-top:22px; margin-bottom: 22px;">
@@ -355,33 +359,35 @@
             <div style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
                 {{ request.user.username }} ({{ request.user.piro_no }}기)
             </div>
-            <a href="{% url 'accounts:profile' %}" style="color: black; text-decoration: none">
-                <div class="rightside_but">
-                    프로필 보기
-                </div>
-            </a>
-            {% if user.is_admin %}
-                <a href="{% url 'money:check_money' %}" style="color: black; text-decoration: none">
-                    <div class="rightside_but">
-                        보증금 관리
+            <div>
+                <a href="{% url 'accounts:profile' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        프로필 보기
                     </div>
                 </a>
-            {% endif %}
-            <a href="{% url 'intranet:my_post' %}" style="color: black; text-decoration: none">
-                <div class="rightside_but">
-                    내가 쓴 글 보기
-                </div>
-            </a>
-            <a href="{% url 'intranet:my_bookmark' %}" style="color: black; text-decoration: none">
-                <div class="rightside_but">
-                    스크랩한 글 보기
-                </div>
-            </a>
-            <a href="{% url 'accounts:logout' %}" style="color: black; text-decoration: none">
-                <div class="rightside_but">
-                    로그아웃
-                </div>
-            </a>
+                {% if user.is_admin %}
+                    <a href="{% url 'money:check_money' %}">
+                        <div class="btn btn-outline-primary" id="intranet-btn">
+                            보증금 관리
+                        </div>
+                    </a>
+                {% endif %}
+                <a href="{% url 'intranet:my_post' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        내가 쓴 글 보기
+                    </div>
+                </a>
+                <a href="{% url 'intranet:my_bookmark' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        스크랩한 글 보기
+                    </div>
+                </a>
+                <a href="{% url 'accounts:logout' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        로그아웃
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <script>
