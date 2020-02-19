@@ -10,13 +10,19 @@
 {% block content %}
 {% if user.is_authenticated %}
 <style>
+
     #rec_upld{
-        background-color: #25CCA0; border: #25CCA0;
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
     }
+
     #rec_upld:hover{
-        background-color: #2C3E52;
+        background-color: #25CCA0;
+        color:white;
     }
+
 </style>
+
 <script>
 function change_q() {
     document.getElementById("option2").style.color = 'white';
@@ -24,22 +30,24 @@ function change_q() {
 change_q();
 </script>
 
+<!-- *********제목부분 칸 가로길이 문제************-->
+
 <div class="col-sm-10" style="margin:50px auto;">
-    <h2>질문하기</h2>
+    <h2 class="create-title">질문하기</h2>
     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.title|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.body | safe }}
                 {{ form.media }}
             </div>
             <br>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 <div>
-                    <label class=" requiredField">
-                    태그 (한 가지 선택)
+                    <label class="requiredField nanum">
+                    태그(한 가지 선택)
                     <span class="asteriskField">*</span>
                     </label>
                 </div>
@@ -68,7 +76,7 @@ change_q();
                 </select>
             </div>
         <br>
-        <input type="submit" value="등록하기" id= "rec_upld" class="btn btn-primary" />
+        <input type="submit" value="등록하기" id= "rec_upld" class="btn" />
     </form>
 </div>
 {% else %}

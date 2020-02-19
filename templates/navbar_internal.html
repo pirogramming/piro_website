@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-dark" id="navbar" style="padding: 1%; background-color: #25CCA0;">
     <div class="navbar-header">
         <a class="navbar-logo" href="{% url "intranet:mainscreen" %}">
-            <img src="{% static 'img/piro_logo_2.png' %}" alt="piro_logo" style="width:auto; height: 40px; border:0px;">
+            <img src="{% static 'img/piro_logo.jpg' %}" alt="piro_logo" style="width:auto; height: 40px; border:0px;">
         </a>
     </div>
 
@@ -25,9 +25,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url "intranet:address_list" %}" id="option4">회원주소록 </a>
             </li>
+            {% if user.is_admin %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'admin:index' %}" id="option5">관리자 페이지 </a>
             </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url "home:home" %}" id="option6">홈페이지 </a>
             </li>

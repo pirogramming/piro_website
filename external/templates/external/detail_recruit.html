@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{  post.title }}
+{{ post.title }}
 {% endblock %}
 
-
 {% block content %}
+
 <script>
 function change_recruit() {
     document.getElementById("option4").style.color = 'white';
@@ -18,24 +18,24 @@ change_recruit();
 </script>
 
 <div class="col-sm-7" style="margin:50px auto;">
-    <h2 style="font-family: 'Noto Sans KR', sans-serif">{{  post.title }}</h2>
+    <h2 class="nanum">{{ post.title }}</h2>
     <hr/>
     {% if post.img %}
         <img src="{{ post.img.url }}" style="max-width: 100%;"/>
         <br>
         <br>
     {% endif %}
-    <div style="background-color: #f2f2f2; padding:16px;">
-        <p style="white-space: pre-wrap">{{  post.content|urlize }} </p>
+    <div class="nanum" style="padding:16px;">
+        <p style="white-space: pre-wrap">{{ post.content|urlize }} </p>
     </div>
     <hr/>
-    <div style="display: inline-block; float: left;">
-        <a href="{% url "home:recruit" %}">목록</a>
+    <div style="display: inline-block; float:left;">
+        <a class="btn-navy" href="{% url "home:recruit" %}">목록</a>
     </div>
     {% if user.is_admin %}
-    <div style="display: inline-block; float: right;">
-        <a href="{% url "home:recruit_edit" post.pk %}" style="margin-right: 5px;">수정</a>
-        <a href="{% url "home:recruit_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+    <div style="display: inline-block; float:right;">
+        <a class="btn-navy" href="{% url "home:recruit_edit" post.pk %}" style="margin-right: 5px;">수정</a>
+        <a class="btn-navy" href="{% url "home:recruit_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
     </div>
     {% endif %}
     <br>

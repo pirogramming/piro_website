@@ -8,19 +8,31 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
 <style>
+
     #rec_upld{
-        background-color: #25CCA0; border: #25CCA0;
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
     }
+
     #rec_upld:hover{
-        background-color: #2C3E52;
+        background-color: #25CCA0;
+        color:white;
     }
+
     textarea.form-control{
-    height: 350px;
+        height: 350px;
     }
+    
     .clearablefileinput{
         height:45px;
     }
+
+    .nanum {
+        margin-bottom: 25px;
+    }
+
 </style>
 <script>
 function change_infoboard() {
@@ -29,28 +41,27 @@ function change_infoboard() {
 change_infoboard();
 </script>
 <div class="col-lg-7 col-md-8 col-11" style="margin:50px auto;">
-    <h2>게시물 등록하기</h2>
-    <br>
+    <h2 class="create-title">게시물 등록하기</h2>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.title|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.text|as_crispy_field }}
             </div>
             <hr/>
             <div>
                 <div>
-                    <label class="requiredField">
-                        파일 선택 (여러 파일 선택 가능)<span class="asteriskField">*</span>
+                    <label class="requiredField nanum">
+                        파일 선택 (여러 파일 선택 가능)<span class="asteriskField nanum">*</span>
                     </label>
                 </div>
                 <input type="file" id="files" name="files" multiple />
                 <output id="list"></output>
             </div>
             <br>
-            <button type="submit" id="rec_upld" class="btn btn-primary">등록</button>
+            <button type="submit" id="rec_upld" class="btn">등록</button>
     </form>
 </div>
 {% else %}

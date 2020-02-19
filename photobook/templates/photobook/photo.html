@@ -13,7 +13,7 @@
 <style>
 
     .photo-header {
-        background-image: url("{% static "img/photo.jpeg" %}");
+        background-image: url("{% static "img/photo.jpg" %}");
         background-position: top center;
         background-size: 1500px;
         background-repeat: no-repeat;
@@ -29,8 +29,7 @@
         color: rgba(255, 255, 255, 0.8);
         z-index: 2;
     }
-
-    .header-cover {
+  .header-cover {
         position: absolute;
         height: 100%;
         width: 100%;
@@ -43,25 +42,25 @@
         text-align: center;
     }
 
-    .dot {
-        height: 3px;
-        width: 3px;
-        background-color: black;
-        border-radius: 50%;
-        display: inline-block;
-    }
 
-    .photo-book{
-        margin: 20px;
-        text-align: center;
+
+    .photo-book {
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    .snip1432 {
+  .snip1432 {
+        display: inline-block;
         position: relative;
         overflow: hidden;
-        width: 300px;
+        max-width: 300px;
         background: #000000;
         float: left;
         text-align: center;
+        margin: 10px 10px;
+        border-radius: 18px;
+        margin: 25px;
     }
 
     .snip1432 > a{
@@ -74,14 +73,14 @@
         -webkit-transition: all 0.6s ease;
         transition: all 0.6s ease;
     }
-
-    .snip1432 img {
+ .snip1432 img {
         max-width: 100%;
         vertical-align: top;
         -webkit-transition: opacity 0.35s;
         transition: opacity 0.35s;
-        width: 300px;
-        height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+
     }
 
     .snip1432 figcaption {
@@ -91,15 +90,13 @@
         width: 100%;
         height: 100%;
     }
-
-    .snip1432 figcaption>div {
+  .snip1432 figcaption>div {
         height: 80%;
         overflow: hidden;
         width: 100%;
         position: relative;
     }
-
-    .snip1432 p, .snip1432 h3 {
+  .snip1432 p, .snip1432 h3 {
         /* margin: 0; */
         position: absolute;
         /* left: 0; */
@@ -112,20 +109,18 @@
         font-size: 1em;
         bottom: 0;
     }
-
-    .snip1432 h3:nth-of-type(2) {
+  .snip1432 h3:nth-of-type(2) {
         opacity: 0;
         -webkit-transform: translateY(150%);
         transform: translateY(150%);
     }
 
     .snip1432:hover img{
-        opacity: 0.3;
+        opacity: 0.5;
         -webkit-filter: grayscale(100%);
         filter: grayscale(100%);
     }
-
-    .snip1432:hover figcaption h3:first-of-type{
+  .snip1432:hover figcaption h3:first-of-type{
         -webkit-transform: translateY(150%);
         transform: translateY(150%);
         opacity: 0;
@@ -155,12 +150,7 @@ change_photo();
         </div>
         <div class="header-cover"></div>
     </div>
-    <div class="photo-content">
-        <div class="photo-detail">
-            <p class="dot"></p><br><br>
-            <p class="dot"></p><br><br>
-            <p class="dot"></p><br>
-        </div>
+    <div class="photo-content" style="margin-top: 40px;">
         <div class="photo-book">
             {% for photobook in photobooks %}
             <div class="snip1432">
@@ -182,8 +172,8 @@ change_photo();
     </div>
     <div style="clear:both;"></div>
     {% if user.is_admin %}
-    <div class="text-right" style="margin:10px 0px 0px 38px">
-        <a class="btn btn-success" style="background-color: #25CCA0; border-color:#25CCA0; margin-right: 20px;"
+    <div class="text-left" style="margin:10px 0px 40px 38px">
+        <a class="btn btn-mint" style="margin-right: 60px;"
             href="{% url "photobook:create_book" %}" role="button">
             <i class="fas fa-pen" style="margin-right: 8px;"></i>사진첩 만들기
         </a>
