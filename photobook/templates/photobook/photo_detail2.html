@@ -87,14 +87,13 @@ change_photo();
             {% endfor %}
         </div>
         <div style="text-align: right;">
-                <a href="{% url "photobook:update_book" photobook.pk %}" class="btn-mint">
-                    수정
-                </a>&nbsp&nbsp
+                <a href="{% url "photobook:update_book" photobook.pk %}" class="btn-sky">
+                    수정</a>
+                    &nbsp&nbsp
                 <a href="{% url "photobook:delete_book" photobook.pk %}" onclick="return confirm('삭제하시겠습니까?');"
-                   class="btn-mint">
-                   삭제
-                </a>&nbsp&nbsp
-                <a href="{% url 'photobook:list_book' %}" class="btn-mint">
+                   class="btn-sky">
+                   삭제</a>&nbsp&nbsp
+                <a class="btn-sky" href="{% url 'photobook:list_book' %}">
                     목록으로
                 </a>
         </div>
