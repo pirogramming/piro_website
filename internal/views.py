@@ -20,7 +20,7 @@ from .models import Post, Comment, InfoBook, Notification
 def mainscreen(request):
     question_recent = Post.objects.all().order_by('-id')[:2]
     info_recent = Info.objects.all().order_by('-id')[:2]
-    photo_recent = Photobook.objects.all().order_by('-id')[:3]
+    photo_recent = Photobook.objects.all().order_by('-id')[:2]
     notifications = Notification.objects.filter(to=request.user, checked=False)
     return render(request, 'main_intranet.html', {
         'question_recent': question_recent,
