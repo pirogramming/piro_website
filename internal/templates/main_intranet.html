@@ -246,22 +246,22 @@
             <div>
                 <div class="toast" id="myToast" style="position: absolute; top: 6%; right: 7.2%; z-index: 11">
 
-                    <div class="toast fade show">
+                    <div class="toast fade hide" id="yikes">
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times</button>
                         {% for notification in notifications %}
                             <div class="toast-header">
                                 <strong class="mr-auto"><i class="fa fa-globe"></i> 알림 </strong>
 
                             </div>
-                            <div class="toast-body" style="text-align: left">
+                            <div class="toast-body" style="text-align: left; font-family: 'Noto Sans KR',Sans-Serif">
                                 <form action="{% url 'intranet:checked'  notification.pk %}" method='post'
                                       id='notification_form'>
                                     {% csrf_token %}
-                                    <div>{{ notification.creator }} 님이 {{ notification.notification_type }}하셨습니다.
+                                    <div>{{ notification.creator.username }} 님이 {{ notification.notification_type }}하셨습니다.
                                         <a type="submit"
                                            href="{% url 'intranet:checked_and_go' notification.pk notification.myid %}">
                                             바로가기 </a></div>
-                                    <input type="submit" class="notification_checked" value=&check;
+                                    <input type="submit" class="btn btn-outline-dark"  value=&check;
                                            name="checked"/>
                                 </form>
                             </div>
@@ -287,8 +287,8 @@
         <div style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
             {{ request.user.username }} ({{ request.user.piro_no }}기)
         </div>
-        <a href="{% url 'accounts:profile' %}" style="color: black; text-decoration: none">
-            <div class="rightside_but">
+        <a href="{% url 'accounts:profile' %}" style="color: black; text-decoration: none; z-index: 14">
+            <div class="rightside_but" style="">
                 프로필 보기
             </div>
         </a>
@@ -323,6 +323,8 @@
         $("#myToast").toast({
             autohide: false
         })
+        $("#yikes").removeClass("hide");
+        $("#yikes").addClass("show");
         $("#myToast").toast('show');
     });
 
