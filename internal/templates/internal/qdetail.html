@@ -22,12 +22,12 @@
         }
         
         #rec_upld{
-        color: #e14658; 
-        border: solid 1px #e14658;
+        color: #57a0d3; 
+        border: solid 1px #57a0d3;
         }
 
         #rec_upld:hover{
-        background-color: #e14658;
+        background-color: #57a0d3;
         color:white;
         }
 
@@ -89,10 +89,10 @@
             <p style="white-space: pre-wrap;">{{ post.body | safe }}</p>
         </div>
             <div style="display: inline-block; float: right;">
-                <a class="btn-mint" href="{% url 'intranet:create_bookmark_qna' post.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+                <a class="btn-sky" href="{% url 'intranet:create_bookmark_qna' post.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
                 {% if request.user == post.author %}
-                &nbsp&nbsp<a class="btn-mint" href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
-                <a class="btn-mint" href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                &nbsp&nbsp<a class="btn-sky" href="{% url "intranet:q_edit" post.pk %}" style="margin-right: 5px;">수정</a>
+                <a class="btn-sky" href="{% url "intranet:q_delete" post.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
                 {% endif %}
             </div>
         <br>
@@ -136,7 +136,7 @@
                         {{ i.body | safe }}
                         {% if request.user == i.author %}
                             <div style="text-align: right">
-                                <a class="btn-mint" style="font-size: 13px;" href="{% url "intranet:comment_delete" post.pk i.pk %}"
+                                <a class="btn-sky" style="font-size: 13px;" href="{% url "intranet:comment_delete" post.pk i.pk %}"
                                    onclick="return confirm('삭제하시겠습니까?');">삭제</a>
                             </div>
                         {% endif %}
@@ -190,13 +190,13 @@
         </form>
         <hr>
         <div style="display: inline-block; float: left;">
-            <a class="btn-mint" href="{% url 'intranet:qna' %}">목록</a>
-            <a class="btn-mint" href="javascript:history.go(-1);">이전</a>
+            <a class="btn-sky" href="{% url 'intranet:qna' %}">목록</a>
+            <a class="btn-sky" href="javascript:history.go(-1);">이전</a>
         </div>
         {% if user.is_authenticated %}
             <div style="display: inline-block; float: right;">
-                <a class="btn-mint" href="" style="margin-right: 5px;">수정</a>
-                <a class="btn-mint" href="" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                <a class="btn-sky" href="" style="margin-right: 5px;">수정</a>
+                <a class="btn-sky" href="" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
             </div>
         {% endif %}
         <br>

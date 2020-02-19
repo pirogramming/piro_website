@@ -55,7 +55,7 @@
             {% endif %}
         </div>
         <div class="col-md-2 col-2" style="text-align: center; padding:0.75rem;">
-            <a style="color: #007bff" href="{% url "intranet:delete_bookmark" bookmark.pk %}" onclick="return confirm('삭제하시겠습니까?');">스크랩 삭제하기</a>
+            <a class="btn-sky" style="color: #57a0d3" href="{% url "intranet:delete_bookmark" bookmark.pk %}" onclick="return confirm('삭제하시겠습니까?');">스크랩 삭제하기</a>
         </div>
     </div>
     {% endfor %}

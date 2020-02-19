@@ -61,13 +61,13 @@ change_infoboard();
         <p style="white-space: pre-wrap;">{{  info.text }}</p>
     </div>
     <div style="display: inline-block; float: left;">
-        <a href="{% url 'infoboard:list_info' %}">목록</a>
+        <a class="btn-sky" href="{% url 'infoboard:list_info' %}">목록</a>
     </div>
     <div style="display: inline-block; float: right; margin-bottom: 50px;">
-        <a class="btn-mint" href="{% url 'infoboard:create_bookmark_infoboard' info.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
+        <a class="btn-sky" href="{% url 'infoboard:create_bookmark_infoboard' info.pk %}" onclick="alert('스크랩 되었습니다.')">스크랩</a>
         {% if request.user == info.user %}
-        &nbsp&nbsp<a class="btn-mint" href="{% url "infoboard:update_info" info.pk %}" style="margin-right: 5px;">수정</a>
-        <a class="btn-mint" href="{% url "infoboard:delete_info" info.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+        &nbsp&nbsp<a class="btn-sky" href="{% url "infoboard:update_info" info.pk %}" style="margin-right: 5px;">수정</a>
+        <a class="btn-sky" href="{% url "infoboard:delete_info" info.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
         {% endif %}
     </div>
     <br>
