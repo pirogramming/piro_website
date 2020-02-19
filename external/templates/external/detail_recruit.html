@@ -18,14 +18,14 @@ change_recruit();
 </script>
 
 <div class="col-sm-7" style="margin:50px auto;">
-    <h2 style="font-family: 'Nanum Gothic', sans-serif;">{{ post.title }}</h2>
+    <h2 class="nanum">{{ post.title }}</h2>
     <hr/>
     {% if post.img %}
         <img src="{{ post.img.url }}" style="max-width: 100%;"/>
         <br>
         <br>
     {% endif %}
-    <div style="padding:16px; font-family: 'Nanum Gothic', sans-serif;">
+    <div class="nanum" style="padding:16px;">
         <p style="white-space: pre-wrap">{{ post.content|urlize }} </p>
     </div>
     <hr/>
