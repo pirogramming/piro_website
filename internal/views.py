@@ -1,23 +1,31 @@
 import json
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q, Max
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from accounts.models import Bookmark
+from infoboard.models import Info
 from internal.forms import QuestionForm, CommentForm, ReplyForm, InfoBookForm
+from photobook.models import Photobook
 from .models import Post, Comment, InfoBook, Notification
 
 
 @login_required
 def mainscreen(request):
     question_recent = Post.objects.all().order_by('-id')[:5]
+    info_recent = Info.objects.all().order_by('-id')[:5]
+    photo_recent = Photobook.objects.all().order_by('-id')[:3]
     notifications = Notification.objects.filter(to=request.user, checked=False)
     return render(request, 'main_intranet.html', {
         'question_recent': question_recent,
+        'info_recent': info_recent,
+        'photo_recent': photo_recent,
         'notifications': notifications,
     })
 
@@ -39,6 +47,7 @@ def checked_and_go(request, pk, noti_pk):
 @login_required
 def qna(request):
     post_list = Post.objects.all().order_by('-id')
+
     total_len = len(post_list)
     page = request.GET.get('page', 1)
     paginator = Paginator(post_list, 10)
@@ -108,46 +117,55 @@ def q_detail(request, pk):
     comment_no = comment.count()
     form = CommentForm()
     form2 = ReplyForm()
+    path = request.META.get('HTTP_REFERER')
     return render(request, 'internal/qdetail.html', {
         'post': post,
         'comment': comment,
         'comment_no': comment_no,
         'form': form,
         'form2': form2,
+        'path': path,
     })
 
 
 @login_required
 def q_by_tag(request):
     if request.method == 'POST':
+        post_list = Post.objects.all()
         tag = request.POST.get('tag')
+        q = request.POST.get('q', '')
+
         if tag == 'all':
-            return redirect('intranet:qna')
+            pass
         else:
-            post_list = Post.objects.all().filter(tag=tag).order_by('-id')
-            total_len = len(post_list)
-            page = request.GET.get('page', 1)
-            paginator = Paginator(post_list, 10)
+            post_list = post_list.filter(tag=tag).order_by('-id')
 
-            try:
-                questions = paginator.page(page)
-            except PageNotAnInteger:
-                questions = paginator.page(1)
-            except EmptyPage:
-                questions = paginator.page(paginator.num_pages)
+        if q:
+            post_list = post_list.filter(Q(title__icontains=q) | Q(body__icontains=q)).order_by('-id')
 
-            index = questions.number - 1
-            max_index = len(paginator.page_range)
-            start_index = index - 2 if index >= 2 else 0
-            if index < 2:
-                end_index = 5 - start_index
-            else:
-                end_index = index + 3 if index <= max_index - 3 else max_index
-            page_range = list(paginator.page_range[start_index:end_index])
+        total_len = len(post_list)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(post_list, 10)
 
-            return render(request, 'internal/qboard.html',
-                          {'questions': questions, 'tag': tag, 'page_range': page_range, 'total_len': total_len,
-                           'max_index': max_index - 2})
+        try:
+            questions = paginator.page(page)
+        except PageNotAnInteger:
+            questions = paginator.page(1)
+        except EmptyPage:
+            questions = paginator.page(paginator.num_pages)
+
+        index = questions.number - 1
+        max_index = len(paginator.page_range)
+        start_index = index - 2 if index >= 2 else 0
+        if index < 2:
+            end_index = 5 - start_index
+        else:
+            end_index = index + 3 if index <= max_index - 3 else max_index
+        page_range = list(paginator.page_range[start_index:end_index])
+
+        return render(request, 'internal/qboard.html',
+                      {'questions': questions, 'tag': tag, 'page_range': page_range, 'total_len': total_len,
+                       'max_index': max_index - 2})
     else:
         return redirect('intranet:qna')
 
@@ -240,8 +258,14 @@ def create_notification(creator, to, notification_type, myid):
 
 def address_list(request):
     qs = InfoBook.objects.all().order_by('piro_no')
+    maxpiro = InfoBook.objects.aggregate(Max('piro_no'))
+    if maxpiro.get("piro_no__max") == None:
+        return redirect("intranet:address_new")
+    maxno = maxpiro.get("piro_no__max") + 1
     return render(request, 'internal/address.html', {
         'address_list': qs,
+        'maxno': maxno,
+        'range': range(1, maxno)
     })
 
 
@@ -258,10 +282,17 @@ def address_new(request, address=None):
         else:
             return redirect("intranet:address_list")
     else:
-        form = InfoBookForm(instance=address)
-        return render(request, 'internal/create_address.html', {
-            'form': form,
-        })
+        if InfoBook.objects.filter(user=request.user).exists():
+            messages.error(request, '이미 주소록에 등록되어 있습니다.')
+            return redirect("intranet:address_list")
+        elif request.user.is_admin:
+            messages.error(request, '운영진은 주소록을 등록할 수 없습니다.')
+            return redirect("intranet:address_list")
+        else:
+            form = InfoBookForm(instance=address)
+            return render(request, 'internal/create_address.html', {
+                'form': form,
+            })
 
 
 @login_required
@@ -309,11 +340,7 @@ def my_post(request):
 def create_bookmark_qna(request, pk):
     article = Post.objects.get(pk=pk)
     try:
-        sample = Bookmark.objects.get(bookmark_title=article.title)
-        if sample.pirouser != request.user and sample.bookmark_type == 'qna':
-            bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk),
-                                               bookmark_title=article.title, bookmark_type='qna')
-            bookmark.save()
+        sample = Bookmark.objects.get(bookmark_title=article.title, pirouser=request.user, bookmark_type='qna')
     except:
         bookmark = Bookmark.objects.create(pirouser=request.user, bookmark_num=str(pk), bookmark_title=article.title, bookmark_type = 'qna')
         bookmark.save()

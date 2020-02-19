@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -27,10 +26,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+SUIT_CONFIG = {
+    'ADMIN_NAME': '피로그래밍'
+        }
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,9 +49,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.humanize',
     'ckeditor',
+    'ckeditor_uploader',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#수정
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
@@ -63,10 +70,10 @@ CKEDITOR_CONFIGS = {
                 'Italic',
                 'CodeSnippet'  # add the codesnippet button name
             ]},
-            {'name': 'insert', 'items' : [
+            {'name': 'insert', 'items': [
                 'Image'
             ]
-            },
+             },
             {'name': 'styles', 'items': [
                 'Styles',
                 'Format'
@@ -124,7 +131,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'website.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -134,7 +140,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -154,7 +159,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -168,7 +172,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -176,8 +179,8 @@ USE_TZ = True
 AUTH_USER_MODEL = 'accounts.PiroUser'
 
 AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.RemoteUserBackend',
-        'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 from django.urls import reverse_lazy
@@ -190,8 +193,11 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 PHOTOBOOK_MEDIA_URL = '/media/photobook/'
 INFO_MEDIA_URL = '/info/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

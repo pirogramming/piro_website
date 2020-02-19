@@ -44,7 +44,8 @@
                 <small>운영진의 인증이 완료된 계정만 로그인 가능합니다.</small><br/><br/>
             </div>
             <div style="margin: 0px 70px">
-                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     {% for message in messages %}
                         <div class="alert alert-info">
                             <a class="close" href="#" data-dismiss="alert">×</a>

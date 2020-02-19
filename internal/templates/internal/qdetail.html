@@ -16,6 +16,10 @@
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 
     <style>
+        p > img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
         
         #rec_upld{
         color: #25CCA0; 
@@ -191,7 +195,8 @@
         </form>
         <hr>
         <div style="display: inline-block; float: left;">
-            <a class="btn-mint" href="">목록</a>
+            <a class="btn-mint" href="{% url 'intranet:qna' %}">목록</a>
+            <a class="btn-mint" href="javascript:history.go(-1);">이전</a>
         </div>
         {% if user.is_authenticated %}
             <div style="display: inline-block; float: right;">
