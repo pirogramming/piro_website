@@ -195,9 +195,8 @@
         </form>
         <hr>
         <div style="display: inline-block; float: left;">
-            <a href="{% url 'intranet:qna' %}">목록</a>
-            <a href="javascript:history.go(-1);">이전</a>
-            <a class="btn-mint" href="">목록</a>
+            <a class="btn-mint" href="{% url 'intranet:qna' %}">목록</a>
+            <a class="btn-mint" href="javascript:history.go(-1);">이전</a>
         </div>
         {% if user.is_authenticated %}
             <div style="display: inline-block; float: right;">
