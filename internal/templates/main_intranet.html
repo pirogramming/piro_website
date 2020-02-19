@@ -154,7 +154,6 @@
         font-size: 11px;
         line-height: 26px;
         margin-bottom: 10px;
-
     }
 
     .rightside_but:hover {
@@ -165,37 +164,12 @@
         background-image: url("{% static "img/photo.jpg" %}");
     }
 
- 
     .header-cover {
         background-color: rgba(0, 0, 0, 0.7);
         width: 100%;
         height: 50%;
         left: 0;
         top: 130px;
-    }
-
-    .python-link {
-        background-color: skyblue;
-        text-align: center;
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Dosis', sans-serif;
-        padding: 5px;
-    }
-
-    .django-link {
-        background-color: teal;
-        color: black;
-        text-align: center;
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Dosis', sans-serif;
-        letter-spacing: 1px;
-        padding: 5px;
     }
 
     #intranet-btn{
@@ -207,6 +181,22 @@
         background-color:#57a0d3;
         color:white;
     }
+
+    .python{
+        background-image: url("{% static "img/python.png" %}");
+        height:100px;
+        float:left;
+    }
+    .django{
+        background-image: url("{% static "img/django.png" %}");
+        height:100px;
+        float:right;
+    }
+    #edu-link{
+        position: relative;
+        /* float: right; */
+    }
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -225,7 +215,6 @@
             </div>
             <div class="col-lg-12" style="margin-top:50px;">
                 <div class="row" style="">
-
                     <div id="shit" class="col-lg-5">
                         <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
                             <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
@@ -270,7 +259,7 @@
             </div>
             <div class="col-lg-12" style="height: 300px; margin-top:22px; margin-bottom: 22px;">
                 <div class="row" style="">
-                    <div class="col-lg-7" id="shit">
+                    <div class="col-lg-7 col-md-7 col-sm-7" id="shit">
                         <a href="{% url "photobook:list_book" %}" style="text-decoration:none; color:#212529">
                             <div style="display: inline-block; letter-spacing: 0.15em; font-size: 11px;">
                                 <h1 id='intranet-main-title'>사진첩</h1>
@@ -278,7 +267,6 @@
                         </a>
                         <div style="font-size: 12px;display:flex; justify-content: space-around">
                             {% for photobook in photo_recent %}
-                            <!-- col-lg-12, col-sm-5 일때 각각 넓이 주는게 가능? -->
                             <div class="snip1432" style="position: relative; height: 200px; width:250px; ">
                                 <a href="{% url 'photobook:detail_book' photobook.pk %}">
                                     <img src="{{ photobook.thumbnail.url }}" alt="...">
@@ -300,20 +288,17 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-lg-3" id="info-link"
+                    <div class="col-lg-3 col-md-4 col-sm-4" id="info-link"
                         style="background-color: white; border:1px solid #e3e2e0; padding: 20px; height: 300px;">
                         <h1 id='intranet-main-title'>참고 사이트</h1>
                         <div class="intranet-main edu-link">
-                            <div class="col-lg-12 python-link">
-                                <a style="color:black;" href="https://dojang.io/course/view.php?id=7" target="_blank">
-                                    <p>Python</p>
-                                </a>
+                            <div class="col-lg-12 link-header python"> 
+                                    <a style="color:black;" href="https://dojang.io/course/view.php?id=7" target="_blank">
+                                    </a>
                             </div>
-                            <div class="col-lg-12 django-link">
-                                <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/"
-                                    target="_blank">
-                                    <p>Django</p>
-                                </a>
+                            <div class="col-lg-12 link-header django">
+                                    <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/" target="_blank">
+                                    </a>
                             </div>
                         </div>
                     </div>
