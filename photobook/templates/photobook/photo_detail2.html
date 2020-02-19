@@ -44,7 +44,9 @@
         height: 250px;
         width: 300px;
         border-radius: 3%;
-        margin: 15px
+        margin-right: 15px;
+        margin-bottom: 15px;
+        object-fit: cover;
     }
 
     .album-footer {
@@ -78,7 +80,10 @@ change_photo();
         <div class="header-cover"></div>
     </div>
     <div class="album-content">
+        <div style="text-align: center"><strong class="nanum" style="font-size: 1.5rem;">{{photobook.title}}</strong></div>
+        <div class="heading-line" style="height: 2px"></div>
         <div class="photo-wrap" id="polaroid">
+
             {% for img in images %}
             <a href="{{img.image.url}}" style="text-decoration: none;" data-lightbox="roadtrip"
                data-title="{{photobook.title}}">

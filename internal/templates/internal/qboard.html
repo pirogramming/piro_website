@@ -21,9 +21,19 @@
         color: black;
     }
 
+    #board:nth-child(even) {
+    background-color : white;
+    }
+
+    #board:nth-child(odd) {
+    background-color : whitesmoke;
+    }
+
     #board:hover {
-        background-color: #FAF9F7;
-        transition-duration: 0.4s;
+    background-color: #DCDCDC;
+    font-weight: bold;
+    box-sizing: border-box;
+    transition-duration: 0.2s;
     }
 
     .pagination li {
@@ -84,7 +94,7 @@
 {% endif %}
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
     <div class="row nanum"
-        style="margin:0px 5px;text-align: center; font-size: 13px; border:1px solid #ebe3db; background-color: #f1ebe6">
+        style="margin:0px 5px;text-align: center; font-size: 13px; border-bottom:1px solid gray;">
         <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
         <div class="col-md-7 col-6" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
         <div class="col-md-2 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">글쓴이</div>
@@ -94,7 +104,7 @@
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:#3e3a37; margin:0px auto 30px auto;">
     {% for question in questions %}
     <div class="row nanum" id="board"
-        style="margin:0px 5px;text-align: center; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
+        style="margin:0px 5px;text-align: center; font-size: 13px;">
         <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ question.id }}</div>
         <div class="col-md-7 col-6"
             style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a
