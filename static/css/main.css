@@ -2,50 +2,77 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,800');
 
 
-@media screen and (max-width:767px) {
-    h5{font-size: 30px;}
-    #schedule{width:100%;}
-    #sign-up{display: none;}
-    .autoplay img{width:95%;height:110px;}
+@media screen and (max-width: 767px) {
+    h5 {
+        font-size: 30px;
+    }
+
+    #schedule {
+        width: 100%;
+    }
+
+    #sign-up {
+        display: none;
+    }
+
+    .autoplay img {
+        width: 95%;
+        height: 110px;
+    }
 }
 
-@media screen and (min-width:768px) and (max-width:959px) {
-    h5{font-size: 38px;}
-    #schedule{width:95%;}
-    .autoplay img{width:95%;height:190px;}
+@media screen and (min-width: 768px) and (max-width: 959px) {
+    h5 {
+        font-size: 38px;
+    }
+
+    #schedule {
+        width: 95%;
+    }
+
+    .autoplay img {
+        width: 95%;
+        height: 190px;
+    }
 }
 
-@media screen and (min-width:960px) {
-    h5{font-size: 40px;}
-    .autoplay img{width:100%;height:250px;}
+@media screen and (min-width: 960px) {
+    h5 {
+        font-size: 40px;
+    }
+
+    .autoplay img {
+        width: 100%;
+        height: 250px;
+    }
 }
 
-html{
+html {
     scroll-behavior: smooth;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-h5{
-    font-family:'Noto Sans KR';
+h5 {
+    font-family: 'Noto Sans KR';
     text-align: center;
 }
 
 .heading-line {
-	margin:0 auto;
-	display: block;
-	height: 1px;
-	width: 80px;
-	background: #25CCA0;
-	margin-top: 10px;
-	margin-bottom: 20px;
+    margin: 0 auto;
+    display: block;
+    height: 1px;
+    width: 80px;
+    background: #25CCA0;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 
 /* navbar start */
-.navbar{
+.navbar {
     background-color: #2F4154;
-    padding:1% 1%;
+    padding: 1% 1%;
     transition-duration: 0.43s;
     position: -webkit-sticky;
     position: sticky;
@@ -53,14 +80,15 @@ h5{
     z-index: 1000;
 }
 
-.nav-item{
+.nav-item {
     font-size: 18px;
 }
 
-#navbar a{
+#navbar a {
     font-family: 'Do Hyeon', sans-serif;
 }
-#navbar img{
+
+#navbar img {
     border: 2px solid;
     margin: 0px 7px 0px 0px;
     width: 40px;
@@ -74,46 +102,89 @@ h5{
 }
 
 #back-to-top {
-  display: inline-block;
-  background-color: orange;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  transition: background-color .3s,
+    display: inline-block;
+    background-color: orange;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
     opacity .5s, visibility .5s;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
 }
 
 #back-to-top::after {
-  content: "\f077";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 2em;
-  line-height: 50px;
-  color: #fff;
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
 }
 
 #back-to-top:hover {
-  cursor: pointer;
-  background-color: #333;
-  text-decoration: none;
+    cursor: pointer;
+    background-color: #333;
+    text-decoration: none;
 }
 
 #back-to-top:active {
-  background-color: #555;
+    background-color: #555;
 }
 
 #back-to-top.show {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
+
+/* 민정 추가 */
+#abc p{
+    margin:0;
+}
+#abc #shit {
+    background-color: white;
+    height: 300px;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.intranet-main {
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    font-family: 'NanumGothic', sans-serif;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 20px;
+}
+
+#intranet-main-title {
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+}
+
+#intranet-main-list {
+    font-size: 16px;
+    height: 24px;
+    line-height: 20px;
+}
+
+#intranet-main-content {
+    overflow: hidden;
+    display: block;
+    line-height: 24px;
+    text-overflow: ellipsis;
+}
+
 /* navbar end */
 
 
@@ -129,42 +200,44 @@ h5{
 }
 
 .progress-bar {
-height: 8px;
-background: black;
-width: 0%;
+    height: 8px;
+    background: black;
+    width: 0%;
 }
+
 /* intro end */
 
 
 /* about start */
 .home-section {
-  width: 100%;
-  padding: 6% 0 4% 0;
+    width: 100%;
+    padding: 6% 0 4% 0;
 }
 
 .section-heading {
-  margin-bottom: 30px;
-  text-align: center;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 #about .about-img {
-  height: 350px;
-  overflow: hidden;
+    height: 350px;
+    overflow: hidden;
 }
 
 #about .about-img img {
-  margin-left: -15px;
-  max-width: 100%;
+    margin-left: -15px;
+    max-width: 100%;
 }
 
 @media (max-width: 992px) {
-  #about .about-img {
-    height: auto;
-  }
-  #about .about-img img {
-    margin-left: 0;
-    padding-bottom: 30px;
-  }
+    #about .about-img {
+        height: auto;
+    }
+
+    #about .about-img img {
+        margin-left: 0;
+        padding-bottom: 30px;
+    }
 }
 
 #about .content h3 {
@@ -184,125 +257,129 @@ width: 0%;
 }
 
 #about .content p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .counters {
-  padding-top: 70px;
+    padding-top: 70px;
 }
 
 .counters span {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  font-size: 48px;
-  display: block;
-  color: #25CCA0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 48px;
+    display: block;
+    color: #25CCA0;
 }
 
 .counters p {
-  padding: 0;
-  margin:0;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  color: #2C3E52;
+    padding: 0;
+    margin: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2C3E52;
 }
 
-.counters h1{
-  padding: 0;
-  margin: 0 0 30px 0;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  color: #2C3E52;
+.counters h1 {
+    padding: 0;
+    margin: 0 0 30px 0;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2C3E52;
 }
+
 /* about end */
 
 
 /* activity start */
-#schedule{
+#schedule {
     margin: 0 auto;
     padding-bottom: 3%;
 }
 
-#schedule img{
+#schedule img {
     width: 100%;
 }
 
-#schedule h5{
-    color:black;
-    padding:3% 0 0 0;
+#schedule h5 {
+    color: black;
+    padding: 3% 0 0 0;
 }
 
-.divider{
-    width:79%;
-    border-top:2px solid #25CCA0;
-    margin:4% auto;
+.divider {
+    width: 79%;
+    border-top: 2px solid #25CCA0;
+    margin: 4% auto;
 }
 
 .activity {
     background-color: rgb(44, 62, 82);
 }
 
-.activity-content{
+.activity-content {
     padding-bottom: 3%;
 }
 
 .activity-info {
-    color:white;
-    text-align:center;
+    color: white;
+    text-align: center;
     padding: 6% 0 2% 0;
 }
 
-.activity-content{
+.activity-content {
     padding-bottom: 6%;
-    }
+}
+
 /* activity end */
 
 
 /* portfolio start */
 .og-grid {
-	list-style: none;
-	padding: 20px 0;
-	margin: 0 auto 15px auto;
-	text-align: center;
-	width: 100%;
+    list-style: none;
+    padding: 20px 0;
+    margin: 0 auto 15px auto;
+    text-align: center;
+    width: 100%;
 }
 
 .og-grid li {
-	display: inline-block;
-	margin: 15px 5px 0 5px;
-	vertical-align: top;
-	height: 250px;
+    display: inline-block;
+    margin: 15px 5px 0 5px;
+    vertical-align: top;
+    height: 250px;
 }
 
 .og-grid li > a,
 .og-grid li > a img {
-	border: none;
-	outline: none;
-	display: block;
-	position: relative;
+    border: none;
+    outline: none;
+    display: block;
+    position: relative;
 }
 
-#port img{
+#port img {
     width: 250px;
     height: 250px;
 }
+
 /* portfolio end */
 
 /* photo start */
 .slick-slide {
-margin: 0 27px 20px 27px;
+    margin: 0 27px 20px 27px;
 }
 
 .slick-prev:before, .slick-next:before {
-color:#25CCA0 !important;
+    color: #25CCA0 !important;
 }
 
-#photo{
-margin-top: 6%;
-margin-bottom: 8%;
+#photo {
+    margin-top: 6%;
+    margin-bottom: 8%;
 }
+
 /* photo end */
 
 
@@ -354,7 +431,7 @@ select {
 }
 
 div.card-header:hover {
-    color: rgb(47,65,84);
+    color: rgb(47, 65, 84);
     font-weight: 900;
 }
 
@@ -367,7 +444,7 @@ div.card-header:after {
     bottom: 0em;
     height: 3px;
     width: 0;
-    background: rgb(47,65,84);
+    background: rgb(47, 65, 84);
     left: 0;
 }
 
@@ -383,9 +460,10 @@ div.card-header:hover:after {
     float: left;
 }
 
-.icon{
+.icon {
     float: right;
 }
+
 /* port_list end */
 
 
@@ -398,12 +476,13 @@ div.card-header:hover:after {
     text-align: center;
     border-bottom: solid 1px gray;
 }
+
 /* recruit end */
 
 /* footer start */
 #foot .contact {
     text-align: center;
-    padding:1%;
+    padding: 1%;
     margin-top: 70px;
 }
 
@@ -413,15 +492,16 @@ div.card-header:hover:after {
 }
 
 #foot i:hover {
-    color:#25CCA0;
+    color: #25CCA0;
 }
 
-#foot{
+#foot {
     /* background-color: #25CCA0;
     color:white; */
     margin-bottom: 20px;
-    font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans KR', Helvetica, Arial, sans-serif;
 }
+
 /* footer end */
 
 /* btn style start */
@@ -439,7 +519,7 @@ div.card-header:hover:after {
     color: #2C3E52;
 }
 
-.btn-mint:hover{
+.btn-mint:hover {
     color: #25CCA0;
 }
 
@@ -457,9 +537,10 @@ div.card-header:hover:after {
 }
 
 .btn-navy:before,
-.btn-navy:after{
-    background:#2C3E52;
+.btn-navy:after {
+    background: #2C3E52;
 }
+
 .btn-mint:before,
 .btn-mint:after {
     background: #25CCA0;
@@ -497,7 +578,7 @@ div.card-header:hover:after {
 
 
 /* img header start */
-.img-header{
+.img-header {
     background-position: top center;
     background-size: 1500px;
     background-repeat: no-repeat;
@@ -524,16 +605,16 @@ div.card-header:hover:after {
 
 .header-title {
     font-family: 'Dosis', sans-serif;
-    font-size: 60px; 
-    border-bottom: solid 1px; 
+    font-size: 60px;
+    border-bottom: solid 1px;
 }
 
-.header-text{
+.header-text {
     font-family: 'Nanum Gothic', sans-serif;
-    font-size:15px;
+    font-size: 15px;
 }
 
-.create-title{
+.create-title {
     margin: 20px 0px 30px 0px;
     border-bottom: solid 1px #2C3E52;
     font-family: 'Nanum Gothic', sans-serif;
