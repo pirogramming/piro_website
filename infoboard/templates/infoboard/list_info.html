@@ -6,100 +6,129 @@
 {% endblock %}
 
 {% block content %}
+
 <style>
-#board a{
+
+  #board a {
     text-decoration: none;
-    color:black;
-}
-#board:hover{
+    color: black;
+  }
+
+  #board:hover {
     background-color: #FAF9F7;
     transition-duration: 0.4s;
-}
+  }
 
-.pagination li{
-    display:table-cell;
+  .pagination li {
+    display: table-cell;
     padding: 0;
-}
+  }
+
+  #rec_upld {
+    color: #25CCA0;
+    border: solid 1px #25CCA0;
+  }
+
+  #rec_upld:hover {
+    background-color: #25CCA0;
+    color: white;
+  }
 
 </style>
+
 <script>
-function change_infoboard() {
+  function change_infoboard() {
     document.getElementById("option1").style.color = 'white';
-}
-change_infoboard();
+  }
+  change_infoboard();
 </script>
+
 <div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding:15px; margin:20px auto 0px auto;">
-    <strong><a style="text-decoration: none; color: black;" href="{% url 'infoboard:list_info' %}">정보게시판</a></strong>
-    <div style="display: inline-block; float: right;">
-        <a class="btn btn-primary" id="profileb" href="{% url "infoboard:create_info" %}" role="button"><i class="fas fa-pen-square" style="margin-right: 8px;"></i>게시물 등록하기</a>
-    </div>
+  <strong>
+    <a style="text-decoration: none; color: black;" href="{% url 'infoboard:list_info' %}" class="nanum">
+      정보게시판
+    </a>
+  </strong>
+  <div style="display: inline-block; float: right;">
+    <a class="btn btn-mint" id="profileb" href="{% url "infoboard:create_info" %}" role="button">
+      <i class="fas fa-pen-square" style="margin-right: 8px;"></i>
+      게시물 등록하기
+    </a>
+  </div>
 </div>
-<div class="col-lg-10 col-sm-11 col-xs-12" style="font-size: 26px; padding-right: 15px; padding-left:20px; margin:0px auto;">
-<form action="" method="post">
+<div class="col-lg-10 col-sm-11 col-xs-12"
+  style="font-size: 26px; padding-right: 15px; padding-left:20px; margin:0px auto;">
+  <form action="" method="post">
     {% csrf_token %}
     <input class="form-control" type="text" name="q" value="{{ q }}" style="width: 30%; display: inline-block">
-    <input type="submit" value="검색" id= "rec_upld" class="btn btn-primary" style=""/>
-</form>
+    <input type="submit" value="검색" id="rec_upld" class="btn" style="" />
+  </form>
 </div>
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:black; margin:10px auto 0px auto;">
-    <div class="row" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border:1px solid #ebe3db; background-color: #f1ebe6">
-        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
-        <div class="col-md-8 col-8" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
-        <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">글쓴이</div>
-    </div>
+  <div class="row nanum"
+    style="margin:0px 5px;text-align: center; Sans-Serif; font-size: 13px; border-bottom:1px solid gray;">
+    <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">번호</div>
+    <div class="col-md-8 col-8" style="text-align: center; padding:0.75rem; font-weight: bold;">제목</div>
+    <div class="col-md-3 col-2" style="text-align: center; padding:0.75rem; font-weight: bold;">글쓴이</div>
+  </div>
 </div>
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="color:#3e3a37; margin:0px auto 30px auto;">
-    {% for inf in infos %}
-    <div class="row" id="board" style="margin:0px 5px;text-align: center; font-family:Noto Sans KR, Sans-Serif; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
-        <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ inf.id }}</div>
-        <div class="col-md-8 col-8" style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a href="{%  url "infoboard:detail_info" inf.id %}">{{ inf.title }}</a></div>
-        <div class="col-md-3 col-2" style="text-align: left; padding:0.75rem;">
-            <span style="margin-left: 20px;">
-            {% if inf.user.img_profile %}
-            <img src="{{ inf.user.img_profile.url }}" style="border:1px solid #2C3E52; border-radius: 50%; width:18px; height: 18px"/>
-            {% else %}
-            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:1px solid #2C3E52; border-radius: 50%; width:18px; height: 18px"/>
-            {% endif %}
-            </span>
-            <span style="margin-left: 5px;">
-            {{ inf.user.username }}
-            </span>
-        </div>
+  {% for inf in infos %}
+  <div class="row nanum" id="board"
+    style="margin:0px 5px;text-align: center; Sans-Serif; font-size: 13px; border-right:1px solid #ebe3db; border-left:1px solid #ebe3db; border-bottom: 1px solid #ebe3db;">
+    <div class="col-md-1 col-2" style="text-align: center; padding:0.75rem;">{{ inf.id }}</div>
+    <div class="col-md-8 col-8"
+      style="text-align: left; padding:0.75rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><a
+        href="{%  url "infoboard:detail_info" inf.id %}">{{ inf.title }}</a></div>
+    <div class="col-md-3 col-2" style="text-align: left; padding:0.75rem;">
+      <span style="margin-left: 20px;">
+        {% if inf.user.img_profile %}
+        <img src="{{ inf.user.img_profile.url }}"
+          style="border:1px solid #2C3E52; border-radius: 50%; width:18px; height: 18px" />
+        {% else %}
+        <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+          style="border:1px solid #2C3E52; border-radius: 50%; width:18px; height: 18px" />
+        {% endif %}
+      </span>
+      <span style="margin-left: 5px;">
+        {{ inf.user.username }}
+      </span>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
 
 <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-xs-12" style="margin:0px auto 30px auto;">
-{% if infos.has_other_pages %}
-<div style="display:table; margin:0 auto;">
-  <ul class="pagination">
-    {% if infos.has_previous %}
+  {% if infos.has_other_pages %}
+  <div style="display:table; margin:0 auto;">
+    <ul class="pagination">
+      {% if infos.has_previous %}
       <li class="page-item"><a class="page-link" href="?page={{ infos.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-    {% endif %}
-    {% if infos.number > 2  %}
-        <li class="page-item"><a class="page-link" href="?page={{ 1 }}"> 1 </a></li>
-        <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
-    {% endif %}
-    {% for i in infos.paginator.page_range %}
-      {% if infos.number == i %}
-        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
       {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
       {% endif %}
-    {% endfor %}
-    {% if infos.number < max_index %}
-        <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
-        <li class="page-item"><a class="page-link" href="?page={{ max_index|add:'2' }}">{{ max_index|add:"2" }}</a></li>
-    {% endif %}
-    {% if infos.has_next %}
+      {% if infos.number > 2  %}
+      <li class="page-item"><a class="page-link" href="?page={{ 1 }}"> 1 </a></li>
+      <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
+      {% endif %}
+      {% for i in infos.paginator.page_range %}
+      {% if infos.number == i %}
+      <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if infos.number < max_index %}
+      <li class="page-item"><span class="page-link">...<span class="sr-only">...</span></span></li>
+      <li class="page-item"><a class="page-link" href="?page={{ max_index|add:'2' }}">{{ max_index|add:"2" }}</a></li>
+      {% endif %}
+      {% if infos.has_next %}
       <li class="page-item"><a class="page-link" href="?page={{ infos.next_page_number }}">&raquo;</a></li>
-    {% else %}
+      {% else %}
       <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-    {% endif %}
-  </ul>
-</div>
-{% endif %}
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

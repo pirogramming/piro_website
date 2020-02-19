@@ -15,11 +15,12 @@
         display:none
     }
     #prf_save{
-        background-color: #25CCA0;
-        border: 0px;
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
     }
     #prf_save:hover{
-        background-color: #2C3E52;
+        background-color: #25CCA0;
+        color:white;
     }
 
 </style>
@@ -54,7 +55,7 @@
                             <div>{{ profileform.phone_no|as_crispy_field }}</div>
                             <div>{{ profileform.github|as_crispy_field }}</div>
                             <div>
-                                <input type="submit" class="btn btn-primary" id="prf_save" value="저장하기">
+                                <input type="submit" class="btn id="prf_save" value="저장하기">
                             </div>
                         </form>
                     </div>

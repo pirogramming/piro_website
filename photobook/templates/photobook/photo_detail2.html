@@ -8,35 +8,14 @@
 
 {% load static %}
 
-<link href="https://fonts.googleapis.com/css?family=Advent+Pro|Dosis|Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static "css/lightbox.css" %}">
-
 <style>
-    .album-header {
-        background-image: url("{% static "img/photo.jpeg" %}");
-        background-position: top center;
-        background-size: 1500px;
-        background-repeat: no-repeat;
-        position: relative;
-        height: 500px;
-    }
 
-    .album-header .header-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 60px;
-        color: rgba(255, 255, 255, 0.8);
-        z-index: 2;
+    .img-header {
+        background-image: url("{% static "img/photo.jpg" %}");
     }
 
     .header-cover {
-        position: absolute;
-        height: 100%;
-        width: 100%;
         background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1;
     }
 
     .album-title {
@@ -52,10 +31,10 @@
         text-align: end;
     }
 
-
     .album-content {
-        padding: 100px 70px 50px 70px;
+        padding: 70px 70px 50px 70px;
     }
+
     .photo-wrap {
         text-align: center;
         padding: 20px 0px 40px 0px;
@@ -65,6 +44,7 @@
         height: 250px;
         width: 300px;
         border-radius: 3%;
+        margin: 15px
     }
 
     .album-footer {
@@ -77,17 +57,6 @@
         filter: grayscale(70%);
     }
 
-    .photobook-btn {
-        color: black;
-        font-size: 20px;
-        text-decoration: none;
-    }
-
-    .photobook-btn:hover{
-        border-bottom:solid 1px #25CCA0;
-        color: #25CCA0;
-        text-decoration: none;
-    }
 </style>
 <script>
 function change_photo() {
@@ -96,14 +65,14 @@ function change_photo() {
 change_photo();
 </script>
 <div class="album-container">
-    <div class="album-header">
+    <div class="img-header">
         <div class="header-content">
-            <h3 style="font-size: 60px; border-bottom: solid 1px; font-family: 'Dosis', sans-serif;">
+            <h3 class="header-title">
                 PHOTO
             </h3>
-            <span style="font-family: 'Nanum Gothic', sans-serif;">
-                <p style="font-size: 25px;">{{photobook.title}}</p>
-                <p style="font-size: 15px;">{{photobook.text}}</p>
+            <span>
+                <p class="nanum" style="font-size: 25px;">{{photobook.title}}</p>
+                <p class="header-text">{{photobook.text}}</p>
             </span>
         </div>
         <div class="header-cover"></div>
@@ -118,14 +87,14 @@ change_photo();
             {% endfor %}
         </div>
         <div style="text-align: right;">
-                <a href="{% url "photobook:update_book" photobook.pk %}" class="photobook-btn">
+                <a href="{% url "photobook:update_book" photobook.pk %}" class="btn-mint">
                     수정
                 </a>&nbsp&nbsp
                 <a href="{% url "photobook:delete_book" photobook.pk %}" onclick="return confirm('삭제하시겠습니까?');"
-                   class="photobook-btn">
+                   class="btn-mint">
                    삭제
                 </a>&nbsp&nbsp
-                <a href="{% url 'photobook:list_book' %}" class="photobook-btn">
+                <a href="{% url 'photobook:list_book' %}" class="btn-mint">
                     목록으로
                 </a>
         </div>

@@ -9,12 +9,13 @@
 {% block content %}
 <style>
     #profileb{
-        background-color: #25CCA0;
-        border: 0px;
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
     }
 
     #profileb:hover{
-        background-color: #2C3E52;
+        background-color: #25CCA0;
+        color:white;
     }
 
 </style>
@@ -39,7 +40,7 @@
             {% endif %}
             <strong>  {{ user }}님의 프로필</strong>
             <div style="display: inline-block; float: right;">
-                <a class="btn btn-primary" id="profileb" href="{% url "accounts:logout" %}" role="button" >로그아웃</a>
+                <a class="btn" id="profileb" href="{% url "accounts:logout" %}" role="button" >로그아웃</a>
             </div>
         </div>
         <div class="col-lg-12" style="font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;">

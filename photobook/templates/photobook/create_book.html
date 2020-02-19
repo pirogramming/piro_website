@@ -8,37 +8,50 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
 <style>
+
     #rec_upld{
-        background-color: #25CCA0; border: #25CCA0;
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
     }
     #rec_upld:hover{
-        background-color: #2C3E52;
+        background-color: #25CCA0;
+        color:white;
     }
+
     textarea.form-control{
-    height: 60px;
+        height: 60px;
     }
+
     .clearablefileinput{
         height:45px;
     }
+
+    .nanum{
+        margin-bottom: 25px;
+    }
+
 </style>
+
 <script>
 function change_photo() {
     document.getElementById("option3").style.color = 'white';
 }
 change_photo();
 </script>
+
 <div class="col-lg-7 col-md-8 col-11" style="margin:50px auto;">
-    <h2>사진첩 등록</h2>
+    <h2 class="create-title">사진첩 등록</h2>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.title|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.text|as_crispy_field }}
             </div>
-            <div class="signup-form">
+            <div class="signup-form nanum">
                 {{ form.thumbnail|as_crispy_field }}
             </div>
             <hr/>
@@ -52,7 +65,7 @@ change_photo();
                 <output id="list"></output>
             </div>
             <br>
-            <button type="submit" id="rec_upld" class="btn btn-primary">등록</button>
+            <button type="submit" id="rec_upld" class="btn">등록</button>
     </form>
 </div>
 {% else %}
