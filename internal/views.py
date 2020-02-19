@@ -298,7 +298,20 @@ def address_new(request, address=None):
 @login_required
 def address_edit(request, pk):
     address = get_object_or_404(InfoBook, pk=pk)
-    return address_new(request, address)
+
+    if request.method == 'POST':
+        form = InfoBookForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+            address.current_work = form.cleaned_data['current_work']
+            address.history = form.cleaned_data['history']
+            address.save()
+            return redirect('intranet:address_list')
+        return redirect('intranet:address_edit', pk)
+    else:
+        form = InfoBookForm(instance = address)
+        return render(request, 'internal/create_address.html', {'form': form})
 
 
 @login_required
