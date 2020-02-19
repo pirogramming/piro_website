@@ -555,10 +555,16 @@ div.card-header:hover:after {
     color: #25CCA0;
 }
 
+.btn-white:hover{
+    color: white;
+}
+
 .btn-navy:before,
 .btn-navy:after,
 .btn-mint:before,
-.btn-mint:after {
+.btn-mint:after 
+.btn-white:before,
+.btn-white:after{
     content: '';
     position: absolute;
     top: 0;
@@ -589,10 +595,15 @@ div.card-header:hover:after {
 .btn-navy:hover:before,
 .btn-navy:hover:after,
 .btn-mint:hover:before,
-.btn-mint:hover:after {
+.btn-mint:hover:after,
+.btn-white:hover:before,
+.btn-white:hover:after {
     width: 100%;
     transition: 800ms ease all;
 }
+
+
+
 
 /* btn style end */
 
