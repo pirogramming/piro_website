@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_internal.html' %}
 {% load static %}
 {% load humanize %}
 
@@ -53,8 +53,8 @@
                 <p><strong>깃허브 주소 : </strong>{% if user.github == None %}등록된 깃허브 주소가 없습니다.{% else %}{{ user.github }}{% endif %}</p>
                 <p><strong>보증금 상태 :</strong> {{ user.left_over|intcomma }}원</p>
                 <span>
-                    <a class="btn btn-primary" id="profileb" href="{% url "accounts:profile_update" %}" role="button" style="margin-right: 15px;">프로필 정보 수정</a>
-                    <a class="btn btn-primary" id="profileb" href="{% url "accounts:password_change" %}" role="button" >비밀번호 변경</a>
+                    <a class="btn" id="profileb" href="{% url "accounts:profile_update" %}" role="button" style="margin-right: 15px;">프로필 정보 수정</a>
+                    <a class="btn" id="profileb" href="{% url "accounts:password_change" %}" role="button" >비밀번호 변경</a>
                 </span>
             </div>
         </div>
