@@ -537,9 +537,18 @@ div.card-header:hover:after {
 /* footer end */
 
 /* btn style start */
-.btn-navy, .btn-mint {
+.btn-navy, .btn-sky {
     background-color: white;
     color: black;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.btn-nav{
+    color: white;
     border: none;
     position: relative;
     cursor: pointer;
@@ -551,20 +560,20 @@ div.card-header:hover:after {
     color: #2C3E52;
 }
 
-.btn-mint:hover {
-    color: #25CCA0;
+.btn-sky:hover {
+    color: #57a0d3;
 }
 
-.btn-white:hover{
+.btn-nav:hover {
     color: white;
 }
 
 .btn-navy:before,
 .btn-navy:after,
-.btn-mint:before,
-.btn-mint:after 
-.btn-white:before,
-.btn-white:after{
+.btn-sky:before,
+.btn-sky:after,
+.btn-nav:before,
+.btn-nav:after{
     content: '';
     position: absolute;
     top: 0;
@@ -579,13 +588,19 @@ div.card-header:hover:after {
     background: #2C3E52;
 }
 
-.btn-mint:before,
-.btn-mint:after {
-    background-color: #e14658;
+.btn-sky:before,
+.btn-sky:after {
+    background-color: #57a0d3;
+}
+
+.btn-nav:before,
+.btn-nav:after {
+    background: white ;
 }
 
 .btn-navy:after,
-.btn-mint:after {
+.btn-sky:after,
+.btn-nav:after{
     right: inherit;
     top: inherit;
     left: 0;
@@ -594,16 +609,13 @@ div.card-header:hover:after {
 
 .btn-navy:hover:before,
 .btn-navy:hover:after,
-.btn-mint:hover:before,
-.btn-mint:hover:after,
-.btn-white:hover:before,
-.btn-white:hover:after {
+.btn-sky:hover:before,
+.btn-sky:hover:after,
+.btn-nav:hover:before,
+.btn-nav:hover:after{
     width: 100%;
     transition: 800ms ease all;
 }
-
-
-
 
 /* btn style end */
 
@@ -629,6 +641,13 @@ div.card-header:hover:after {
     height: 500px;
 }
 
+.link-header{
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: static;
+}
+
 .header-cover {
     position: absolute;
     height: 100%;
@@ -637,6 +656,16 @@ div.card-header:hover:after {
 }
 
 .img-header .header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+
+.header-content{
     position: absolute;
     top: 50%;
     left: 50%;
