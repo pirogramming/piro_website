@@ -1,13 +1,34 @@
 {% load staticfiles %}
-<nav class="navbar navbar-expand-md navbar-dark" id="navbar" style="padding: 1%; background-color: #25CCA0;">
-    <div class="navbar-header">
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script>
+    $(document).ready(function(){
+      $(window).scroll(function(){
+        var scroll = $(window).scrollTop();
+        if (scroll > 1) {
+          $("#navbar-inter").css("background" , "#2d3142");
+        }
+        else{
+          $("#navbar-inter").css("background" , "#AAD6EC");  
+        }
+      })
+    })
+</script>
+<style>
+    .nav-link{
+        text-decoration: none;
+        color:white;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-md" id="navbar-inter" style="padding: 1%;">
         <a class="navbar-logo" href="{% url "intranet:mainscreen" %}">
-            <img src="{% static 'img/piro_logo.jpg' %}" alt="piro_logo" style="width:auto; height: 40px; border:0px;">
+            <p style=" font-family: 'Gugi'; font-size:23px; width:130px; color:#789FBB; margin-left:5%; margin-bottom: 0">피로그래밍</p>
         </a>
     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color:#e14658;">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -17,7 +38,7 @@
                 <a class="nav-link" id="option1" href="{% url "infoboard:list_info" %}">정보게시판</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url "intranet:qna" %}" id="option2">질문게시판 </a>
+                <a class="nav-link btn-white" href="{% url "intranet:qna" %}" id="option2">질문게시판 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url "photobook:list_book" %}" id="option3">사진첩 </a>
