@@ -44,7 +44,6 @@ h5{
 
 /* navbar start */
 .navbar{
-    background-color: #2F4154;
     padding:1% 1%;
     transition-duration: 0.43s;
     position: -webkit-sticky;
@@ -53,14 +52,18 @@ h5{
     z-index: 1000;
 }
 
+#navbar{
+    background-color: #2F4154;
+}
+
 .nav-item{
     font-size: 18px;
 }
 
-#navbar a{
+.navbar a{
     font-family: 'Do Hyeon', sans-serif;
 }
-#navbar img{
+.navbar img{
     border: 2px solid;
     margin: 0px 7px 0px 0px;
     width: 40px;
@@ -69,7 +72,7 @@ h5{
     border-radius: 50%;
 }
 
-#navbar i {
+.navbar i{
     margin-right: 10px;
 }
 
@@ -440,7 +443,7 @@ div.card-header:hover:after {
 }
 
 .btn-mint:hover{
-    color: #25CCA0;
+    color: #e14658;
 }
 
 .btn-navy:before,
@@ -458,11 +461,11 @@ div.card-header:hover:after {
 
 .btn-navy:before,
 .btn-navy:after{
-    background:#2C3E52;
+    background: #2C3E52;
 }
 .btn-mint:before,
 .btn-mint:after {
-    background: #25CCA0;
+    background-color: #e14658;
 }
 
 .btn-navy:after,
