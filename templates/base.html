@@ -64,7 +64,23 @@
     <script>
         new WOW().init();
     </script>
-
+    <script>
+    $(document).ready( function() {
+        $("#progress-container").hide();
+        $(".dodobird").css("display", ""); //hide your div initially
+        var botOfOthDiv = $("#home").position().top + $("#home").outerHeight(true) - '70';
+        $(window).scroll(function() {
+            if($(window).scrollTop() >= botOfOthDiv) { //scrolled past the other div?
+                $(".dodobird").css("display", "none");
+                $("#progress-container").show(); //reached the desired point -- show div
+            }
+            else{
+                $("#progress-container").hide();
+                $(".dodobird").css("display", "");
+            }
+        });
+    });
+    </script>
     <title>
         {% block title %}
         {% endblock %}
