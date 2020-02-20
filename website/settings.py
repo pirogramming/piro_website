@@ -91,6 +91,7 @@ CKEDITOR_CONFIGS = {
         #     'c': 'You custom funny language name'
         # },
         'toolbar': 'MyCustomToolbar',
+        'width': '',
         'extraPlugins': ','.join(
             [
                 # add the follow plugins
