@@ -210,6 +210,14 @@ h5 {
 /* navbar end */
 
 /*  민정 애니메이션    */
+.img-header-intranet{
+    background-image: url(/static/img/photo.jpg);
+    background-position: top center;
+    background-size: 1530px;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 650px;
+}
 .main-content span {
     width: 100%;
     float: left;
@@ -227,18 +235,19 @@ h5 {
     z-index: 1;
     top:10%;
 }
-.img-header .main-content {
+.img-header-intranet .main-content {
     font-family: 'Baloo Paaji', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 7%;
     width: 100%;
 }
 
 .main-content h1, .main-content h2 {
     padding-left:5%;
-    font-size: 90px;
+    position: absolute;
+    font-size: 105px;
+    top: 24%;
     z-index: 2;
     text-transform: uppercase;
 }
@@ -257,7 +266,7 @@ h5 {
 }
 
 .main-content h1 span:last-child {
-    color: #ffe221;
+    color: #ff8c9a;
     animation-delay: 0.5s;
 }
 
