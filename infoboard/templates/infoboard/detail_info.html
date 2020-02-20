@@ -63,8 +63,9 @@ change_infoboard();
         {% endfor %}
         </p>
         <hr/>
-        <p style="white-space: pre-wrap;word-wrap:break-word;">{{  info.text }}</p>
+        <p style="white-space: pre-wrap;word-wrap:break-word; padding:5px 5px 100px 5px;">{{  info.text }}</p>
     </div>
+    <hr/>
     <div style="display: inline-block; float: left;">
         <a class="btn-sky" href="{% url 'infoboard:list_info' %}">목록</a>
     </div>
