@@ -4,7 +4,7 @@
     $(document).ready(function(){
       $(window).scroll(function(){
         var scroll = $(window).scrollTop();
-        if (scroll > 1) {
+        if (scroll > 80) {
           $("#navbar-inter").css("background" , "#2d3142");
         }
         else{
@@ -12,12 +12,17 @@
         }
       })
     })
+
 </script>
 <style>
     .nav-link{
         text-decoration: none;
         color:white;
     }
+    #navbar-inter{
+        background-color: #AAD6EC;
+    }
+
 </style>
 
 
