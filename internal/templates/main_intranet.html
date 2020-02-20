@@ -201,18 +201,6 @@
 
     </style>
 
-    .python{
-        background-image: url("{% static "img/python.png" %}");
-        height:100px;
-        float:left;
-        margin-bottom: 30px;
-    }
-    
-    .django{
-        background-image: url("{% static "img/django.png" %}");
-        height:100px;
-        float:right;
-    }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -234,43 +222,23 @@
                         </h2>
                         <div class="header-main-cover"></div>
 
-    /* #shit {
-        margin: 0px 20px 0px 20px;
-    } */
-
-    /* #shit {
-        padding: 0px 20px 0px 20px;
-    } */
-
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<div id="abc" class="row">
-    <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="background-color: #f9f9f9;">
-        <div id="lol" class="row justify-content-around">
-            <div class="col-12 img-header">
-                <div class="header-content">
-                    <p style="font-size:50px;font-family: 'Gugi', cursive; text-align: center">피로그래밍</p>
-                    <p style="font-size:25px;font-family: 'Nanum Gothic', sans-serif;">당신의 프로그래밍을 응원합니다</p>
+                    </div>
                 </div>
-                <div class="header-cover"></div>
-            </div>
-            <div class="col-lg-12" style="margin-top:50px;">
-                <div class="row">
-                    <div id="shit" class="col-lg-5">
-                        <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
-                            <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
-                        </a>
-                        {% for question in question_recent %}
-                        <div class="intranet-main">
-                            <a href="{% url 'intranet:q_detail' question.pk %}"
-                                style="text-decoration: none; color: #3e3a37">
-                                <h2 id="intranet-main-list">{{ question.title }}</h2>
-                                <div id="intranet-main-content">
-                                    {{ question.body | safe }}
+                <div class="col-lg-12" style="margin-top:50px;">
+                    <div class="row" style="">
+                        <div id="shit" class="col-lg-5">
+                            <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
+                                <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
+                            </a>
+                            {% for question in question_recent %}
+                                <div class="intranet-main">
+                                    <a href="{% url 'intranet:q_detail' question.pk %}"
+                                       style="text-decoration: none; color: #3e3a37">
+                                        <h2 id="intranet-main-list">{{ question.title }}</h2>
+                                        <div id="intranet-main-content">
+                                            {{ question.body | safe }}
+                                        </div>
+                                    </a>
                                 </div>
                             {% endfor %}
                             <a href="{% url 'intranet:q_new' %}"
@@ -332,22 +300,21 @@
                                 {% endfor %}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-5 col-sm-5" id="info-link"
-                        style="background-color: white; border:1px solid #e3e2e0; padding: 20px; height: 300px;">
-                        <h1 id='intranet-main-title'>참고 사이트</h1>
-                        <div class="intranet-main edu-link">
-                            
-                                    <a style="color:black;" href="https://dojang.io/course/view.php?id=7" target="_blank">
-                                        <div class="col-lg-12 link-header python"> 
-                                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-4" id="info-link"
+                             style="background-color: white; border:1px solid #e3e2e0; padding: 20px; height: 300px;">
+                            <h1 id='intranet-main-title'>참고 사이트</h1>
+                            <div class="intranet-main edu-link">
+                                <div class="col-lg-12 link-header python">
+                                    <a style="color:black;" href="https://dojang.io/course/view.php?id=7"
+                                       target="_blank">
                                     </a>
-                            
-                            
-                                    <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/" target="_blank">
-                                        <div class="col-lg-12 link-header django"></div>
+                                </div>
+                                <div class="col-lg-12 link-header django">
+                                    <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/"
+                                       target="_blank">
                                     </a>
-                            
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
