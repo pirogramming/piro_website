@@ -1,95 +1,118 @@
 {% extends 'base_internal.html' %}
 
 {% block title %}
-피로그래밍 - 보드
+    피로그래밍 - 보드
 {% endblock %}
 
 {% block content %}
-{% load static %}
-<link href="https://fonts.googleapis.com/css?family=Dosis:700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-<style>
-    @media screen and (max-width: 991px) {
-        #shit {
-            margin: 0;
-            margin-bottom: 20px;
-            padding-left: 5px;
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Dosis:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <style>
+        @media screen and (max-width: 991px) {
+            #shit {
+                margin: 0;
+                margin-bottom: 20px;
+                padding-left: 5px;
+            }
+
+            #pbook {
+                margin-left: 0;
+            }
+
+            #lel {
+                display: none;
+            }
         }
 
-        #pbook {
-            margin-left: 0;
+
+        @media screen and (min-width: 992px) {
+            #shit {
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
+            #pbook {
+                margin-left: 80px;
+            }
         }
 
-        #lel {
-            display: none;
-        }
-    }
-
-
-    @media screen and (min-width: 992px) {
-        #shit {
-            margin-left: 80px;
-            margin-right: 20px;
+        .snip1432 {
+            position: relative;
+            overflow: hidden;
+            width: calc(33.33% - 13.33px);
+            background: #000000;
+            float: left;
+            text-align: center;
         }
 
-        #pbook {
-            margin-left: 80px;
+        .snip1432 > a {
+            color: white;
         }
-    }
 
-    .snip1432 {
-        position: relative;
-        overflow: hidden;
-        width: calc(33.33% - 13.33px);
-        background: #000000;
-        float: left;
-        text-align: center;
-    }
+        .snip1432 * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.6s ease;
+            transition: all 0.6s ease;
+        }
 
-    .snip1432>a {
-        color: white;
-    }
+        .snip1432 img {
+            max-width: 100%;
+            vertical-align: top;
+            -webkit-transition: opacity 0.35s;
+            transition: opacity 0.35s;
+            width: 100%;
+            height: 100%;
+        }
 
-    .snip1432 * {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transition: all 0.6s ease;
-        transition: all 0.6s ease;
-    }
+        .snip1432 figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-    .snip1432 img {
-        max-width: 100%;
-        vertical-align: top;
-        -webkit-transition: opacity 0.35s;
-        transition: opacity 0.35s;
-        width: 100%;
-        height: 100%;
-    }
+        .snip1432 figcaption > div {
+            height: 80%;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
 
-    .snip1432 figcaption {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+        .snip1432 p,
+        .snip1432 h3 {
+            /* margin: 0; */
+            position: absolute;
+            /* left: 0; */
+            padding: 0 20px;
+            text-transform: uppercase;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
 
-    .snip1432 figcaption>div {
-        height: 80%;
-        overflow: hidden;
-        width: 100%;
-        position: relative;
-    }
+        .snip1432 h3 {
+            font-size: 1em;
+            bottom: 0;
+        }
 
-    .snip1432 p,
-    .snip1432 h3 {
-        /* margin: 0; */
-        position: absolute;
-        /* left: 0; */
-        padding: 0 20px;
-        text-transform: uppercase;
-        font-family: 'Nanum Gothic', sans-serif;
-    }
+        .snip1432 h3:nth-of-type(2) {
+            opacity: 0;
+            -webkit-transform: translateY(150%);
+            transform: translateY(150%);
+        }
+
+        .snip1432:hover img {
+            opacity: 0.3;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+
+        .snip1432:hover figcaption h3:first-of-type {
+            -webkit-transform: translateY(150%);
+            transform: translateY(150%);
+            opacity: 0;
+        }
 
     .snip1432 h3 {
         font-size: 1.3em;
@@ -108,249 +131,227 @@
         transform: translateY(150%);
     }
 
-    .snip1432:hover img {
-        opacity: 0.3;
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
-    }
+        .notifications-count {
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            font: normal .60em 'Lato';
+            height: 16px;
+            line-height: 1.75em;
+            position: absolute;
+            right: 2px;
+            text-align: center;
+            top: -2px;
+            width: 16px;
+        }
 
-    .snip1432:hover figcaption h3:first-of-type {
-        -webkit-transform: translateY(150%);
-        transform: translateY(150%);
-        opacity: 0;
-    }
+        .rightside_but {
+            background-color: #f6f5f3;
+            border: 1px solid #e3e2e0;
+            border-radius: 2px;
+            text-align: center;
+            margin: auto 15px;
+            font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
+            font-size: 11px;
+            line-height: 26px;
+            margin-bottom: 10px;
+        }
 
-    .snip1432:hover figcaption h3:nth-of-type(2) {
-        opacity: 1;
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
-    }
+        .rightside_but:hover {
+            border: 1px solid #d6d6c5;
+        }
 
-    .button-default {
-        . transition(@transitionDefault color);
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        margin: 0;
-        outline: none;
-        position: relative;
-    }
+        .img-header {
+            background-image: url("{% static "img/photo.jpg" %}");
+        }
 
-    .notifications-count {
-        border-radius: 50%;
-        background-color: black;
-        color: white;
-        font: normal .60em 'Lato';
-        height: 16px;
-        line-height: 1.75em;
-        position: absolute;
-        right: 2px;
-        text-align: center;
-        top: -2px;
-        width: 16px;
-    }
+        .header-cover {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 50%;
+            left: 0;
+            top: 130px;
+        }
 
-    .rightside_but {
-        background-color: #f6f5f3;
-        border: 1px solid #e3e2e0;
-        border-radius: 2px;
-        text-align: center;
-        margin: auto 15px;
-        font-family: 'NanumGothic', 'Nanum Gothic', sans-serif;
-        font-size: 11px;
-        line-height: 26px;
-        margin-bottom: 10px;
+        #intranet-btn {
+            color: #57a0d3;
+            border: solid 1px #57a0d3;
+        }
 
-    }
+        #intranet-btn:hover {
+            background-color: #57a0d3;
+            color: white;
+        }
 
-    .rightside_but:hover {
-        border: 1px solid #d6d6c5;
-    }
+        .python {
+            background-image: url("{% static "img/python.png" %}");
+            height: 100px;
+            float: left;
+        }
 
-    .img-header {
-        background-image: url("{% static "img/photo.jpg" %}");
-    }
+        .django {
+            background-image: url("{% static "img/django.png" %}");
+            height: 100px;
+            float: right;
+        }
 
- 
-    .header-cover {
-        background-color: rgba(0, 0, 0, 0.7);
-        width: 100%;
-        height: 50%;
-        left: 0;
-        top: 130px;
-    }
+        #edu-link {
+            position: relative;
+            /* float: right; */
+        }
 
-    .python-link {
-        background-color: skyblue;
-        text-align: center;
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Dosis', sans-serif;
-        padding: 5px;
-    }
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+    </style>
 
-    .django-link {
-        background-color: teal;
-        color: black;
-        text-align: center;
-        height: 100px;
-        line-height: 100px;
-        font-size: 30px;
-        font-weight: 700;
-        font-family: 'Dosis', sans-serif;
-        letter-spacing: 1px;
-        padding: 5px;
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    #intranet-btn{
-        color:#57a0d3;
-        border: solid 1px #57a0d3;
-    }
-
-    #intranet-btn:hover{
-        background-color:#57a0d3;
-        color:white;
-    }
-
-
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<div id="abc" class="row">
-    <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="background-color: #f9f9f9;">
-        <div id="lol" class="row">
-            <div class="col-12 img-header">
-                <div class="header-content">
-                    <p style="font-size:50px;font-family: 'Gugi', cursive; text-align: center">피로그래밍</p>
-                    <p style="font-size:25px;font-family: 'Nanum Gothic', sans-serif;">당신의 프로그래밍을 응원합니다</p>
-                </div>
-                <div class="header-cover"></div>
-            </div>
-            <div class="col-lg-12" style="margin-top:50px;">
-                <div class="row" style="">
-
-                    <div id="shit" class="col-lg-5">
-                        <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
-                            <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
-                        </a>
-                        {% for question in question_recent %}
-                        <div class="intranet-main">
-                            <a href="{% url 'intranet:q_detail' question.pk %}"
-                                style="text-decoration: none; color: #3e3a37">
-                                <h2 id="intranet-main-list">{{ question.title }}</h2>
-                                <div id="intranet-main-content">
-                                    {{ question.body | safe }}
-                                </div>
-                            </a>
-                        </div>
-                        {% endfor %}
-                        <a href="{% url 'intranet:q_new' %}" style="margin-left: 98%; font-size: 20px;color:black"><i
-                                class="far fa-edit"></i></a>
-                    </div>
-
-                    <div class="col-lg-5"
-                        style="background-color: white; border: 1px solid #d9d9d9; padding: 20px; height: 300px;">
-                        <a href="{% url "infoboard:list_info" %}" style="text-decoration:none; color:#212529">
-                            <h1 id='intranet-main-title'><i class="far fa-lightbulb"></i> 정보게시판</h1>
-                        </a>
-                        {% for info in info_recent %}
-                        <div class="intranet-main">
-                            <a href="{% url 'infoboard:detail_info' info.pk %}"
-                                style="text-decoration: none; color: #3e3a37">
-                                <h2 id="intranet-main-list">{{ info.title }}</h2>
-                                <p id="intranet-main-content">
-                                    {{ info.text }}
-                                </p>
-                            </a>
-                        </div>
-                        {% endfor %}
-
-                        <a href="{% url 'infoboard:create_info' %}"
-                            style="margin-left: 98%; font-size: 20px;color:black"><i class="far fa-edit"></i></a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-12" style="height: 300px; margin-top:22px; margin-bottom: 22px;">
-                <div class="row" style="">
-                    <div class="col-lg-7" id="shit">
-                        <a href="{% url "photobook:list_book" %}" style="text-decoration:none; color:#212529">
-                            <div style="display: inline-block; letter-spacing: 0.15em; font-size: 11px;">
-                                <h1 id='intranet-main-title'>사진첩</h1>
-                            </div>
-                        </a>
-                        <div style="font-size: 12px;display:flex; justify-content: space-around">
-                            {% for photobook in photo_recent %}
-                            <!-- col-lg-12, col-sm-5 일때 각각 넓이 주는게 가능? -->
-                            <div class="snip1432" style="position: relative; height: 200px; width:250px;">
-                                <a href="{% url 'photobook:detail_book' photobook.pk %}">
-                                    <img src="{{ photobook.thumbnail.url }}" alt="...">
-                                    <figcaption>
-                                        <div>
-                                            <h3></h3>
-                                            <h3>더 많은 사진 보기</h3>
-                                        </div>
-                                        <div>
-                                            <p>{{ photobook.title }}
-                                                (사진 {{ photobook.images_set.all|length }}개)</p>
-                                        </div>
-                                    </figcaption>
-                                </a>
-                                <div
-                                    style="position:absolute; left:0; top:0; z-index:4; display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #c14c3d; border: 1px solid #c14c3d; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">
-                                    {{ photobook.id }}</div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="col-lg-3" id="info-link"
-                        style="background-color: white; border:1px solid #e3e2e0; padding: 20px; height: 300px;">
-                        <h1 id='intranet-main-title'>참고 사이트</h1>
-                        <div class="intranet-main edu-link">
-                            <div class="col-lg-12 python-link">
-                                <a style="color:black;" href="https://dojang.io/course/view.php?id=7" target="_blank">
-                                    <p>Python</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-12 django-link">
-                                <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/"
-                                    target="_blank">
-                                    <p>Django</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="img-header-intranet" style="padding:0;">
+        <div class="main-content">
+            <h1 class='title'>
+                <span>I am</span>
+                <span>your</span>
+                <span>Pirogramming</span>
+            </h1>
+            <h2 class="titie">
+                <span>Do</span>
+                <span>your</span>
+                <span>Programming</span>
+            </h2>
+            <div class="header-main-cover"></div>
         </div>
     </div>
 
+    <div id="abc" class="row">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="background-color: #f9f9f9;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12" style="padding-left: 80px; padding-right: 80px;">
+                    <div id="lol" class="row">
+                        <div class="col-lg-12" style="margin-top:50px;">
+                            <div class="row">
+                                <div id="shit" class="col-lg-5" style="border-top: 6px solid #40a4f4">
+                                    <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
+                                        <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
+                                    </a>
+                                    <div style="display: inline">
 
-    <div id="lel" class="col-lg-2 col-md-12 col-sm-12 col-12" class="for_h1" style="padding-left: 0;">
-        <div class="bs-example" style="text-align: right; margin-top: 10px;">
-            <button type="button" style="z-index: 20;" class="button-default show-notifications active show-toast">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="30" height="32" viewBox="0 0 30 32">
-                    <defs>
-                        <g id="icon-bell">
-                            <path class="path1"
-                                d="M15.143 30.286q0-0.286-0.286-0.286-1.054 0-1.813-0.759t-0.759-1.813q0-0.286-0.286-0.286t-0.286 0.286q0 1.304 0.92 2.223t2.223 0.92q0.286 0 0.286-0.286zM3.268 25.143h23.179q-2.929-3.232-4.402-7.348t-1.473-8.652q0-4.571-5.714-4.571t-5.714 4.571q0 4.536-1.473 8.652t-4.402 7.348zM29.714 25.143q0 0.929-0.679 1.607t-1.607 0.679h-8q0 1.893-1.339 3.232t-3.232 1.339-3.232-1.339-1.339-3.232h-8q-0.929 0-1.607-0.679t-0.679-1.607q3.393-2.875 5.125-7.098t1.732-8.902q0-2.946 1.714-4.679t4.714-2.089q-0.143-0.321-0.143-0.661 0-0.714 0.5-1.214t1.214-0.5 1.214 0.5 0.5 1.214q0 0.339-0.143 0.661 3 0.357 4.714 2.089t1.714 4.679q0 4.679 1.732 8.902t5.125 7.098z" />
+                                        <div class="intranet-qna-txt">
+                                            <p>새로 시작하는</p>
+                                            <p>피로그래머들을</p>
+                                            <p>도와주세요!</p>
+                                        </div>
+
+                                        <a href="{% url 'intranet:q_new' %}" id='question-icon'><i
+                                                class="far fa-edit"></i></a>
+                                        <img src="{% static "img/computer_screen_programming.png" %}"
+                                             style="width: 50%; height:70%; float:right;">
+                                    </div>
+                                </div>
+                                <div id="shit" class="col-lg-5"
+                                     style='margin-left:auto;border-top: 6px solid #bb40f4   ;'>
+                                    <a href="{% url "infoboard:list_info" %}"
+                                       style="text-decoration:none; color:#212529">
+                                        <h1 id='intranet-main-title'><i class="far fa-lightbulb"></i> 정보게시판</h1>
+                                    </a>
+                                    {% for info in info_recent %}
+                                        <div class="intranet-main">
+                                            <a href="{% url 'infoboard:detail_info' info.pk %}"
+                                               style="text-decoration: none; color: #3e3a37">
+                                                <h2 id="intranet-main-list">{{ info.title }}</h2>
+                                                <p id="intranet-main-content">
+                                                    {{ info.text }}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                    <a href="{% url 'infoboard:create_info' %}" id="info-icon"><i
+                                            class="far fa-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" style="height: 300px; margin-top:35px; margin-bottom: 22px;">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7 col-sm-7" id="shit" style="border-top: 6px solid #f44079">
+                                    <a href="{% url "photobook:list_book" %}"
+                                       style="text-decoration:none; color:#212529">
+                                        <div style="text-decoration:none; color:#212529">
+                                            <h1 id='intranet-main-title'>사진첩</h1>
+                                        </div>
+                                    </a>
+                                    <div style="font-size: 12px;display:flex; justify-content: space-around">
+                                        {% for photobook in photo_recent %}
+                                            <div class="snip1432"
+                                                 style="position: relative; height: 200px; width:250px; ">
+                                                <a href="{% url 'photobook:detail_book' photobook.pk %}">
+                                                    <img src="{{ photobook.thumbnail.url }}" alt="...">
+                                                    <figcaption>
+                                                        <div>
+                                                            <h3></h3>
+                                                            <h3>더 많은 사진 보기</h3>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ photobook.title }}
+                                                                (사진 {{ photobook.images_set.all|length }}개)</p>
+                                                        </div>
+                                                    </figcaption>
+                                                </a>
+                                                <div
+                                                        style="position:absolute; left:0; top:0; z-index:4; display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #c14c3d; border: 1px solid #c14c3d; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">
+                                                    {{ photobook.id }}</div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4" id="shit"
+                                     style="margin-left:auto;border-top: 6px solid #f4be40;">
+                                    <h1 id='intranet-main-title'>참고 사이트</h1>
+                                    <div class="intranet-main edu-link">
+                                        <a style="color:black;" href="https://dojang.io/course/view.php?id=7"
+                                           target="_blank">
+                                            <div class="col-lg-12 link-header python"></div>
+                                        </a>
+                                        <a style="color:black;" href="https://docs.djangoproject.com/ko/3.0/intro/"
+                                           target="_blank">
+                                            <div class="col-lg-12 link-header django"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#            <div class="col-lg-2 col-md-12">#}
+                {#                #}
+                {#            </div>#}
+            </div>
+        </div>
+
+
+        <div id="lel" class="col-lg-2 col-md-12 col-sm-12 col-12" class="for_h1">
+            <div class="bs-example" style="text-align: right; margin-top: 10px;">
+                <button type="button" style="z-index: 20;" class="button-default show-notifications active show-toast">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         width="30" height="32" viewBox="0 0 30 32">
+                        <defs>
+                            <g id="icon-bell">
+                                <path class="path1"
+                                      d="M15.143 30.286q0-0.286-0.286-0.286-1.054 0-1.813-0.759t-0.759-1.813q0-0.286-0.286-0.286t-0.286 0.286q0 1.304 0.92 2.223t2.223 0.92q0.286 0 0.286-0.286zM3.268 25.143h23.179q-2.929-3.232-4.402-7.348t-1.473-8.652q0-4.571-5.714-4.571t-5.714 4.571q0 4.536-1.473 8.652t-4.402 7.348zM29.714 25.143q0 0.929-0.679 1.607t-1.607 0.679h-8q0 1.893-1.339 3.232t-3.232 1.339-3.232-1.339-1.339-3.232h-8q-0.929 0-1.607-0.679t-0.679-1.607q3.393-2.875 5.125-7.098t1.732-8.902q0-2.946 1.714-4.679t4.714-2.089q-0.143-0.321-0.143-0.661 0-0.714 0.5-1.214t1.214-0.5 1.214 0.5 0.5 1.214q0 0.339-0.143 0.661 3 0.357 4.714 2.089t1.714 4.679q0 4.679 1.732 8.902t5.125 7.098z"/>
+                            </g>
+                        </defs>
+                        <g fill="#000000">
+                            <use xlink:href="#icon-bell" transform="translate(0 0)"></use>
                         </g>
-                    </defs>
-                    <g fill="#000000">
-                        <use xlink:href="#icon-bell" transform="translate(0 0)"></use>
-                    </g>
-                </svg>
-                <div class="notifications-count">{{ notifications.count }}</div>
-            </button>
+                    </svg>
+                    <div class="notifications-count">{{ notifications.count }}</div>
+                </button>
 
-            <div>
-                <div class="toast" id="myToast" style="position: absolute; top: 6%; right: 7.2%; z-index: 11">
+                <div>
+                    <div class="toast" id="myToast" style="position: absolute; top: 6%; right: 7.2%; z-index: 11">
 
                     <div class="toast fade hide" id="yikes">
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times</button>
@@ -374,57 +375,58 @@
                         {% endfor %}
 
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 0px; margin-bottom: 10px;">
+                {% if request.user.img_profile %}
+                    <img class="img_profile" src="{{ request.user.img_profile.url }}"
+                         style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
+                {% else %}
+                    <img class="img_profile"
+                         src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                         style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px"/>
+                {% endif %}
+            </div>
+
+            <div
+                    style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
+                {{ request.user.username }} ({{ request.user.piro_no }}기)
+            </div>
+            <div>
+                <a href="{% url 'accounts:profile' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        프로필 보기
+                    </div>
+                </a>
+                {% if user.is_admin %}
+                    <a href="{% url 'money:check_money' %}">
+                        <div class="btn btn-outline-primary" id="intranet-btn">
+                            보증금 관리
+                        </div>
+                    </a>
+                {% endif %}
+                <a href="{% url 'intranet:my_post' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        내가 쓴 글 보기
+                    </div>
+                </a>
+                <a href="{% url 'intranet:my_bookmark' %}">
+                    <div class="btn btn-outline-primary" id="intranet-btn">
+                        스크랩한 글 보기
+                    </div>
+                </a>
+                <a href="{% url 'accounts:logout' %}">
+                    <div class="btn" id="intranet-btn">
+                        로그아웃
+                    </div>
+                </a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 0px; margin-bottom: 10px;">
-            {% if request.user.img_profile %}
-            <img class="img_profile" src="{{ request.user.img_profile.url }}"
-                style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px" />
-            {% else %}
-            <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
-                style="border:2px solid #2C3E52; border-radius: 50%; width:100px; height: 100px" />
-            {% endif %}
-        </div>
-
-        <div
-            style="text-align: center; font-family: 'NanumGothic', 'Nanum Gothic', sans-serif; color: #3e3a37; margin-bottom: 10px;">
-            {{ request.user.username }} ({{ request.user.piro_no }}기)
-        </div>
-        <div>
-            <a href="{% url 'accounts:profile' %}">
-                <div class="btn btn-outline-primary" id="intranet-btn">
-                    프로필 보기
-                </div>
-            </a>
-            {% if user.is_admin %}
-            <a href="{% url 'money:check_money' %}">
-                <div class="btn btn-outline-primary" id="intranet-btn">
-                    보증금 관리
-                </div>
-            </a>
-            {% endif %}
-            <a href="{% url 'intranet:my_post' %}">
-                <div class="btn btn-outline-primary" id="intranet-btn">
-                    내가 쓴 글 보기
-                </div>
-            </a>
-            <a href="{% url 'intranet:my_bookmark' %}">
-                <div class="btn btn-outline-primary" id="intranet-btn">
-                    스크랩한 글 보기
-                </div>
-            </a>
-            <a href="{% url 'accounts:logout' %}">
-                <div class="btn" id="intranet-btn"> 
-                    로그아웃
-                </div>
-            </a>
-        </div>
     </div>
-</div>
-<script>
+    <script>
 
 
     $(".show-toast").click(function () {
@@ -437,7 +439,7 @@
     });
 
 
-</script>
-
+    </script>
 
 {% endblock %}
+

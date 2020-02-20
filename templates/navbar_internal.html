@@ -15,65 +15,68 @@
 
 </script>
 <style>
-    .nav-link{
+
+    .nav-link {
         text-decoration: none;
         color:white;
         font-family: 'Do Hyeon';
     }
 
-    .navbar-logo:hover{
-        text-shadow:0px 0px 2.5px white;
-    }
-    #navbar-inter{
-        background-color: #AAD6EC;
+    .piro-nav{
+        font-family: 'Gugi';
+        font-size:23px; 
+        width:130px; 
+        color:white; 
+        margin-left:5%; 
+        margin-bottom: 0
     }
 
 </style>
 
 
 <nav class="navbar navbar-expand-md" id="navbar-inter" style="padding: 1%;">
-        <a class="navbar-logo" href="{% url "intranet:mainscreen" %}" style="text-decoration:none;">
-            <p style=" font-family: 'Gugi'; font-size:23px; width:130px; color:#789FBB; margin-left:5%; margin-bottom: 0;">피로그래밍</p>
+        <a class="navbar-logo" href="{% url "intranet:mainscreen" %}" style="text-decoration: none;">
+            <p class="piro-nav">피로그래밍</p>
         </a>
     </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-            <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
-        </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="color:white;">
+        <span class="navbar-toggler-icon" style="color:white;"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" id="option1" href="{% url "infoboard:list_info" %}">정보게시판</a>
+                <a class="nav-link btn-nav" id="option1" href="{% url "infoboard:list_info" %}">정보게시판</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url "intranet:qna" %}" id="option2">질문게시판 </a>
+                <a class="nav-link btn-nav" href="{% url "intranet:qna" %}" id="option2">질문게시판 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url "photobook:list_book" %}" id="option3">사진첩 </a>
+                <a class="nav-link btn-nav" href="{% url "photobook:list_book" %}" id="option3">사진첩 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url "intranet:address_list" %}" id="option4">회원주소록 </a>
+                <a class="nav-link btn-nav" href="{% url "intranet:address_list" %}" id="option4">회원주소록 </a>
             </li>
             {% if user.is_admin %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin:index' %}" id="option5">관리자 페이지 </a>
+                <a class="nav-link btn-nav" href="{% url 'admin:index' %}" id="option5">관리자 페이지 </a>
             </li>
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url "home:home" %}" id="option6">홈페이지 </a>
+                <a class="nav-link btn-nav" href="{% url "home:home" %}" id="option6">홈페이지 </a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" id="sign-up">
             {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url "accounts:logout" %}"><i
+                <li class="nav-item"><a class="nav-link btn-nav" href="{% url "accounts:logout" %}"><i
                         class="fas fa-sign-out-alt"></i>LOGOUT</a></li>
             {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url "accounts:signup" %}"><i class="fas fa-user"></i>SIGN
+                <li class="nav-item"><a class="nav-link btn-nav" href="{% url "accounts:signup" %}"><i class="fas fa-user"></i>SIGN
                     UP</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url "accounts:login" %}"><i
+                <li class="nav-item"><a class="nav-link btn-nav" href="{% url "accounts:login" %}"><i
                         class="fas fa-sign-in-alt"></i>LOGIN</a></li>
             {% endif %}
         </ul>
