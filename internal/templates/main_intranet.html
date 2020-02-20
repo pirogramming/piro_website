@@ -205,7 +205,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <div class="img-header-intranet" style="padding:0;">
+    <div class="img-header-intranet" style="padding:0; position: relative;">
+        {% for message in messages %}
+        <div class="alert alert-info" style="position: absolute; top:5px; left: 5px;">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+            {{ message.message }}
+        </div>
+        {% endfor %}
         <div class="main-content">
             <h1 class='title'>
                 <span>I am</span>

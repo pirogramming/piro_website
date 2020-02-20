@@ -10,10 +10,8 @@ function myFunction() {
 
 function navFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.padding = "1% 1%";
     document.getElementById("navbar").style.backgroundColor = "#25CCA0";
   } else {
-    document.getElementById("navbar").style.padding = "1% 1%";
     document.getElementById("navbar").style.backgroundColor = "#2F4154";
   }
 }
