@@ -161,7 +161,7 @@ h5 {
     height: 300px;
     border: 1px solid #d9d9d9;
     box-sizing: border-box;
-    padding: 20px;
+    /* margin: 20px; */
 }
 
 .intranet-main {
