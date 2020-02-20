@@ -236,9 +236,19 @@
                                     <a href="{% url "intranet:qna" %}" style="text-decoration:none; color:#212529">
                                         <h1 id='intranet-main-title'><i class="fas fa-question"></i> 질문게시판</h1>
                                     </a>
+                                    <div style="display: inline">
 
-                                    <a href="{% url 'intranet:q_new' %}" id='question-icon'><i
-                                            class="far fa-edit"></i></a>
+                                        <div class="intranet-qna-txt">
+                                            <p>새로 시작하는</p>
+                                            <p>피로그래머들을</p>
+                                            <p>도와주세요!</p>
+                                        </div>
+
+                                        <a href="{% url 'intranet:q_new' %}" id='question-icon'><i
+                                                class="far fa-edit"></i></a>
+                                        <img src="{% static "img/computer_screen_programming.png" %}"
+                                             style="width: 50%; height:70%; float:right;">
+                                    </div>
                                 </div>
                                 <div id="shit" class="col-lg-5"
                                      style='margin-left:auto;border-top: 6px solid #bb40f4   ;'>
