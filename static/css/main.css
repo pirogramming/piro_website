@@ -144,9 +144,6 @@ h5 {
 }
 
 /* 민정 추가 */
-.header-content {
-    margin: 0 auto;
-}
 
 #abc p {
     margin: 0;
@@ -212,6 +209,132 @@ h5 {
 
 /* navbar end */
 
+/*  민정 애니메이션    */
+.main-content span {
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    opacity: 0;
+    animation-timing-function: ease;
+    animation-duration: 3s;
+}
+.header-main-cover {
+    position: absolute;
+    height: 82%;
+    width: 100%;
+    opacity: 0.5;
+    background-color: black;
+    z-index: 1;
+    top:10%;
+}
+.img-header .main-content {
+    font-family: 'Baloo Paaji', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7%;
+    width: 100%;
+}
+
+.main-content h1, .main-content h2 {
+    padding-left:5%;
+    font-size: 90px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+.main-content h1 span {
+    animation-delay: 0.6s;
+    -webkit-animation-fill-mode: forwards;
+    animation-name: titleAnimation_1;
+    transform: translateY(-50px);
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+}
+
+.main-content h1 span:first-child {
+    animation-delay: 0.7s;
+}
+
+.main-content h1 span:last-child {
+    color: #ffe221;
+    animation-delay: 0.5s;
+}
+
+.main-content h2 {
+    position: absolute;
+}
+
+.main-content h2 span {
+    animation-delay: 4.1s;
+    animation-name: titleAnimation_2;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.main-content h2 span:first-child {
+    animation-delay: 4.2s;
+}
+
+h2 span:last-child {
+    color: #ffe221;
+    animation-delay: 4s;
+}
+
+@keyframes titleAnimation_1 {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    }
+    20% {
+        transform: translateY(0);
+        opacity: 1;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    }
+    80% {
+        transform: translateY(0);
+        opacity: 1;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    }
+    100% {
+        transform: translateY(50px);
+        opacity: 1;
+        -webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+        clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+
+    }
+}
+
+@keyframes titleAnimation_2 {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    }
+    20% {
+        transform: translateY(0);
+        opacity: 1;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    }
+    80% {
+        transform: translateY(0);
+        opacity: 1;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    }
+    100% {
+        /*transform: translateY(50px);*/
+        opacity: 1;
+        /*-webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);*/
+        /*clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);*/
+
+    }
+}
 
 /* intro start */
 #progress-container {
@@ -547,7 +670,7 @@ div.card-header:hover:after {
     outline: none;
 }
 
-.btn-nav{
+.btn-nav {
     color: white;
     border: none;
     position: relative;
@@ -573,7 +696,7 @@ div.card-header:hover:after {
 .btn-sky:before,
 .btn-sky:after,
 .btn-nav:before,
-.btn-nav:after{
+.btn-nav:after {
     content: '';
     position: absolute;
     top: 0;
@@ -595,12 +718,12 @@ div.card-header:hover:after {
 
 .btn-nav:before,
 .btn-nav:after {
-    background: white ;
+    background: white;
 }
 
 .btn-navy:after,
 .btn-sky:after,
-.btn-nav:after{
+.btn-nav:after {
     right: inherit;
     top: inherit;
     left: 0;
@@ -612,7 +735,7 @@ div.card-header:hover:after {
 .btn-sky:hover:before,
 .btn-sky:hover:after,
 .btn-nav:hover:before,
-.btn-nav:hover:after{
+.btn-nav:hover:after {
     width: 100%;
     transition: 800ms ease all;
 }
@@ -641,7 +764,7 @@ div.card-header:hover:after {
     height: 500px;
 }
 
-.link-header{
+.link-header {
     background-position: top center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -665,7 +788,7 @@ div.card-header:hover:after {
     z-index: 2;
 }
 
-.header-content{
+.header-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -674,6 +797,7 @@ div.card-header:hover:after {
     color: rgba(255, 255, 255, 0.8);
     z-index: 2;
 }
+
 
 .header-title {
     font-family: 'Dosis', sans-serif;
