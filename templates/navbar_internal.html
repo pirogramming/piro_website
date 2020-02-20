@@ -1,21 +1,20 @@
 {% load staticfiles %}
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 <script>
-    $(document).ready(function(){
-      $(window).scroll(function(){
-        var scroll = $(window).scrollTop();
-        if (scroll > 80) {
-          $("#navbar-inter").css("background" , "#2d3142");
-        }
-        else{
-          $("#navbar-inter").css("background" , "#AAD6EC");
-        }
-      })
-    })
+window.onscroll = function() {navFunction();};
 
+function navFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar-inter").style.backgroundColor = "#2d3142";
+  } else {
+    document.getElementById("navbar-inter").style.backgroundColor = "#AAD6EC";
+  }
+}
 </script>
 <style>
-
+    #navbar-inter{
+        background-color: #AAD6EC;
+    }
     .nav-link {
         text-decoration: none;
         color:white;
@@ -30,7 +29,7 @@
         margin-left:5%; 
         margin-bottom: 0
     }
-    
+
     .navbar-logo:hover{
         text-shadow:0px 0px 2.5px white;
     }
