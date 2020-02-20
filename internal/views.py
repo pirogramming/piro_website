@@ -231,7 +231,7 @@ def comment_like(request):
             comment_like.delete()
             colortype = 'black'
         else:
-            colortype = 'blue'
+            colortype = 'red'
 
         comment.like_num = comment.like_count
         comment.save()
