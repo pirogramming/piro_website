@@ -95,11 +95,10 @@ change_recruit();
         <div class="row nanum table-inner" id="notice_list">
             <span class="inner-left">
                 <span>{{notice.created_at}}</span>
-                <span style="font-size: 8px; color:gray;">{{notice.author}}</span>
             </span>
             <span class="inner-right">
                 <a href="{{ notice.get_absolute_url }}">
-                    <span style="font-size: 25px;">{{notice.title}}</span>
+                    <span style="font-size: 25px; font-weight:bold;">{{notice.title}}</span>
                     <!-- <span>피로그래밍 모집 공지입니다! 클릭하여 상세 내용을 확인해보세요!</span> -->
                 </a>
             </span>
