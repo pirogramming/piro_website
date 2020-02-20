@@ -10,6 +10,7 @@
 
 
 {% block content %}
+<link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css' %}" />
 <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 <style>
@@ -44,7 +45,7 @@ change_infoboard();
 </script>
 
 <div class="col-sm-9" style="margin:50px auto;">
-    <h2 class="nanum" style="font-size: 2rem; white-space: pre-line; line-height: 150%;">#{{  info.id }} | {{  info.title }}</h2>
+    <h2 style="font-size: 2rem; white-space: pre-line; line-height: 150%; font-family:Jua">#{{  info.id }} | {{  info.title }}</h2>
     <hr/>
     <div class="nanum" style="padding:0; font-size:1rem; color:#888;">
         {% if info.user.img_profile %}
