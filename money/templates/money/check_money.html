@@ -8,6 +8,20 @@
 
 
 {% block content %}
+
+<style>
+    .input-mint{
+        width: 300px; 
+        color: #25CCA0; 
+        border: solid 1px #25CCA0;
+        width: 60px;
+    }
+    .input-mint:hover{
+        background-color: #25CCA0;
+        color:white;
+    }
+</style>
+
 {% if user.is_admin %}
     <div class="col-xl-5 col-lg-5 col-md-9 col-sm-9 col-xs-11" style="color:black; margin:50px auto;">
         <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
@@ -26,7 +40,7 @@
                         {{ form.day|as_crispy_field }}
                     </div>
                     <br/>
-                    <input type="submit" class="btn btn-primary" value="확인">
+                    <input type="submit" class="btn input-mint" value="확인">
                 </form>
             </div>
         </div>
