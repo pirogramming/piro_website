@@ -16,6 +16,10 @@
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 
     <style>
+        .hljs{
+            overflow-x: scroll;
+        }
+
         .django-ckeditor-widget{
             width: 100%;
         }
@@ -138,7 +142,7 @@
                     {% if i.deleted %}
                         <p style="color: dimgrey;">(삭제된 답변입니다.)</p>
                     {% else %}
-                        {{ i.body | safe }}
+                        {{ i.body | safe | urlize}}
                         {% if request.user == i.author %}
                             <div style="text-align: right">
                                 <a class="btn-sky" style="font-size: 13px; text-decoration: none" href="{% url "intranet:comment_delete" post.pk i.pk %}"
