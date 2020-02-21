@@ -344,7 +344,7 @@
                                     <div style="font-size: 12px;display:flex; justify-content: space-around">
                                         {% for photobook in photo_recent %}
                                             <div class="snip1432"
-                                                 style="position: relative; height: 200px; width:250px; ">
+                                                 style="position: relative; height: 200px; width:250px; margin:-10px 5px 0px 5px; ">
                                                 <a href="{% url 'photobook:detail_book' photobook.pk %}">
                                                     <img src="{{ photobook.thumbnail.url }}" alt="...">
                                                     <figcaption>
@@ -358,9 +358,9 @@
                                                         </div>
                                                     </figcaption>
                                                 </a>
-                                                <div
+                                                <!-- <div
                                                         style="position:absolute; left:0; top:0; z-index:4; display:inline-block; margin-bottom: 8px; margin-right: 5px; text-align: center; background-color: #c14c3d; border: 1px solid #c14c3d; color: #FFF; font-family: Lato; font-size: 10px; width: 24px; height: 24px; line-height: 20px;">
-                                                    {{ photobook.id }}</div>
+                                                    {{ photobook.id }}</div> -->
                                             </div>
                                         {% endfor %}
                                     </div>
