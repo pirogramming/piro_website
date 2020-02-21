@@ -129,7 +129,7 @@
                     {{ address.user.phone_no }}
                 </div>
                 <div>
-                    <a href="mailto:{{ address.user.email }}">
+                    <a href="mailto:{{ address.user.email }}" style="text-decoration: none">
                         <i class="fas fa-at" style="margin-right: 0px;"></i>
                         {{ address.user.email }}
                     </a>
@@ -143,8 +143,8 @@
             </div>
             <div style="display: inline-block; margin-left:auto; margin-right:0;">
                 {% if request.user == address.user %}
-                <a class="btn-sky" href="{% url "intranet:address_edit" address.pk %}" style="margin-right: 5px;">수정</a>
-                <a class="btn-sky" href="{% url "intranet:address_delete" address.pk %}" onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                <a class="btn-sky" href="{% url "intranet:address_edit" address.pk %}" style="margin-right: 5px; text-decoration: none;" >수정</a>
+                <a class="btn-sky" href="{% url "intranet:address_delete" address.pk %}" onclick="return confirm('삭제하시겠습니까?');" style="text-decoration: none;">삭제</a>
                 {% endif %}
             </div>
         </div>
