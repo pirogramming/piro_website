@@ -283,7 +283,7 @@
                                     <a href="{% url "photobook:list_book" %}"
                                        style="text-decoration:none; color:#212529">
                                         <div style="text-decoration:none; color:#212529">
-                                            <h1 id='intranet-main-title'>사진첩</h1>
+                                            <h1 id='intranet-main-title'><i class="far fa-images"></i> 사진첩</h1>
                                         </div>
                                     </a>
                                     <div style="font-size: 12px;display:flex; justify-content: space-around">
@@ -312,7 +312,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-4" id="shit"
                                      style="margin-left:auto;border-top: 6px solid #f4be40;">
-                                    <h1 id='intranet-main-title'>참고 사이트</h1>
+                                    <h1 id='intranet-main-title'><i class="far fa-window-restore"></i> 참고 사이트</h1>
                                     <div class="intranet-main edu-link">
                                         <a style="color:black;" href="https://dojang.io/course/view.php?id=7"
                                            target="_blank">
@@ -400,29 +400,29 @@
                 {{ request.user.username }} ({{ request.user.piro_no }}기)
             </div>
             <div class="intra-links">
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'accounts:profile' %}">
                         프로필 보기
                     </a>
                 </div>
                 {% if user.is_admin %}
-                    <div class="btn--corners" align="center">
+                    <div class="btn-corners" align="center">
                         <a href="{% url 'money:check_money' %}">
                             보증금 관리
                         </a>
                     </div>
                 {% endif %}
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'intranet:my_post' %}">
                         내가 쓴 글 보기
                     </a>
                 </div>
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'intranet:my_bookmark' %}">
                         스크랩한 글 보기
                     </a>
                 </div>
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'accounts:logout' %}">
                         로그아웃
                     </a>

@@ -78,8 +78,8 @@ h5 {
 
 }
 
-#sticks{
-        position: -webkit-sticky;
+#sticks {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -164,15 +164,16 @@ h5 {
     float: right;
     font-size: 23px;
     color: darkgray;
-    margin-top:-240px;
-}
-#info-icon:hover{
-    color:#bb40f4;
+    margin-top: -240px;
 }
 
-.intranet-qna-txt{
+#info-icon:hover {
+    color: #bb40f4;
+}
+
+.intranet-qna-txt {
     display: block;
-    float:left;
+    float: left;
     font-family: 'Nanum Pen Script', cursive;
 }
 
@@ -232,10 +233,62 @@ h5 {
     text-align: left;
     height: 60px;
     text-overflow: ellipsis;
-    font-size:16px;
+    font-size: 16px;
 }
 
 /* navbar end */
+@media screen and (max-width: 600px) {
+    #computer-icon {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #computer-icon {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+.intranet-qna-txt-inside {
+    height: 45px;
+}
+
+
+/*  민정 코너 버튼   */
+.btn-corners a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-corners:hover a {
+    color: #404040 !important;
+}
+
+.btn-corners {
+    font-family: 'Nanum Gothic', sans-serif;
+    border: none;
+    letter-spacing: -0.3px;
+    background: linear-gradient(to right, #788b9c, #2c3e50);
+    font-weight: 100;
+    padding: 11px;
+    margin: 3px 5px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-corners:hover {
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.3s ease 0s;
+}
 
 /*  민정 애니메이션    */
 .img-header-intranet {
