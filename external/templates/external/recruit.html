@@ -88,6 +88,12 @@ change_recruit();
         <div class="header-cover"></div>
     </div>
     <!-- Needs Backend -->
+    {% for message in messages %}
+    <div class="alert alert-info">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message.message }}
+    </div>
+    {% endfor %}
     <div class="notice-table" style="margin-top: 50px;">
         <div class="row thead" style="margin:0px 5px;">
         </div>
