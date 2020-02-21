@@ -330,7 +330,7 @@ h5 {
 
 /*  민정 애니메이션    */
 .img-header-intranet {
-    background-image: url(/static/img/work.jpg.jpg);
+    background-image: url(/static/img/work.jpg);
     background-position: top center;
     background-size: 1530px;
     background-repeat: no-repeat;
@@ -351,7 +351,7 @@ h5 {
     position: absolute;
     height: 82%;
     width: 100%;
-    opacity: 0.5;
+    opacity: 0.7;
     background-color: black;
     z-index: 1;
     top: 10%;
