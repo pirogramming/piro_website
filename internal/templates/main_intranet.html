@@ -208,10 +208,10 @@
 
     <div class="img-header-intranet" style="padding:0; position: relative;">
         {% for message in messages %}
-        <div class="alert alert-info" style="position: absolute; top:5px; left: 5px;">
-            <a class="close" href="#" data-dismiss="alert">×</a>
-            {{ message.message }}
-        </div>
+            <div class="alert alert-info" style="position: absolute; top:5px; left: 5px;">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+                {{ message.message }}
+            </div>
         {% endfor %}
         <div class="main-content">
             <h1 class='title'>
@@ -284,7 +284,7 @@
                                     <a href="{% url "photobook:list_book" %}"
                                        style="text-decoration:none; color:#212529">
                                         <div style="text-decoration:none; color:#212529">
-                                            <h1 id='intranet-main-title'>사진첩</h1>
+                                            <h1 id='intranet-main-title'><i class="far fa-images"></i> 사진첩</h1>
                                         </div>
                                     </a>
                                     <div style="font-size: 12px;display:flex; justify-content: space-around">
@@ -313,7 +313,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-4" id="shit"
                                      style="margin-left:auto;border-top: 6px solid #f4be40;">
-                                    <h1 id='intranet-main-title'>참고 사이트</h1>
+                                    <h1 id='intranet-main-title'><i class="far fa-window-restore"></i> 참고 사이트</h1>
                                     <div class="intranet-main edu-link">
                                         <a style="color:black;" href="https://dojang.io/course/view.php?id=7"
                                            target="_blank">
@@ -338,7 +338,8 @@
 
         <div id="lel" class="col-lg-2 col-md-12 col-sm-12 col-12" class="for_h1">
             <div class="bs-example" style="text-align: right; margin-top: 10px;">
-                <button type="button" style="z-index: 20;border:none; background-color: transparent" class="button-default show-notifications active show-toast">
+                <button type="button" style="z-index: 20;border:none; background-color: transparent"
+                        class="button-default show-notifications active show-toast">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          width="30" height="32" viewBox="0 0 30 32">
                         <defs>
@@ -369,12 +370,15 @@
                                     <form action="{% url 'intranet:checked'  notification.pk %}" method='post'
                                           id='notification_form'>
                                         {% csrf_token %}
-                                        <div>{{ notification.creator.username }} 님이 {{ notification.notification_type }}하셨습니다.
-                                            <a type="submit"
+                                        {{ notification.creator.username }} 님이 {{ notification.notification_type }}하셨습니다.
+                                        <br>
+                                        <div class ='notice-buttons'>
+                                            <a type="submit" class="go"
                                                href="{% url 'intranet:checked_and_go' notification.pk notification.myid %}">
-                                                바로가기 </a></div>
-                                        <input type="submit" class="btn btn-outline-dark" value=&check;
-                                               name="checked"/>
+                                            <i class="fas fa-external-link-alt"></i> <span>바로가기</span></a>
+                                            <input type="submit" class="check" value=&check;
+                                                   name="checked"/>
+                                        </div>
                                     </form>
                                 </div>
                             {% endfor %}
@@ -401,29 +405,29 @@
                 {{ request.user.username }} ({{ request.user.piro_no }}기)
             </div>
             <div class="intra-links">
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'accounts:profile' %}">
                         프로필 보기
                     </a>
                 </div>
                 {% if user.is_admin %}
-                    <div class="btn--corners" align="center">
+                    <div class="btn-corners" align="center">
                         <a href="{% url 'money:check_money' %}">
                             보증금 관리
                         </a>
                     </div>
                 {% endif %}
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'intranet:my_post' %}">
                         내가 쓴 글 보기
                     </a>
                 </div>
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'intranet:my_bookmark' %}">
                         스크랩한 글 보기
                     </a>
                 </div>
-                <div class="btn--corners" align="center">
+                <div class="btn-corners" align="center">
                     <a href="{% url 'accounts:logout' %}">
                         로그아웃
                     </a>
