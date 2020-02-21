@@ -64,7 +64,7 @@ change_infoboard();
         {% endfor %}
         </p>
         <hr/>
-        <p style="white-space: pre-wrap;word-wrap:break-word; padding:5px 5px 100px 5px;">{{  info.text }}</p>
+        <p style="white-space: pre-wrap;word-wrap:break-word; padding:5px 5px 100px 5px;">{{  info.text | urlize }}</p>
     </div>
     <hr/>
     <div style="display: inline-block; float: left;">

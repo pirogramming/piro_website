@@ -1,117 +1,126 @@
 {% extends 'base.html' %}
 
 {% block title %}
-피로그래밍 - 모집
+    피로그래밍 - 모집
 {% endblock %}
 
 {% block content %}
 
-{% load static %}
+    {% load static %}
 
 
-<style>
+    <style>
 
-    .img-header {
-        background-image: url("{% static "img/board.jpg" %}");
-    }
+        .img-header {
+            background-image: url("{% static "img/board.jpg" %}");
+        }
 
-    .header-cover {
-        background-color: rgba(47,65,84, 0.8);
-    }
+        .header-cover {
+            background-color: rgba(47, 65, 84, 0.8);
+        }
 
-    #notice_list{
-        padding: 40px 20px 30px 20px;
-    }
+        #notice_list {
+            padding: 40px 20px 30px 20px;
+        }
 
-    #notice_list a{
-        text-decoration: none;
-        color: #4f4f4f;
-    }
+        #notice_list a {
+            text-decoration: none;
+            color: #4f4f4f;
+        }
 
-    #notice_list a:hover{
-        color: black;
-        text-decoration: underline;
-    }
+        #notice_list a:hover {
+            color: black;
+            padding-bottom:20px;
+        }
 
-    /* 해결방안1-postion absolute 이용(단점: 높이 크게 고정해야함, 너무 긴 제목은 안됨) */
-    
-    /* .table-inner{
-        height: 150px; 
-        position: relative; 
-        border-bottom: 0.5px solid #d6d6d6;
-    } div
-    .inner-right{
-        float:right; 
-        position:absolute; 
-        left:230px;
-        top:8px;
-    } span
-    .inner-left{
-        float:left; 
-        position:absolute; 
-        top:10px;
-    } span*/
+        /* 해결방안1-postion absolute 이용(단점: 높이 크게 고정해야함, 너무 긴 제목은 안됨) */
 
-
-    /* 해결방안2 -block & 넓이부여(단점: 창크기 조금만 줄여도 금방 내려감, bottom line 주면 이상해짐(width값때문에)) */
-  
-    .inner-left{
-        display:block;
-        width:200px;
-        margin-bottom: 10px;
-    }
-
-    .inner-right{
-        display:block;
-        width: 900px;
-    }
+        /* .table-inner{
+            height: 150px;
+            position: relative;
+            border-bottom: 0.5px solid #d6d6d6;
+        } div
+        .inner-right{
+            float:right;
+            position:absolute;
+            left:230px;
+            top:8px;
+        } span
+        .inner-left{
+            float:left;
+            position:absolute;
+            top:10px;
+        } span*/
 
 
-</style>
+        /* 해결방안2 -block & 넓이부여(단점: 창크기 조금만 줄여도 금방 내려감, bottom line 주면 이상해짐(width값때문에)) */
 
-<script>
-function change_recruit() {
-    document.getElementById("option4").style.color = 'white';
-    document.getElementById("option1").href="{% url "home:home" %}#about";
-    document.getElementById("option2").href="{% url "home:home" %}#activity";
-    document.getElementById("option3").href="{% url "home:portfolio" %}";
-}
-change_recruit();
+        .inner-left {
+            display: block;
+            width: 200px;
+            margin-bottom: 10px;
+        }
 
-</script>
-<div class="notice-list wow fadeInUp">
-    <div class="img-header">
-        <div class="header-content">
-            <h3 class="header-title">RECRUITMENT</h3>
-            <p class="header-text">피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
+        .inner-right {
+            display: block;
+            width: 900px;
+
+        }
+
+
+
+    </style>
+
+    <script>
+        function change_recruit() {
+            document.getElementById("option4").style.color = 'white';
+            document.getElementById("option1").href = "{% url "home:home" %}#about";
+            document.getElementById("option2").href = "{% url "home:home" %}#activity";
+            document.getElementById("option3").href = "{% url "home:portfolio" %}";
+        }
+
+        change_recruit();
+
+    </script>
+    <div class="notice-list wow fadeInUp">
+        <div class="img-header">
+            <div class="header-content">
+                <h3 class="header-title">RECRUITMENT</h3>
+                <p class="header-text">피로그래밍 상세 모집일정과 관련 내용을 확인 하실 수 있습니다.</p>
+            </div>
+            <div class="header-cover"></div>
         </div>
-        <div class="header-cover"></div>
-    </div>
-    <!-- Needs Backend -->
-    <div class="notice-table" style="margin-top: 50px;">
-        <div class="row thead" style="margin:0px 5px;">
-        </div>
-        {% for notice in notice_list %}
-        <div class="row nanum table-inner" id="notice_list">
+        <!-- Needs Backend -->
+        {% for message in messages %}
+            <div class="alert alert-info">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        <div class="notice-table" style="margin-top: 50px;">
+            <div class="row thead" style="margin:0px 5px;">
+            </div>
+            {% for notice in notice_list %}
+                <div class="row nanum table-inner" id="notice_list">
             <span class="inner-left">
-                <span>{{notice.created_at}}</span>
+                <span>{{ notice.created_at }}</span>
             </span>
-            <span class="inner-right">
+                    <span class="inner-right">
                 <a href="{{ notice.get_absolute_url }}">
-                    <span style="font-size: 25px; font-weight:bold;">{{notice.title}}</span>
+                    <span style="font-size: 25px; font-weight:bold;">{{ notice.title }}</span>
                     <!-- <span>피로그래밍 모집 공지입니다! 클릭하여 상세 내용을 확인해보세요!</span> -->
                 </a>
             </span>
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% if user.is_admin %}
+            <div class="text-right" style="margin-right:40px;">
+                <a class="btn btn-navy" id="write_notice" href="{% url "home:recruit_new" %}" role="button">
+                    <i class="fas fa-pen" style="margin-right: 8px;"></i>
+                    글쓰기
+                </a>
+            </div>
+        {% endif %}
     </div>
-    {% if user.is_admin %}
-    <div class="text-right" style="margin-right:40px;">
-        <a class="btn btn-navy" id="write_notice" href="{% url "home:recruit_new" %}" role="button">
-            <i class="fas fa-pen" style="margin-right: 8px;"></i>
-            글쓰기
-        </a>
-    </div>
-    {% endif %}
-</div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.db.models import Max
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import NoticeForm, PortForm
@@ -63,7 +64,8 @@ def recruit_new(request, post=None):
             post.save()
             return redirect("home:recruit")
         else:
-            return redirect("home:home")
+            messages.error(request, '양식이 잘못되었습니다. 다시 시도해주세요.')
+            return redirect("home:recruit")
     else:
         form = NoticeForm(instance=post)
         return render(request, 'external/create_recruit.html', {
