@@ -179,17 +179,70 @@
         }
 
         .python {
-            background-image: url("{% static "img/python.png" %}");
-            height: 100px;
-            float: left;
-        }
+        background-image: url("{% static "img/python.png" %}");
+        height: 80px;
+        float: left;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
 
-        .django {
-            background-image: url("{% static "img/django.png" %}");
-            height: 100px;
-            float: right;
-        }
+    .python:hover,
+    .django:hover {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    .python, .django{
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .8s;
+        -moz-transition: .8s;
+        -ms-transition: .8s;
+        -o-transition: .8s;
+        transition: .8s;
+    }
 
+    .django {
+        background-image: url("{% static "img/django.png" %}");
+        height: 80px;
+        float: right;
+        opacity: 0.9;
+    }
+
+    .btn-4 {
+        cursor: pointer;
+        /* display: inline-block; */
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .btn-4:before {
+        position: absolute;
+        height: 100%;
+        font-size: 125%;
+        line-height: 3.5;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .btn-4c:before {
+        left: 100%;
+        opacity: 0;
+        top: 0;
+    }
+
+    .btn-4c:hover:before {
+        left: 120%;
+        opacity: 1;
+    }
+
+    .icon-arrow-right:before {
+        content: ' \21D0';
+
+    }
         #edu-link {
             position: relative;
             /* float: right; */
@@ -261,15 +314,17 @@
                                         <h1 id='intranet-main-title'><i class="far fa-lightbulb"></i> 정보게시판</h1>
                                     </a>
                                     {% for info in info_recent %}
-                                        <div class="intranet-main">
+                                    <div class="intranet-main">
+                                        <div class="btn-4 btn-4c icon-arrow-right">
                                             <a href="{% url 'infoboard:detail_info' info.pk %}"
-                                               style="text-decoration: none; color: #3e3a37">
+                                                style="text-decoration: none; color: #3e3a37">
                                                 <h2 id="intranet-main-list">{{ info.title }}</h2>
                                                 <p id="intranet-main-content">
                                                     {{ info.text }}
                                                 </p>
                                             </a>
                                         </div>
+                                    </div>
                                     {% endfor %}
                                     <a href="{% url 'infoboard:create_info' %}" id="info-icon"><i
                                             class="far fa-edit"></i></a>
@@ -313,7 +368,7 @@
                                 <div class="col-lg-3 col-md-4 col-sm-4" id="shit"
                                      style="margin-left:auto;border-top: 6px solid #f4be40;">
                                     <h1 id='intranet-main-title'><i class="far fa-window-restore"></i> 참고 사이트</h1>
-                                    <div class="intranet-main edu-link">
+                                    <div class="intranet-main edu-link grid cs-style-4">
                                         <a style="color:black;" href="https://dojang.io/course/view.php?id=7"
                                            target="_blank">
                                             <div class="col-lg-12 link-header python"></div>
@@ -367,7 +422,7 @@
                                      style="text-align: left; font-family: 'Noto Sans KR',Sans-Serif">
                                     <form action="{% url 'intranet:checked'  notification.pk %}" method='post'
                                           id='notification_form'>
-                                        {% csrf_token %}
+                                        {% csrf_token %} 
                                         <div>{{ notification.creator.username }} 님이 {{ notification.notification_type }}하셨습니다.
                                             <a type="submit"
                                                href="{% url 'intranet:checked_and_go' notification.pk notification.myid %}">
