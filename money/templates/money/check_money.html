@@ -1,7 +1,7 @@
 {% extends 'base_internal.html' %}
 
 {% block title %}
-피로그래밍 - 로그인
+피로그래밍 - 보증금 관리
 {% endblock %}
 
 {% load crispy_forms_tags %}
@@ -12,21 +12,22 @@
 <style>
     .input-mint{
         width: 300px; 
-        color: #25CCA0; 
-        border: solid 1px #25CCA0;
+        color: #2d3142;
+        border: solid 1px #2d3142;
         width: 60px;
     }
     .input-mint:hover{
-        background-color: #25CCA0;
+        border:solid 1px #AAD6EC;
+        background-color:#AAD6EC;
         color:white;
     }
 </style>
 
 {% if user.is_admin %}
     <div class="col-xl-5 col-lg-5 col-md-9 col-sm-9 col-xs-11" style="color:black; margin:50px auto;">
-        <div style="background-color: white;border: #25CCA0 solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
+        <div style="background-color: white;border:#AAD6EC solid 5px; padding:20px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
             <div style="text-align: center;">
-                <strong style="color: #25CCA0; font-family: 'Do Hyeon', sans-serif; font-size: 40px;">보증금 관리</strong>
+                <strong style="color: #AAD6EC; font-family: 'Do Hyeon', sans-serif; font-size: 40px;">보증금 관리</strong>
             </div>
             <div style="margin: 0px 70px">
                 <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
