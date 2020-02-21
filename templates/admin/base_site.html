@@ -200,6 +200,10 @@
             font-size: 20px;
         }
 
+        .fa-home:hover {
+            text-decoration-color: #00B0E8;
+        }
+
 
     </style>
 {% endblock %}
@@ -241,8 +245,8 @@ Footer links (left side)
 {#{% endblock %}#}
 
 {% block userlinks %}
-    <a href="{% url 'intranet:mainscreen' %}" style="font-family: 'Gugi', cursive; font-size: 15px; color:white;">
-        <i class="fas fa-home" style="  margin:5px; font-size: 15px"> </i>
+    <a id="board" href="{% url 'intranet:mainscreen' %}" style="font-family: 'Gugi', cursive; font-size: 15px; color:white; text-decoration:none;">
+        <i class="fas fa-home" style="  margin:5px; font-size: 15px; "> </i>
 
         Board </a>
 {% endblock %}
