@@ -1,0 +1,142 @@
+{% extends 'base_internal.html' %}
+
+{% block title %}
+    피로그래밍 - 사진
+{% endblock %}
+
+{% block content %}
+
+    {% load static %}
+
+    <style>
+
+        .img-header {
+            background-image: url("{% static "img/photo.jpg" %}");
+        }
+
+        .header-cover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .album-title {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .album-text {
+            text-align: center;
+            /* font-size: 30px; */
+        }
+
+        .album-date {
+            text-align: end;
+        }
+
+        .album-content {
+            padding: 70px 70px 50px 70px;
+        }
+
+        .photo-wrap {
+            width:76%;
+            margin:0 auto;
+            text-align: center;
+            padding: 20px 0px 40px 0px;
+        }
+
+        .photo-set {
+            position:relative;
+            box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+            background-color: white;
+            height: 230px;
+            width: 230px;
+            border-radius: 3%;
+            margin-right: 28px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .photo-set:hover{
+            z-index: 10;
+        }
+        .album-footer {
+            text-align: end;
+        }
+
+
+
+        .photo-big:hover {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
+        .photo-big {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: .8s;
+            -moz-transition: .8s;
+            -ms-transition: .8s;
+            -o-transition: .8s;
+            transition: .8s;
+        }
+
+    </style>
+    <script>
+        function change_photo() {
+            document.getElementById("option3").style.color = 'white';
+        }
+
+        change_photo();
+    </script>
+    <div class="album-container">
+        <div class="img-header">
+            <div class="header-content">
+                <h3 class="header-title">
+                    PHOTO
+                </h3>
+                <span>
+                <p class="nanum" style="font-size: 25px;">{{ photobook.title }}</p>
+                <p class="header-text">{{ photobook.text }}</p>
+            </span>
+            </div>
+            <div class="header-cover"></div>
+        </div>
+        <div class="album-content">
+            <div style="text-align: center"><strong class="nanum"
+                                                    style="font-size: 1.5rem;">{{ photobook.title }}</strong></div>
+            <div class="heading-line" style="height: 2px"></div>
+            <div class="photo-wrap" id="polaroid">
+
+                {% for img in images %}
+                    <a href="{{ img.image.url }}" style="text-decoration: none;" data-lightbox="roadtrip"
+                       data-title="{{ photobook.title }}">
+                        <img class="photo-set photo-big" src="{{ img.image.url }}" alt="">
+                    </a>
+                {% endfor %}
+            </div>
+            <div style="text-align: right;">
+                <a href="{% url "photobook:update_book" photobook.pk %}" class="btn-sky">
+                    수정</a>
+                &nbsp&nbsp
+                <a href="{% url "photobook:delete_book" photobook.pk %}" onclick="return confirm('삭제하시겠습니까?');"
+                   class="btn-sky">
+                    삭제</a>&nbsp&nbsp
+                <a class="btn-sky" href="{% url 'photobook:list_book' %}">
+                    목록으로
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static "js/lightbox-plus-jquery.js" %}"></script>
+    <script>
+        lightbox.option({
+            'alwaysShowNavOnTouchDevices': true,
+            'maxWidth': 600,
+            'maxHeight': 600,
+        })
+    </script>
+
+{% endblock %}

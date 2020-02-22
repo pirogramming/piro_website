@@ -1,0 +1,54 @@
+{% extends 'base_internal.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+프로필
+{% endblock %}
+
+{% block content %}
+<style>
+    #profileb{
+        color: #2F4154; 
+        border: solid 1px #2F4154;
+    }
+
+    #profileb:hover{
+        background-color: #2F4154;
+        color:white;
+    }
+
+</style>
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-lg-12" style="font-size: 26px; border-bottom: 1px solid #d6d6d6; padding: 10px;">
+            {% if user.img_profile %}
+                <img class="img_profile" src="{{ user.img_profile.url }}" style="border:2px solid #2C3E52; border-radius: 50%; width:50px; height: 50px"/>
+            {% else %}
+                <img class="img_profile" src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" style="border:2px solid #2C3E52; border-radius: 50%; width:50px; height: 50px"/>
+            {% endif %}
+            <strong>  {{ user }}님의 프로필</strong>
+            <div style="display: inline-block; float: right;">
+                <a class="btn" id="profileb" href="{% url "accounts:logout" %}" role="button" >로그아웃</a>
+            </div>
+        </div>
+        <div class="col-lg-12" style="font-family:'Noto Sans KR', Helvetica, Arial, sans-serif;">
+            <div style="text-align: left; font-size: 20px;">
+                <p style="margin-top: 15px;"><strong>아이디/ 닉네임 :</strong> {{ user.username }}</p>
+                <p><strong>이름 :</strong> {{ user.name }}</p>
+                <p><strong>이메일 :</strong> {{ user.email }}</p>
+                <p><strong>전화번호 :</strong> {{ user.phone_no }}</p>
+                <p><strong>기수 :</strong> {{ user.piro_no }}기</p>
+                <p><strong>깃허브 주소 : </strong>{% if user.github == None %}등록된 깃허브 주소가 없습니다.{% else %}{{ user.github }}{% endif %}</p>
+                <p><strong>보증금 상태 :</strong> {{ user.left_over|intcomma }}원</p>
+                <span>
+                    <a class="btn" id="profileb" href="{% url "accounts:profile_update" %}" role="button" style="margin-right: 15px;">프로필 정보 수정</a>
+                    <a class="btn" id="profileb" href="{% url "accounts:password_change" %}" role="button" >비밀번호 변경</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 회원가입
+{% endblock %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <style>
+        #reg{
+            width: 300px; 
+            color: #2F4154; 
+            border: solid 1px #2F4154;
+        }
+        #reg:hover{
+            background-color: #2F4154;
+            color:white;
+        }
+    </style>
+<script>
+    function change_acct() {
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="{% url "home:portfolio" %}";
+    document.getElementById("option4").href="{% url "home:recruit" %}";
+}
+
+    change_acct();
+</script>
+{% if not user.is_authenticated %}
+    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-11 col-xs-12" style="color:#2F4154; margin:50px auto;">
+        <div style="background-color: white;border:  solid 5px; padding:30px; border-radius: 20px; box-shadow: 3px 3px 20px 1px darkgray;">
+            <div style="text-align: center;">
+                <strong style="color: #2F4154; font-family: 'Do Hyeon', sans-serif; font-size: 40px;">피로그래밍 회원가입</strong>
+                <br>
+                <small>*표시된 항목은 필수항목 입니다</small><br/><br/>
+            </div>
+            <div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-5 signup-form">
+                                {{ form.name|as_crispy_field }}
+                            </div>
+                            <div class="col-md-7 signup-form">
+                            {{ form.phone_no|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="signup-form">
+                            {{ form.username|as_crispy_field }}
+                        </div>
+                        <div class="signup-form">
+                            {{ form.password1|as_crispy_field }}
+                        </div>
+                        <div class="signup-form">
+                            {{ form.password2|as_crispy_field }}
+                        </div>
+                        <h4 style="color: #2F4154; font-family: 'Do Hyeon', sans-serif; font-size: 30px; padding-bottom: 2px; border-bottom: solid 1px #2C3E52;">기타 프로필</h4>
+                        <div class="signup-form">
+                            {{ form.piro_no|as_crispy_field }}
+                        </div>
+                        <div class="signup-form">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                        <div class="signup-form">
+                            {{ form.img_profile|as_crispy_field }}
+                        </div>
+                        <div class="signup-form">
+                            {{ form.github|as_crispy_field }}
+                        </div>
+                    <br/>
+                    <div style="text-align: center;">
+                    <input type="submit" class="btn btn" id="reg" value="회원가입">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+<script>
+    alert('이미 로그인한 상태입니다. 로그아웃 후 회원가입을 진행해주세요.');
+    window.location.href = "{% url "home:home" %}";
+</script>
+{% endif %}
+
+{% endblock %}

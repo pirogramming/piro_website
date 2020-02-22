@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}
+피로그래밍 - 프로젝트
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+   .img-header {
+        background-image: url("{% static "img/port.jpg" %}");
+    }
+
+    .header-cover {
+        background-color: rgba(47,65,84, 0.8);
+    }
+
+    .portfolio-box{
+        padding: 50px 20px 50px 20px;
+    }
+
+    .text{
+        font-family: "Nanum Gothic";
+        font-weight:bold;
+    }
+
+</style>
+
+<script type="text/javascript">
+    function viewDiv(idx) {
+        if (idx != 0 && idx != 200){
+            for (var i=1; i<{{ maxno }}; i++){
+            $(".div"+i).css("display", "none");
+            }
+            $(".div"+idx).css("display", "");
+        }
+        else{
+            for (var i=1; i<{{ maxno }}; i++){
+            $(".div"+i).css("display", "");
+            }
+        }
+    }
+
+    function selectIndex(selectObj) {
+        var idx = selectObj.value;
+        viewDiv(idx);
+    }
+</script>
+
+<script>
+function change_port_list() {
+    document.getElementById("option3").style.color = 'white';
+    document.getElementById("option3").href = "{% url "home:portfolio" %}";
+    document.getElementById("option1").href="{% url "home:home" %}#about";
+    document.getElementById("option2").href="{% url "home:home" %}#activity";
+    document.getElementById("option3").href="#";
+}
+change_port_list();
+</script>
+
+<section class="wow fadeInUp">
+    <div class="img-header">
+        <div class="header-content">
+            <h3 class="header-title">PORTFOLIO</h3>
+            <p class="header-text">
+                피로그래밍에서 작업한 프로젝트에 대한 내용을 확인 할 수 있습니다.
+                <br>아래에서 기수를 선택하여 각 기수에서 완성한 프로젝트를 확인해보세요!
+            </p>
+        </div>
+        <div class="header-cover"></div>
+    </div>
+    <div class="portfolio-box">
+        <div class="portfolio-container" style="margin:20px 0px 10px 0px;">
+            <div class="portfolio-header">
+                <select name="select" onchange="javascript:selectIndex(this)">
+                    <option value="0" disabled selected>기수 선택</option>
+                    <option value="200">전체 보기</option>
+                    {% for i in range %}
+                    <option value="{{ i }}">{{ i }}기</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="portfolio-main">
+            <!-- Needs Backend -->
+            {% for no in range %}
+            <div class="accordion div{{ no }}" id="accordionExample{{ no }}">
+                {% for port in port_list %}
+                {% if port.pironumber == no %}
+                <div class="card">
+                    <div class="card-header" data-toggle="collapse" data-target="#collapse{{ port.id }}"
+                    aria-expanded="false" aria-controls="collapse{{ port.id }}">
+                    <div class="text">
+                        {{ port.title }}
+                    </div>
+                    <div class="icon fas fa-plus"></div>
+                </div>
+                    <div id="collapse{{ port.id }}" class="collapse" aria-labelledby="heading{{ port.id }}" data-parent="#accordionExample{{ no }}">
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    {% if port.image %}
+                                    <img src="{{ port.image.url }}" class="card-img" alt="..." style="padding: 20px; width: 350px; height: auto;">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="font-family: 'Do Hyeon', Sans-Serif; text-align: left">{{port.pironumber}}기 {{ port.team }}, {{ port.title }}</h5>
+                                        <p class="card-text" style="white-space: pre-wrap; font-family: 'Noto Sans KR', Sans-Serif">{{ port.content|urlize }}</p>
+                                    </div> 
+                                </div>
+                            </div>
+                                {% if user.is_admin %}
+                                <div style="display: inline-block; float: right; margin-bottom: 5px;">
+                                    <a class="btn-navy" href="{% url "home:port_edit" port.pk %}" style="margin-right: 5px; text-decoration: none;">수정</a>
+                                    <a class="btn-navy" href="{% url "home:port_delete" port.pk %}" onclick="return confirm('삭제하시겠습니까?');" style="text-decoration: none;">삭제</a>
+                                </div>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% if user.is_admin %}
+        <div class="text-right" style="margin-right: 20px;">
+            <a class="btn btn-navy" id="write_notice" href="{% url "home:port_new" %}" role="button"><i class="fas fa-pen" style="margin-right: 8px;"></i>프로젝트 추가하기</a>
+        </div>
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

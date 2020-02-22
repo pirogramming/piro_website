@@ -1,0 +1,265 @@
+{#   admin 용 base   #}
+
+{% extends "admin/base.html" %}
+{% load admin_static %}
+
+{# Additional <head> content here, some extra meta tags or favicon #}
+{% block extrahead %}
+    {#    한글 폰트     #}
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap&subset=korean"
+          rel="stylesheet">
+    {#    영어 폰트     #}
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    {#    fontawesome  #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+{% endblock %}
+
+{# Additional CSS includes #}
+{% block extrastyle %}
+    <style>
+        {#    전체적인 설정    #}
+        a {
+            text-decoration: none;
+        }
+
+        {#    헤더     #}
+        .header {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .header #branding h1 {
+            font-family: 'Gugi', cursive;
+            font-size: 30px;
+            margin-left: 20px;
+        }
+
+        {#   메인페이지- 왼쪽 표 #}
+        #content-main {
+        {#width: 50%;#}
+        }
+        .dashboard #content #content-main{
+            width:40%;
+        }
+
+        .dashboard #content #content-related {
+            margin-right: 10%;
+            {#float: right;#}
+        }
+
+        .module {
+            {#width: 100%;#}
+        }
+
+        tbody {
+            {#width: 100%;#}
+        }
+
+        .table-overview {
+            width: 90%;
+            margin-bottom: 30px;
+        }
+
+        .table-overview caption a {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 20px;
+            color: #0E4D92;
+        }
+
+        .table-overview caption {
+            margin-bottom: 6px;
+        }
+
+        .row-fluid {
+            width: 95%;
+            margin-left: 6%;
+            margin-right: 10%;
+        }
+
+        .table-overview td {
+            width: 25%;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 13px;
+        }
+
+        .table-overview th {
+            text-align: left;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 14px;
+        }
+
+        .content {
+            margin: 0;
+        }
+
+        {#  메인페이지 - 오른쪽 표 #}
+        .italic-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 20px;
+            color: #0E4D92;
+        }
+
+        .actionlist li {
+            height: 25px;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 13px;
+        }
+
+        .dashboard #content #content-related {
+            margin-left: 10%;
+        }
+
+        {#   왼쪽 네브바 #}
+        .left-nav > ul > li > a {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 15px;
+        }
+
+        .left-nav > ul > li.active > a, .left-nav > ul > li:last-child > a {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 14px;
+        }
+        .left-nav>ul >li:last-child{
+            display: none;
+        }
+
+        .left-nav > ul > li ul li a {
+            font-family: 'Raleway', 'Nanum Gothic', sans-serif;
+            font-size: 13px;
+        }
+
+        {#  세부 내용 #}
+        .breadcrumb {
+            font-family: 'Nanum Gothic', 'Raleway', sans-serif;
+            font-size: 15px;
+        }
+        #result_list{
+            width:80%;
+        }
+
+        .btn-success {
+            background-color: #4682B4;
+            background-image: linear-gradient(to bottom, #0E4D92, #4682B4)
+        }
+
+        .btn:hover {
+            background-position: 0;
+            background-image: linear-gradient(to bottom, #0E4D92, #4682B4)
+        }
+
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 12px;
+        }
+
+        .inner-center-column {
+            width: 100%;
+        }
+
+
+        {#    내용 작성   #}
+        .save-box .btn:hover {
+            background-position: 0;
+            color: white;
+            background-image: linear-gradient(to bottom, #0E4D92, #4682B4)
+        }
+
+        .form-horizontal fieldset {
+            width: 70%;
+        }
+
+        .object-tools{
+            float:none;
+        }
+
+        .form-horizontal .control-group .control-label {
+            min-width: 70px;
+            width: 100px;
+        }
+
+        .inner-two-columns .inner-right-column{
+            margin-right: 4%;
+        }
+
+        .auto-width{
+            width:20%;
+            max-width: 20%;
+        }
+        {#  footer  #}
+        .footer .content .tools, .footer .content .copyright {
+            font-family: 'Raleway', 'Nanum Gothic', sans-serif;
+            font-size: 13px;
+        }
+
+        .footer .content .branding {
+            font-family: 'Gugi', cursive;
+            width: 500px;
+            font-size: 20px;
+        }
+
+        .fa-home:hover {
+            text-decoration-color: #00B0E8;
+        }
+
+
+    </style>
+{% endblock %}
+
+
+{# Additional JS files in footer, right before </body> #}
+{#{% block extrajs %}#}
+{#  <script type="text/javascript" src="{% static 'js/my_project.js' %}"></script>#}
+{#{% endblock %}#}
+
+Footer links (left side)
+{% block footer_links %}
+    <a href="https://www.facebook.com/p.rogramming3k/" target="_blank">
+        <i class="fab fa-facebook fa-2x" style="'Nanum Gothic', sans-serif; font-size: 15px;color:#0E4D92">   Facebook </i>
+    </a>
+{% endblock %}
+
+{# Additional header content like notifications or language switcher #}
+{#{% block header_content %}#}
+{#    {{ block.super }}#}
+{#    <div class="header-content">#}
+{#        <!-- First icon column -->#}
+{#        <div class="header-column icon">#}
+{#            <i class="icon-home"></i><br>#}
+{#            <i class="icon-cog"></i>#}
+{#        </div>#}
+{#        <div class="header-column" style="margin-right: 20px">#}
+{#            <a href="/" class="grey">Front-end</a><br>#}
+{#            <a href="" class="grey">One more link</a>#}
+{#        </div>#}
+{#        <!-- Second icon column -->#}
+{#        <div class="header-column icon">#}
+{#            <i class="icon-comment"></i>#}
+{#        </div>#}
+{#        <div class="header-column">#}
+{#            <a href="" class="grey">5 new messages</a>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+{% block userlinks %}
+    <a id="board" href="{% url 'intranet:mainscreen' %}" style="font-family: 'Gugi', cursive; font-size: 15px; color:white; text-decoration:none;">
+        <i class="fas fa-home" style="  margin:5px; font-size: 15px; "> </i>
+
+        Board </a>
+{% endblock %}
+
+{# Footer branding name (center) #}
+{% block footer_branding %}
+    피로그래밍
+{% endblock %}
+
+
+{# Footer copyright (right side) #}
+{% block copyright %}
+    Copyright &copy; 2020 Piro_website<br>Developed by <a href="#" target="_blank">Pirogramming</a>
+{% endblock %}
+
+

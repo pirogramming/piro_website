@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -27,17 +26,81 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
+SUIT_CONFIG = {
+    'ADMIN_NAME': '피로그래밍'
+        }
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'external',
+    'internal',
+    'accounts',
+    'photobook',
+    'money',
+    'infoboard',
+    'crispy_forms',
+    'django.contrib.humanize',
+    'ckeditor',
+    'ckeditor_uploader',
+
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#수정
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'toolbar_MyCustomToolbar': [
+            {'name': 'basic', 'items': [
+                '-',
+                'Bold',
+                'Italic',
+                'CodeSnippet'  # add the codesnippet button name
+            ]},
+            {'name': 'insert', 'items': [
+                'Image'
+            ]
+             },
+            {'name': 'styles', 'items': [
+                'Styles',
+                'Format'
+            ]
+             }
+        ],
+        # https://github.com/django-ckeditor/django-ckeditor/tree/master/ckeditor/static/ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles
+        # https://github.com/isagalaev/highlight.js/tree/master/src/styles
+        'codeSnippet_theme': 'railscasts',
+        # uncomment to restrict only those languages
+        # 'codeSnippet_languages': {
+        #     'python': 'Python Guru',
+        #     'javascript': 'JavaScript Fu',
+        #     'php': 'PHP Ninja',
+        #     'c': 'You custom funny language name'
+        # },
+        'toolbar': 'MyCustomToolbar',
+        'width': '',
+        'extraPlugins': ','.join(
+            [
+                # add the follow plugins
+                'codesnippet',
+                'widget',
+                'dialog',
+            ]),
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +117,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +132,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'website.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -79,7 +141,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -99,13 +160,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -113,8 +173,32 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+AUTH_USER_MODEL = 'accounts.PiroUser'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+from django.urls import reverse_lazy
+
+LOGOUT_REDIRECT_URL = reverse_lazy('home:home')
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+PHOTOBOOK_MEDIA_URL = '/media/photobook/'
+INFO_MEDIA_URL = '/info/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
