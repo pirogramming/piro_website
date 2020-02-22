@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
 from .forms import SignUpForm, LoginForm, UserEditForm
+from .models import PiroUser
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
@@ -31,8 +32,13 @@ def login(request):
             else:
                 return redirect('home:home')
         else:
-            messages.error(request,'아이디나 비밀번호를 확인해주세요')
-            return redirect('accounts:login')
+            try:
+                user = PiroUser.objects.get(username=username)
+                messages.error(request, '운영진의 인증이 완료되지 않은 계정입니다.')
+                return redirect('accounts:login')
+            except:
+                messages.error(request,'아이디나 비밀번호를 확인해주세요.')
+                return redirect('accounts:login')
     else:
         form = LoginForm()
     return render(request, 'accounts/login_form.html', {'form': form})
